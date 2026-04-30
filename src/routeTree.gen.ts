@@ -15,6 +15,7 @@ import { Route as GitterRouteImport } from './routes/gitter'
 import { Route as GatesRouteImport } from './routes/gates'
 import { Route as EvroshtaketnikRouteImport } from './routes/evroshtaketnik'
 import { Route as DesignRouteImport } from './routes/design'
+import { Route as DerevoRouteImport } from './routes/derevo'
 import { Route as CatalogRouteImport } from './routes/catalog'
 import { Route as IndexRouteImport } from './routes/index'
 
@@ -48,6 +49,11 @@ const DesignRoute = DesignRouteImport.update({
   path: '/design',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DerevoRoute = DerevoRouteImport.update({
+  id: '/derevo',
+  path: '/derevo',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CatalogRoute = CatalogRouteImport.update({
   id: '/catalog',
   path: '/catalog',
@@ -62,6 +68,7 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/catalog': typeof CatalogRoute
+  '/derevo': typeof DerevoRoute
   '/design': typeof DesignRoute
   '/evroshtaketnik': typeof EvroshtaketnikRoute
   '/gates': typeof GatesRoute
@@ -72,6 +79,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/catalog': typeof CatalogRoute
+  '/derevo': typeof DerevoRoute
   '/design': typeof DesignRoute
   '/evroshtaketnik': typeof EvroshtaketnikRoute
   '/gates': typeof GatesRoute
@@ -83,6 +91,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/catalog': typeof CatalogRoute
+  '/derevo': typeof DerevoRoute
   '/design': typeof DesignRoute
   '/evroshtaketnik': typeof EvroshtaketnikRoute
   '/gates': typeof GatesRoute
@@ -95,6 +104,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/catalog'
+    | '/derevo'
     | '/design'
     | '/evroshtaketnik'
     | '/gates'
@@ -105,6 +115,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/catalog'
+    | '/derevo'
     | '/design'
     | '/evroshtaketnik'
     | '/gates'
@@ -115,6 +126,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/catalog'
+    | '/derevo'
     | '/design'
     | '/evroshtaketnik'
     | '/gates'
@@ -126,6 +138,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CatalogRoute: typeof CatalogRoute
+  DerevoRoute: typeof DerevoRoute
   DesignRoute: typeof DesignRoute
   EvroshtaketnikRoute: typeof EvroshtaketnikRoute
   GatesRoute: typeof GatesRoute
@@ -178,6 +191,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DesignRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/derevo': {
+      id: '/derevo'
+      path: '/derevo'
+      fullPath: '/derevo'
+      preLoaderRoute: typeof DerevoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/catalog': {
       id: '/catalog'
       path: '/catalog'
@@ -198,6 +218,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CatalogRoute: CatalogRoute,
+  DerevoRoute: DerevoRoute,
   DesignRoute: DesignRoute,
   EvroshtaketnikRoute: EvroshtaketnikRoute,
   GatesRoute: GatesRoute,
