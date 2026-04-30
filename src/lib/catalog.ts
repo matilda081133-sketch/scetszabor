@@ -103,6 +103,7 @@ export const PRODUCTS: Product[] = [
     pricePerM: 1490,
     height: "1.5 м",
     features: ["Пруток 4 мм", "Полимер RAL 6005/7024", "Столб 60×40", "Хомутовый крепёж"],
+    tags: ["Бюджетно","Без обслуживания","Прозрачно"],
     images: [gitter1, gitter2],
   },
   {
@@ -113,6 +114,7 @@ export const PRODUCTS: Product[] = [
     pricePerM: 1890,
     height: "2.0 м",
     features: ["Пруток 5 мм", "Усиленный столб 80×40", "Антивандальный крепёж", "Цинк + полимер"],
+    tags: ["Промобъекты","Антивандально","Усиленный"],
     images: [gitter2, gitter1],
   },
 
@@ -125,6 +127,7 @@ export const PRODUCTS: Product[] = [
     pricePerM: 4490,
     height: "2.0 м",
     features: ["Ламель 100 мм", "Двусторонний цвет", "Алюминиевые направляющие", "Не выгорает"],
+    tags: ["Самый частый запрос","Современный дизайн","Приватность"],
     images: [jaluzi1, jaluzi2],
     badge: "Хит",
   },
@@ -136,6 +139,7 @@ export const PRODUCTS: Product[] = [
     pricePerM: 5290,
     height: "2.0 м",
     features: ["Усиленная ламель", "ПЭ-полимер 35 мкм", "Гарантия цвета 10 лет", "Скрытый крепёж"],
+    tags: ["Премиум","Полная приватность","Скрытый крепёж"],
     images: [jaluzi2, jaluzi1],
   },
 
@@ -148,6 +152,7 @@ export const PRODUCTS: Product[] = [
     pricePerM: 2470,
     height: "1.8 м",
     features: ["Столб 60×60 мм", "Лаги 40×20 мм", "Профлист С8 0,4 мм", "Покрытие ГФ-021"],
+    tags: ["Бюджетно","Защита от ветра","Полная глухота"],
     images: [proflist1, proflist2],
   },
   {
@@ -158,6 +163,7 @@ export const PRODUCTS: Product[] = [
     pricePerM: 2680,
     height: "1.8 м",
     features: ["Столб 60×60 мм", "Лаги 40×20 мм", "Профлист С8 0,4 мм", "Эмаль 3в1"],
+    tags: ["Надёжность креплений","Долговечно","Окрашенный каркас"],
     images: [proflist2, proflist1],
     badge: "Премиум",
   },
@@ -171,6 +177,7 @@ export const PRODUCTS: Product[] = [
     pricePerM: 2770,
     height: "1.5 м",
     features: ["Столб 60×60 мм", "Лаги 40×20 мм", "Штакетник 0,4 мм", "Двустороннее покрытие"],
+    tags: ["Бюджетно","Современный вид","Двусторонний"],
     images: [evro1, evro2],
   },
   {
@@ -181,6 +188,7 @@ export const PRODUCTS: Product[] = [
     pricePerM: 2880,
     height: "1.5 м",
     features: ["Столб 60×60 мм", "Лаги 40×20 мм", "Штакетник 0,4 мм", "Эмаль 3в1"],
+    tags: ["Хит продаж","Надёжность креплений","Современный дизайн"],
     images: [evro2, evro1],
     badge: "Хит",
   },
@@ -192,6 +200,7 @@ export const PRODUCTS: Product[] = [
     pricePerM: 3040,
     height: "1.8 м",
     features: ["Столб 60×60 мм", "Лаги 40×20 мм", "Штакетник 0,4 мм", "Эмаль 3в1"],
+    tags: ["Оптимальная высота","Современный дизайн","Двусторонний"],
     images: [evro1, evro2],
   },
 
@@ -204,6 +213,7 @@ export const PRODUCTS: Product[] = [
     pricePerM: 3730,
     height: "1.5 м",
     features: ["Двойная зашивка", "Зазор 7 см", "Полная приватность", "Окрашенный каркас"],
+    tags: ["Полная приватность","Хит запросов","Двойная зашивка"],
     images: [shahmatka1, shahmatka2],
     badge: "Хит",
   },
@@ -215,6 +225,7 @@ export const PRODUCTS: Product[] = [
     pricePerM: 3930,
     height: "1.8 м",
     features: ["Шахматное заполнение", "Эмаль 3в1", "Зазор 7 см", "Двусторонний"],
+    tags: ["Приватность","Оптимальная высота","Двусторонний"],
     images: [shahmatka2, shahmatka1],
   },
 
@@ -227,6 +238,7 @@ export const PRODUCTS: Product[] = [
     pricePerM: 8990,
     height: "1.8 м",
     features: ["Сетка 4 мм оцинк.", "Гранитный камень 40–70 мм", "Каркас из проф. трубы", "Долговечно"],
+    tags: ["Эксклюзив","Ландшафт","Долговечно"],
     images: [design1, design2],
     badge: "Эксклюзив",
   },
@@ -238,6 +250,7 @@ export const PRODUCTS: Product[] = [
     pricePerM: 7490,
     height: "2.0 м",
     features: ["Под ваш проект", "Кованая фурнитура", "Антисептик", "Индивидуальный замер"],
+    tags: ["Под проект","Кованая фурнитура","Индивидуально"],
     images: [design2, design1],
   },
 
@@ -250,6 +263,7 @@ export const PRODUCTS: Product[] = [
     pricePerM: 4290,
     height: "1.8 м",
     features: ["Пруток 12×12 мм", "Каркас 40×20 мм", "Порошковая покраска", "Пики сверху"],
+    tags: ["Кованый стиль","Надёжность","Декор"],
     images: [raschoska1, raschoska2],
     badge: "Хит",
   },
@@ -261,6 +275,7 @@ export const PRODUCTS: Product[] = [
     pricePerM: 5490,
     height: "2.0 м",
     features: ["Пруток 14×14 мм", "Каркас 40×40 мм", "Антикор + полимер", "Декор-вставки"],
+    tags: ["Премиум","Антикор","Декор-вставки"],
     images: [raschoska2, raschoska1],
   },
 
@@ -273,6 +288,7 @@ export const PRODUCTS: Product[] = [
     pricePerM: 1990,
     height: "1.8 м",
     features: ["Доска 20×90 мм", "Антисептик-морилка", "Металлический каркас", "Бетонирование"],
+    tags: ["Натурально","Бюджетно","Антисептик"],
     images: [derevo1, derevo2],
   },
   {
@@ -283,6 +299,7 @@ export const PRODUCTS: Product[] = [
     pricePerM: 2790,
     height: "1.8 м",
     features: ["Лиственница", "Масло Pinotex", "Скрытый крепёж", "Гарантия 5 лет"],
+    tags: ["Премиум","Лиственница","Гарантия 5 лет"],
     images: [derevo2, derevo1],
     badge: "Премиум",
   },
