@@ -31,57 +31,57 @@ function HomePage() {
           alt="Забор СПЕЦЗАБОР"
           width={1920}
           height={1080}
-          className="absolute inset-0 size-full object-cover opacity-40"
+          className="absolute inset-0 size-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-graphite-deep via-graphite-deep/85 to-transparent" />
-        <div className="container-x relative py-20 md:py-32 max-w-3xl">
-          <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-yellow">
-            <span className="hazard-stripe h-1 w-10 rounded-sm" />
-            СПб и Ленинградская область
-          </div>
-          <h1 className="font-display text-4xl md:text-7xl leading-[0.95] mt-4">
-            Заборы под ключ
-            <br />
-            <span className="text-yellow">с реальной гарантией</span> по договору
-          </h1>
-          <p className="text-white/75 text-lg mt-5 max-w-xl">
-            Инженерный замер с учётом грунта. ГОСТовая сварка. Фото- и видеофиксация скрытых работ.
-            Точная смета до старта работ — без сюрпризов.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <a
-              href="#calc"
-              className="rounded-md btn-yellow px-6 py-3.5"
-            >
-              Рассчитать стоимость
-            </a>
-            <Link
-              to="/catalog"
-              className="rounded-md border border-white/25 hover:border-yellow hover:text-yellow px-6 py-3.5 font-semibold transition-colors"
-            >
-              Смотреть каталог
-            </Link>
-          </div>
-          <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-2xl">
-            {[
-              { v: "12+", l: "лет опыта" },
-              { v: "1500+", l: "заборов сдано" },
-              { v: "3 года", l: "гарантия" },
-              { v: "0 ₽", l: "за замер" },
-            ].map((s) => (
-              <div key={s.l}>
-                <div className="font-display text-3xl text-yellow">{s.v}</div>
-                <div className="text-xs text-white/60 uppercase tracking-wider">{s.l}</div>
-              </div>
-            ))}
+        <div className="absolute inset-0 bg-gradient-to-r from-graphite-deep/95 via-graphite-deep/70 to-graphite-deep/20" />
+        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-graphite-deep to-transparent" />
+        <div className="container-x relative py-16 md:py-24">
+          <div className="max-w-3xl">
+            <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-yellow">
+              <span className="hazard-stripe h-1 w-10 rounded-sm" />
+              СПб и Ленинградская область
+            </div>
+            <h1 className="font-display text-4xl md:text-6xl lg:text-7xl leading-[0.95] mt-4 text-left">
+              Заборы под ключ
+              <br />
+              <span className="text-yellow">с реальной гарантией</span> по договору
+            </h1>
+            <p className="text-white/80 text-base md:text-lg mt-5 max-w-xl text-left">
+              Инженерный замер с учётом грунта. ГОСТовая сварка. Фото- и видеофиксация скрытых работ.
+              Точная смета до старта работ — без сюрпризов.
+            </p>
+            <div className="mt-7 flex flex-wrap gap-3">
+              <a href="#calc" className="rounded-md btn-yellow px-6 py-3.5">
+                Рассчитать стоимость
+              </a>
+              <Link
+                to="/catalog"
+                className="rounded-md border border-white/30 hover:border-yellow hover:text-yellow px-6 py-3.5 font-semibold transition-colors"
+              >
+                Смотреть каталог
+              </Link>
+            </div>
+            <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-4 max-w-2xl">
+              {[
+                { v: "12+", l: "лет опыта" },
+                { v: "1500+", l: "заборов сдано" },
+                { v: "3 года", l: "гарантия" },
+                { v: "0 ₽", l: "за замер" },
+              ].map((s) => (
+                <div key={s.l} className="text-left">
+                  <div className="font-display text-3xl text-yellow">{s.v}</div>
+                  <div className="text-xs text-white/65 uppercase tracking-wider mt-0.5">{s.l}</div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* DIRECTIONS */}
-      <section className="container-x py-20">
+      <section className="container-x py-14 md:py-16">
         <SectionHeader kicker="Направления" title="Что мы строим" />
-        <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {Object.values(CATEGORIES).map((c) => {
             const sample = PRODUCTS.find((p) => p.category === c.slug);
             return (
@@ -97,16 +97,16 @@ function HomePage() {
                     loading="lazy"
                     width={1280}
                     height={960}
-                    className="absolute inset-0 size-full object-cover opacity-65 group-hover:opacity-80 group-hover:scale-105 transition-all duration-500"
+                    className="absolute inset-0 size-full object-cover opacity-70 group-hover:opacity-90 group-hover:scale-105 transition-all duration-500"
                   />
                 )}
                 <div className="absolute inset-0 bg-gradient-to-t from-graphite-deep via-graphite-deep/40 to-transparent" />
                 <div className="absolute inset-x-0 bottom-0 p-5">
-                  <div className="font-display text-2xl group-hover:text-orange transition-colors">{c.title}</div>
-                  <div className="text-sm text-white/70 mt-1">{c.lead}</div>
-                  <div className="mt-3 text-xs uppercase tracking-widest text-orange flex items-center gap-2">
+                  <div className="font-display text-2xl group-hover:text-yellow transition-colors">{c.title}</div>
+                  <div className="text-sm text-white/75 mt-1">{c.lead}</div>
+                  <div className="mt-3 text-xs uppercase tracking-widest text-yellow flex items-center gap-2">
                     Подробнее
-                    <span className="h-px flex-1 bg-orange/50" />
+                    <span className="h-px flex-1 bg-yellow/50" />
                   </div>
                 </div>
               </Link>
@@ -116,20 +116,20 @@ function HomePage() {
       </section>
 
       {/* APPROACH */}
-      <section className="section-graphite text-white py-20">
+      <section className="section-graphite text-white py-14 md:py-16">
         <div className="container-x">
           <SectionHeader light kicker="Наш подход" title="Чем мы отличаемся от «мальчика с рулеткой»" />
-          <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             {[
               { i: Ruler, t: "Инженер на замер", d: "Изучает перепад высот и состав грунта. Никаких «прикинем на месте»." },
               { i: Hammer, t: "Сварка по ГОСТ", d: "Каждый шов обработан и покрыт. Лаги — не «прихватка», а полный шов." },
               { i: Camera, t: "Фотофиксация", d: "Бетонирование, бутование, узлы — всё снимаем. Скрыть косяки не получится." },
               { i: ShieldCheck, t: "Реальная гарантия", d: "Если ворота провисли или забор повело — приезжаем и исправляем." },
             ].map((b) => (
-              <div key={b.t} className="bg-graphite-deep rounded-xl p-6 border border-white/10">
-                <b.i className="size-8 text-orange" />
+              <div key={b.t} className="bg-graphite-deep rounded-xl p-6 border border-white/10 hover:border-yellow/50 transition-colors">
+                <b.i className="size-8 text-yellow" />
                 <div className="font-display text-xl mt-4">{b.t}</div>
-                <div className="text-sm text-white/65 mt-2">{b.d}</div>
+                <div className="text-sm text-white/70 mt-2">{b.d}</div>
               </div>
             ))}
           </div>
@@ -137,25 +137,25 @@ function HomePage() {
       </section>
 
       {/* CALCULATOR */}
-      <section id="calc" className="container-x py-20">
+      <section id="calc" className="container-x py-14 md:py-16">
         <SectionHeader kicker="Калькулятор" title="Узнайте стоимость за 30 секунд" />
-        <div className="mt-10">
+        <div className="mt-8">
           <Calculator />
         </div>
       </section>
 
       {/* TOP PRODUCTS */}
-      <section className="container-x py-10">
+      <section className="container-x py-14 md:py-16 border-t border-border">
         <SectionHeader kicker="Популярное" title="Топ позиций каталога" />
-        <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {PRODUCTS.filter((p) => p.badge === "Хит" || p.badge === "Премиум").slice(0, 6).map((p) => (
             <ProductCard key={p.id} product={p} />
           ))}
         </div>
-        <div className="mt-8 text-center">
+        <div className="mt-8">
           <Link
             to="/catalog"
-            className="inline-flex items-center gap-2 rounded-md bg-graphite-deep text-white px-6 py-3 font-semibold hover:bg-orange hover:text-graphite-deep transition-colors"
+            className="inline-flex items-center gap-2 rounded-md bg-graphite-deep text-white px-6 py-3 font-semibold hover:bg-yellow hover:text-graphite-deep transition-colors"
           >
             Открыть полный каталог →
           </Link>
@@ -163,9 +163,9 @@ function HomePage() {
       </section>
 
       {/* PROMOS */}
-      <section className="container-x py-20">
+      <section className="container-x py-14 md:py-16 border-t border-border">
         <SectionHeader kicker="Акции" title="Спецпредложения" />
-        <div className="mt-10 grid gap-5 md:grid-cols-3">
+        <div className="mt-8 grid gap-4 md:grid-cols-3">
           <PromoCard icon={Award} title="−10% участникам СВО и пенсионерам" body="Честная скидка по удостоверению. Без ограничений по сумме заказа." />
           <PromoCard icon={Users} title="Реферальная программа" body="Приведите друга — получите 3% от суммы его договора наличными." accent />
           <PromoCard icon={ShieldCheck} title="Подарок при замере" body="3D-эскиз забора и черновая смета — бесплатно при вызове инженера." />
@@ -173,11 +173,9 @@ function HomePage() {
       </section>
 
       {/* LEAD */}
-      <section className="container-x">
+      <section className="container-x py-10">
         <LeadBlock />
       </section>
-
-      <div className="h-10" />
     </SiteLayout>
   );
 }
@@ -192,12 +190,12 @@ export function SectionHeader({
   light?: boolean;
 }) {
   return (
-    <div>
+    <div className="text-left">
       <div className="text-xs uppercase tracking-[0.25em] text-orange flex items-center gap-3">
         <span className="hazard-stripe h-1 w-10 rounded-sm" />
         {kicker}
       </div>
-      <h2 className={`font-display text-3xl md:text-5xl mt-3 ${light ? "text-white" : ""}`}>
+      <h2 className={`font-display text-3xl md:text-5xl mt-3 text-left ${light ? "text-white" : ""}`}>
         {title}
       </h2>
     </div>
