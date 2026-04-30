@@ -14,12 +14,13 @@ export const CONTACTS = {
 
 export const NAV = [
   { to: "/", label: "Главная" },
+  { to: "/gitter", label: "Сетка 3D Gutter" },
+  { to: "/jaluzi", label: "Жалюзи" },
   { to: "/proflist", label: "Профлист" },
   { to: "/evroshtaketnik", label: "Евроштакетник" },
-  { to: "/derevo", label: "Деревянный" },
-  { to: "/gitter", label: "3D-сетка" },
-  { to: "/jaluzi", label: "Жалюзи" },
+  { to: "/shahmatka", label: "Шахматка" },
   { to: "/design", label: "Авторские" },
-  { to: "/gates", label: "Ворота" },
+  { to: "/raschoska", label: "Расчёска" },
+  { to: "/derevo", label: "Деревянный штакетник" },
   { to: "/catalog", label: "Каталог" },
 ] as const;
