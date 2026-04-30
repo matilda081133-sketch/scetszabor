@@ -8,12 +8,14 @@ type Type = {
 };
 
 const TYPES: Type[] = [
-  { key: "gitter", label: "3D-сетка Gitter", pricePerM: 1490 },
-  { key: "proflist", label: "Профлист", pricePerM: 1990 },
-  { key: "evro", label: "Евроштакетник", pricePerM: 2290 },
-  { key: "shahmatka", label: "Штакетник «шахматка»", pricePerM: 2890 },
+  { key: "gitter", label: "Сетка 3D Gutter", pricePerM: 1490 },
+  { key: "derevo", label: "Деревянный штакетник", pricePerM: 1990 },
+  { key: "proflist", label: "Профлист", pricePerM: 2470 },
+  { key: "evro", label: "Евроштакетник", pricePerM: 2770 },
+  { key: "shahmatka", label: "Шахматка (два ряда)", pricePerM: 3730 },
+  { key: "raschoska", label: "Сварной «Расчёска»", pricePerM: 4290 },
   { key: "jaluzi", label: "Жалюзи", pricePerM: 4490 },
-  { key: "design", label: "Дизайнерский", pricePerM: 7990 },
+  { key: "design", label: "Авторский", pricePerM: 7490 },
 ];
 
 export function Calculator({ defaultType }: { defaultType?: string } = {}) {
