@@ -9,8 +9,50 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ProflistRouteImport } from './routes/proflist'
+import { Route as JaluziRouteImport } from './routes/jaluzi'
+import { Route as GitterRouteImport } from './routes/gitter'
+import { Route as GatesRouteImport } from './routes/gates'
+import { Route as EvroshtaketnikRouteImport } from './routes/evroshtaketnik'
+import { Route as DesignRouteImport } from './routes/design'
+import { Route as CatalogRouteImport } from './routes/catalog'
 import { Route as IndexRouteImport } from './routes/index'
 
+const ProflistRoute = ProflistRouteImport.update({
+  id: '/proflist',
+  path: '/proflist',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JaluziRoute = JaluziRouteImport.update({
+  id: '/jaluzi',
+  path: '/jaluzi',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GitterRoute = GitterRouteImport.update({
+  id: '/gitter',
+  path: '/gitter',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GatesRoute = GatesRouteImport.update({
+  id: '/gates',
+  path: '/gates',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EvroshtaketnikRoute = EvroshtaketnikRouteImport.update({
+  id: '/evroshtaketnik',
+  path: '/evroshtaketnik',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DesignRoute = DesignRouteImport.update({
+  id: '/design',
+  path: '/design',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CatalogRoute = CatalogRouteImport.update({
+  id: '/catalog',
+  path: '/catalog',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +61,130 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/catalog': typeof CatalogRoute
+  '/design': typeof DesignRoute
+  '/evroshtaketnik': typeof EvroshtaketnikRoute
+  '/gates': typeof GatesRoute
+  '/gitter': typeof GitterRoute
+  '/jaluzi': typeof JaluziRoute
+  '/proflist': typeof ProflistRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/catalog': typeof CatalogRoute
+  '/design': typeof DesignRoute
+  '/evroshtaketnik': typeof EvroshtaketnikRoute
+  '/gates': typeof GatesRoute
+  '/gitter': typeof GitterRoute
+  '/jaluzi': typeof JaluziRoute
+  '/proflist': typeof ProflistRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/catalog': typeof CatalogRoute
+  '/design': typeof DesignRoute
+  '/evroshtaketnik': typeof EvroshtaketnikRoute
+  '/gates': typeof GatesRoute
+  '/gitter': typeof GitterRoute
+  '/jaluzi': typeof JaluziRoute
+  '/proflist': typeof ProflistRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/catalog'
+    | '/design'
+    | '/evroshtaketnik'
+    | '/gates'
+    | '/gitter'
+    | '/jaluzi'
+    | '/proflist'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/catalog'
+    | '/design'
+    | '/evroshtaketnik'
+    | '/gates'
+    | '/gitter'
+    | '/jaluzi'
+    | '/proflist'
+  id:
+    | '__root__'
+    | '/'
+    | '/catalog'
+    | '/design'
+    | '/evroshtaketnik'
+    | '/gates'
+    | '/gitter'
+    | '/jaluzi'
+    | '/proflist'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CatalogRoute: typeof CatalogRoute
+  DesignRoute: typeof DesignRoute
+  EvroshtaketnikRoute: typeof EvroshtaketnikRoute
+  GatesRoute: typeof GatesRoute
+  GitterRoute: typeof GitterRoute
+  JaluziRoute: typeof JaluziRoute
+  ProflistRoute: typeof ProflistRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/proflist': {
+      id: '/proflist'
+      path: '/proflist'
+      fullPath: '/proflist'
+      preLoaderRoute: typeof ProflistRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/jaluzi': {
+      id: '/jaluzi'
+      path: '/jaluzi'
+      fullPath: '/jaluzi'
+      preLoaderRoute: typeof JaluziRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gitter': {
+      id: '/gitter'
+      path: '/gitter'
+      fullPath: '/gitter'
+      preLoaderRoute: typeof GitterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gates': {
+      id: '/gates'
+      path: '/gates'
+      fullPath: '/gates'
+      preLoaderRoute: typeof GatesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/evroshtaketnik': {
+      id: '/evroshtaketnik'
+      path: '/evroshtaketnik'
+      fullPath: '/evroshtaketnik'
+      preLoaderRoute: typeof EvroshtaketnikRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/design': {
+      id: '/design'
+      path: '/design'
+      fullPath: '/design'
+      preLoaderRoute: typeof DesignRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/catalog': {
+      id: '/catalog'
+      path: '/catalog'
+      fullPath: '/catalog'
+      preLoaderRoute: typeof CatalogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,6 +197,13 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CatalogRoute: CatalogRoute,
+  DesignRoute: DesignRoute,
+  EvroshtaketnikRoute: EvroshtaketnikRoute,
+  GatesRoute: GatesRoute,
+  GitterRoute: GitterRoute,
+  JaluziRoute: JaluziRoute,
+  ProflistRoute: ProflistRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
