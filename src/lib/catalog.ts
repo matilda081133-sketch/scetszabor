@@ -24,6 +24,7 @@ export type Product = {
   pricePerM: number; // руб/м.п. под ключ
   height: string;
   features: string[];
+  tags?: string[]; // короткие выгодные ярлыки
   images: string[];
   badge?: string;
 };
