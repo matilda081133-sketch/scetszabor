@@ -17,7 +17,7 @@ export function Header() {
           </span>
         </Link>
 
-        <nav className="hidden xl:flex items-center gap-4 ml-4 text-[13px]">
+        <nav className="hidden xl:flex items-center justify-center gap-4 flex-1 text-[13px]">
           {NAV.slice(1).map((n) => (
             <Link
               key={n.to}
@@ -31,7 +31,7 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="ml-auto flex items-center gap-2 md:gap-3 shrink-0">
+        <div className="ml-auto xl:ml-0 flex items-center gap-2 md:gap-3 shrink-0">
           <a
             href={CONTACTS.phoneHref}
             className="hidden md:flex items-center gap-2 text-sm font-semibold hover:text-yellow transition-colors whitespace-nowrap"
