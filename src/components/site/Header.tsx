@@ -34,16 +34,16 @@ export function Header() {
         <div className="ml-auto flex items-center gap-2 md:gap-3">
           <a
             href={CONTACTS.phoneHref}
-            className="hidden md:flex items-center gap-2 text-sm font-semibold hover:text-orange transition-colors"
+            className="hidden md:flex items-center gap-2 text-sm font-semibold hover:text-yellow transition-colors"
           >
-            <Phone className="size-4 text-orange" />
+            <Phone className="size-4 text-yellow" />
             {CONTACTS.phone}
           </a>
           <a
             href={CONTACTS.telegramUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden sm:inline-flex items-center gap-2 rounded-md bg-orange hover:bg-orange-bright text-graphite-deep font-bold px-4 py-2 text-sm transition-colors shadow-glow-orange"
+            className="hidden sm:inline-flex items-center gap-2 rounded-md btn-yellow px-4 py-2 text-sm"
           >
             Написать
           </a>
