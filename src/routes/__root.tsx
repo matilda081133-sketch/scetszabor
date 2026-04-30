@@ -35,7 +35,7 @@ export const Route = createRootRoute({
         content:
           "Изготовление и монтаж заборов под ключ в Санкт-Петербурге и Ленинградской области. Профлист, евроштакетник, 3D-сетка, жалюзи, ворота. Реальная гарантия по договору.",
       },
-      { property: "og:title", content: "СПЕЦЗАБОР — заборы под ключ в СПб и ЛО" },
+      { property: "og:title", content: "СПЕЦЗАБОР — установка заборов в СПб и ЛО" },
       {
         property: "og:description",
         content:
@@ -43,6 +43,12 @@ export const Route = createRootRoute({
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "СПЕЦЗАБОР — установка заборов в СПб и ЛО" },
+      { name: "description", content: "Solid Spb Fences is a website for a fence installation company serving St. Petersburg and Leningrad Oblast." },
+      { property: "og:description", content: "Solid Spb Fences is a website for a fence installation company serving St. Petersburg and Leningrad Oblast." },
+      { name: "twitter:description", content: "Solid Spb Fences is a website for a fence installation company serving St. Petersburg and Leningrad Oblast." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/f1287189-7998-4055-9e4e-73e0835c7201/id-preview-c5abdbe7--9138e12c-c3e0-4bb8-a790-4add5967a43e.lovable.app-1777564523620.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/f1287189-7998-4055-9e4e-73e0835c7201/id-preview-c5abdbe7--9138e12c-c3e0-4bb8-a790-4add5967a43e.lovable.app-1777564523620.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
