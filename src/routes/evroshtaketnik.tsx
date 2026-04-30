@@ -19,8 +19,8 @@ export const Route = createFileRoute("/evroshtaketnik")({
       hero={e1}
       calcDefault="evro"
       variants={[
-        { title: "В один ряд", img: e1, desc: "Просвет 30–50 мм. Классика и аккуратность." },
-        { title: "Шахматка (2 ряда)", img: e2, desc: "Полная приватность с продуваемостью." },
+        { title: "В один ряд 1,5 м", img: e1, desc: "Просвет 30–50 мм. Классика и аккуратность." },
+        { title: "В один ряд 1,8 м", img: e2, desc: "Оптимальная высота для частного дома." },
         { title: "Горизонтальный", img: e3, desc: "Современный минимализм, акцент на ширине." },
       ]}
       techPoints={[
