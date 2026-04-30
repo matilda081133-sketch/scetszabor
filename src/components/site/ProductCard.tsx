@@ -26,7 +26,10 @@ export function ProductCard({ product }: { product: Product }) {
           />
         ))}
         {product.badge && (
-          <span className="absolute top-3 left-3 hazard-stripe text-white text-[11px] font-bold uppercase tracking-wider px-2 py-1 rounded-sm">
+          <span className={`absolute top-3 left-3 text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-sm ${
+            product.badge === "Премиум" || product.badge === "Эксклюзив"
+              ? "badge-solid-orange" : "badge-solid"
+          }`}>
             {product.badge}
           </span>
         )}
@@ -66,6 +69,18 @@ export function ProductCard({ product }: { product: Product }) {
       <div className="p-5 flex flex-col flex-1">
         <h3 className="font-display text-xl">{product.title}</h3>
         <p className="text-sm text-muted-foreground mt-1">{product.short}</p>
+        {product.tags && product.tags.length > 0 && (
+          <div className="mt-3 flex flex-wrap gap-1.5">
+            {product.tags.map((t) => (
+              <span
+                key={t}
+                className="inline-flex items-center text-[11px] font-semibold uppercase tracking-wider px-2 py-1 rounded-md bg-secondary text-forest-dark border border-border"
+              >
+                {t}
+              </span>
+            ))}
+          </div>
+        )}
         <ul className="mt-3 grid grid-cols-2 gap-x-3 gap-y-1.5 text-xs text-foreground/80">
           {product.features.map((f) => (
             <li key={f} className="flex items-start gap-2">
