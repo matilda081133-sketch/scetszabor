@@ -5,6 +5,8 @@ import { LeadBlock } from "@/components/site/LeadBlock";
 import { CATEGORIES, PRODUCTS } from "@/lib/catalog";
 import { ProductCard } from "@/components/site/ProductCard";
 import { ShieldCheck, Hammer, Camera, Ruler, Award, Users } from "lucide-react";
+import { CountStat } from "@/components/site/CountStat";
+import { FAQ } from "@/components/site/FAQ";
 import heroImg from "@/assets/hero-fence.jpg";
 
 export const Route = createFileRoute("/")({
