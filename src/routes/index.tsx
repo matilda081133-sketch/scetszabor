@@ -169,6 +169,11 @@ function HomePage() {
         </div>
       </section>
 
+      {/* FAQ */}
+      <section className="border-t border-border bg-secondary/40">
+        <FAQ />
+      </section>
+
       {/* LEAD */}
       <section className="container-x py-10">
         <LeadBlock />
@@ -212,15 +217,19 @@ function PromoCard({
 }) {
   return (
     <div
-      className={`rounded-xl p-6 border ${
+      className={`rounded-xl p-6 border transition-transform hover:-translate-y-1 ${
         accent
-          ? "bg-orange text-graphite-deep border-orange shadow-brutal"
-          : "bg-card border-border"
+          ? "bg-graphite-deep text-white border-yellow shadow-brutal-orange"
+          : "bg-card border-border shadow-card"
       }`}
     >
-      <Icon className={`size-8 ${accent ? "text-graphite-deep" : "text-orange"}`} />
-      <div className="font-display text-xl mt-4">{title}</div>
-      <div className={`text-sm mt-2 ${accent ? "text-graphite-deep/80" : "text-muted-foreground"}`}>
+      <div className={`inline-flex size-12 items-center justify-center rounded-lg ${
+        accent ? "bg-yellow text-graphite-deep" : "bg-secondary text-forest"
+      }`}>
+        <Icon className="size-6" />
+      </div>
+      <div className={`font-display text-xl mt-4 ${accent ? "text-yellow" : ""}`}>{title}</div>
+      <div className={`text-sm mt-2 ${accent ? "text-white/80" : "text-muted-foreground"}`}>
         {body}
       </div>
     </div>
