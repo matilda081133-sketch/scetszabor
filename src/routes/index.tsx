@@ -5,6 +5,8 @@ import { LeadBlock } from "@/components/site/LeadBlock";
 import { CATEGORIES, PRODUCTS } from "@/lib/catalog";
 import { ProductCard } from "@/components/site/ProductCard";
 import { ShieldCheck, Hammer, Camera, Ruler, Award, Users } from "lucide-react";
+import { CountStat } from "@/components/site/CountStat";
+import { FAQ } from "@/components/site/FAQ";
 import heroImg from "@/assets/hero-fence.jpg";
 
 export const Route = createFileRoute("/")({
@@ -41,16 +43,18 @@ function HomePage() {
               <span className="hazard-stripe h-1 w-10 rounded-sm" />
               СПб и Ленинградская область
             </div>
-            <h1 className="font-display text-4xl md:text-6xl lg:text-7xl leading-[0.95] mt-4 text-left">
+            <h1 className="font-display text-4xl md:text-6xl lg:text-7xl leading-[0.95] mt-4 text-left animate-fade-up">
               Заборы под ключ
               <br />
-              <span className="text-yellow">с реальной гарантией</span> по договору
+              <span className="text-yellow">с реальной гарантией</span>
+              <br />
+              по договору
             </h1>
-            <p className="text-white/80 text-base md:text-lg mt-5 max-w-xl text-left">
+            <p className="text-white/80 text-base md:text-lg mt-5 max-w-xl text-left animate-fade-up" style={{ animationDelay: "0.15s" }}>
               Инженерный замер с учётом грунта. ГОСТовая сварка. Фото- и видеофиксация скрытых работ.
               Точная смета до старта работ — без сюрпризов.
             </p>
-            <div className="mt-7 flex flex-wrap gap-3">
+            <div className="mt-7 flex flex-wrap gap-3 animate-fade-up" style={{ animationDelay: "0.3s" }}>
               <a href="#calc" className="rounded-md btn-yellow px-6 py-3.5">
                 Рассчитать стоимость
               </a>
@@ -62,17 +66,10 @@ function HomePage() {
               </Link>
             </div>
             <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-4 max-w-2xl">
-              {[
-                { v: "12+", l: "лет опыта" },
-                { v: "1500+", l: "заборов сдано" },
-                { v: "3 года", l: "гарантия" },
-                { v: "0 ₽", l: "за замер" },
-              ].map((s) => (
-                <div key={s.l} className="text-left">
-                  <div className="font-display text-3xl text-yellow">{s.v}</div>
-                  <div className="text-xs text-white/65 uppercase tracking-wider mt-0.5">{s.l}</div>
-                </div>
-              ))}
+              <CountStat value={12} suffix="+" label="лет опыта" />
+              <CountStat value={1500} suffix="+" label="заборов сдано" />
+              <CountStat value={3} suffix=" года" label="гарантия" />
+              <CountStat value={0} suffix=" ₽" label="за замер" />
             </div>
           </div>
         </div>
@@ -172,6 +169,11 @@ function HomePage() {
         </div>
       </section>
 
+      {/* FAQ */}
+      <section className="border-t border-border bg-secondary/40">
+        <FAQ />
+      </section>
+
       {/* LEAD */}
       <section className="container-x py-10">
         <LeadBlock />
@@ -215,15 +217,19 @@ function PromoCard({
 }) {
   return (
     <div
-      className={`rounded-xl p-6 border ${
+      className={`rounded-xl p-6 border transition-transform hover:-translate-y-1 ${
         accent
-          ? "bg-orange text-graphite-deep border-orange shadow-brutal"
-          : "bg-card border-border"
+          ? "bg-graphite-deep text-white border-yellow shadow-brutal-orange"
+          : "bg-card border-border shadow-card"
       }`}
     >
-      <Icon className={`size-8 ${accent ? "text-graphite-deep" : "text-orange"}`} />
-      <div className="font-display text-xl mt-4">{title}</div>
-      <div className={`text-sm mt-2 ${accent ? "text-graphite-deep/80" : "text-muted-foreground"}`}>
+      <div className={`inline-flex size-12 items-center justify-center rounded-lg ${
+        accent ? "bg-yellow text-graphite-deep" : "bg-secondary text-forest"
+      }`}>
+        <Icon className="size-6" />
+      </div>
+      <div className={`font-display text-xl mt-4 ${accent ? "text-yellow" : ""}`}>{title}</div>
+      <div className={`text-sm mt-2 ${accent ? "text-white/80" : "text-muted-foreground"}`}>
         {body}
       </div>
     </div>
