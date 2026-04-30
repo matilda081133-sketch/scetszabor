@@ -3,7 +3,7 @@ import { CONTACTS, NAV } from "@/lib/site";
 
 export function Footer() {
   return (
-    <footer className="section-dark mt-24 border-t border-white/10">
+    <footer className="section-dark mt-16 border-t border-white/10">
       <div className="container-x py-14 grid gap-10 md:grid-cols-4">
         <div className="md:col-span-2">
           <div className="font-display text-3xl tracking-tight">

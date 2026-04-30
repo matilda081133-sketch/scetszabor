@@ -65,8 +65,8 @@ export function Header() {
                 key={n.to}
                 to={n.to}
                 onClick={() => setOpen(false)}
-                className="py-2 text-white/85 hover:text-orange"
-                activeProps={{ className: "text-orange font-semibold" }}
+                className="py-2 text-white/85 hover:text-yellow"
+                activeProps={{ className: "text-yellow font-semibold" }}
                 activeOptions={{ exact: true }}
               >
                 {n.label}
@@ -74,12 +74,12 @@ export function Header() {
             ))}
             <a
               href={CONTACTS.phoneHref}
-              className="mt-2 inline-flex items-center gap-2 text-orange font-semibold"
+              className="mt-2 inline-flex items-center gap-2 text-yellow font-semibold"
             >
               <Phone className="size-4" />
               {CONTACTS.phone}
             </a>
-            <span className="text-xs text-white/50">{CONTACTS.workHours}</span>
+            <span className="text-xs text-white/55">{CONTACTS.workHours}</span>
           </div>
         </div>
       )}
