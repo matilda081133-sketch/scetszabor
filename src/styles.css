@@ -174,4 +174,51 @@
     background: oklch(0.92 0.20 90);
     box-shadow: var(--shadow-glow-yellow);
   }
+
+  /* Solid badge — заменяет полосатый hazard для Хит/Премиум */
+  .badge-solid {
+    background: var(--brand-yellow);
+    color: var(--graphite-deep);
+    border: 1px solid var(--graphite-deep);
+    box-shadow: 2px 2px 0 0 var(--graphite-deep);
+  }
+  .badge-solid-orange {
+    background: var(--brand-orange);
+    color: #fff;
+    border: 1px solid var(--graphite-deep);
+    box-shadow: 2px 2px 0 0 var(--graphite-deep);
+  }
+}
+
+/* ===== Animations ===== */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-8px); }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes pulse-ring {
+  0%   { box-shadow: 0 0 0 0 color-mix(in oklab, var(--brand-yellow) 60%, transparent); }
+  70%  { box-shadow: 0 0 0 18px color-mix(in oklab, var(--brand-yellow) 0%, transparent); }
+  100% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--brand-yellow) 0%, transparent); }
+}
+
+.animate-fade-up { animation: fade-up 0.7s ease-out both; }
+.animate-float   { animation: float-y 5s ease-in-out infinite; }
+.animate-pulse-ring { animation: pulse-ring 2.2s ease-out infinite; }
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
 }
