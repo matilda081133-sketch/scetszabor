@@ -2,17 +2,17 @@ import { Link } from "@tanstack/react-router";
 import { Phone, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { CONTACTS, NAV } from "@/lib/site";
-import logo from "@/assets/logo.png";
+import logo from "@/assets/logo-spec.png";
 
 export function Header() {
   const [open, setOpen] = useState(false);
   return (
     <header className="sticky top-0 z-40 border-b border-white/10 bg-graphite-deep/95 backdrop-blur supports-[backdrop-filter]:bg-graphite-deep/80 text-white">
-      <div className="container-x flex items-center gap-4 py-3 md:py-4">
+      <div className="container-x flex items-center gap-4 py-2 md:py-3">
         <Link to="/" className="flex items-center gap-3 shrink-0" onClick={() => setOpen(false)}>
-          <img src={logo} alt="СПЕЦЗАБОР" className="h-8 md:h-10 w-auto" width={1536} height={1024} />
-          <span className="hidden sm:flex flex-col leading-tight">
-            <span className="text-[11px] uppercase tracking-widest text-orange">Заборы под ключ</span>
+          <img src={logo} alt="СПЕЦЗАБОР" className="h-12 md:h-16 w-auto drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]" width={1280} height={853} />
+          <span className="hidden md:flex flex-col leading-tight">
+            <span className="text-[11px] uppercase tracking-widest text-yellow">Заборы под ключ</span>
             <span className="text-[11px] text-white/60">{CONTACTS.region}</span>
           </span>
         </Link>
@@ -34,16 +34,16 @@ export function Header() {
         <div className="ml-auto flex items-center gap-2 md:gap-3">
           <a
             href={CONTACTS.phoneHref}
-            className="hidden md:flex items-center gap-2 text-sm font-semibold hover:text-orange transition-colors"
+            className="hidden md:flex items-center gap-2 text-sm font-semibold hover:text-yellow transition-colors"
           >
-            <Phone className="size-4 text-orange" />
+            <Phone className="size-4 text-yellow" />
             {CONTACTS.phone}
           </a>
           <a
             href={CONTACTS.telegramUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden sm:inline-flex items-center gap-2 rounded-md bg-orange hover:bg-orange-bright text-graphite-deep font-bold px-4 py-2 text-sm transition-colors shadow-glow-orange"
+            className="hidden sm:inline-flex items-center gap-2 rounded-md btn-yellow px-4 py-2 text-sm"
           >
             Написать
           </a>

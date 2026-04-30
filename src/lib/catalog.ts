@@ -1,18 +1,18 @@
-// Catalog data: products grouped by category, prices in line with lenzk.ru avg
-import proflist1 from "@/assets/proflist-1.jpg";
-import proflist2 from "@/assets/proflist-2.jpg";
-import proflist3 from "@/assets/proflist-3.jpg";
-import evro1 from "@/assets/evro-1.jpg";
-import evro2 from "@/assets/evro-2.jpg";
-import evro3 from "@/assets/evro-3.jpg";
-import gitter1 from "@/assets/gitter-1.jpg";
-import gitter2 from "@/assets/gitter-2.jpg";
-import jaluzi1 from "@/assets/jaluzi-1.jpg";
-import jaluzi2 from "@/assets/jaluzi-2.jpg";
-import design1 from "@/assets/design-1.jpg";
-import design2 from "@/assets/design-2.jpg";
-import gates1 from "@/assets/gates-1.jpg";
-import gates2 from "@/assets/gates-2.jpg";
+// Catalog data: products grouped by category, prices from lenzk.ru
+import proflist1 from "@/assets/catalog/proflist-1.jpg";
+import proflist2 from "@/assets/catalog/proflist-2.jpg";
+import evro1 from "@/assets/catalog/evro-1.jpg";
+import evro2 from "@/assets/catalog/evro-2.jpg";
+import shahmatka1 from "@/assets/catalog/shahmatka-1.jpg";
+import shahmatka2 from "@/assets/catalog/shahmatka-2.jpg";
+import gitter1 from "@/assets/catalog/gitter-1.jpg";
+import gitter2 from "@/assets/catalog/gitter-2.jpg";
+import jaluzi1 from "@/assets/catalog/jaluzi-1.jpg";
+import jaluzi2 from "@/assets/catalog/jaluzi-2.jpg";
+import derevo1 from "@/assets/catalog/derevo-1.jpg";
+import derevo2 from "@/assets/catalog/derevo-2.jpg";
+import design1 from "@/assets/catalog/design-1.jpg";
+import design2 from "@/assets/catalog/design-2.jpg";
 
 export type Product = {
   id: string;
@@ -31,6 +31,7 @@ export type CategorySlug =
   | "evroshtaketnik"
   | "gitter"
   | "jaluzi"
+  | "derevo"
   | "design"
   | "gates";
 
@@ -48,7 +49,7 @@ export const CATEGORIES: Record<
     slug: "evroshtaketnik",
     title: "Заборы из евроштакетника",
     href: "/evroshtaketnik",
-    lead: "Аккуратный современный вид. Ряд, шахматка, горизонталь.",
+    lead: "Аккуратный современный вид. Один ряд или шахматка.",
   },
   gitter: {
     slug: "gitter",
@@ -62,86 +63,115 @@ export const CATEGORIES: Record<
     href: "/jaluzi",
     lead: "Премиальный дизайн. Приватность с продуваемостью.",
   },
+  derevo: {
+    slug: "derevo",
+    title: "Деревянный штакетник",
+    href: "/derevo",
+    lead: "Натуральное дерево с антисептической обработкой.",
+  },
   design: {
     slug: "design",
-    title: "Дизайнерские заборы",
+    title: "Авторские заборы",
     href: "/design",
-    lead: "Кирпичные столбы, габионы, комбинации материалов.",
+    lead: "Габионы, комбинации материалов, нестандартные решения.",
   },
   gates: {
     slug: "gates",
     title: "Ворота и калитки",
     href: "/gates",
-    lead: "Откатные, распашные, с автоматикой. Расчёт противовеса.",
+    lead: "Откатные, распашные, с автоматикой.",
   },
 };
 
 export const PRODUCTS: Product[] = [
-  // Proflist
+  // Профлист — цены lenzk.ru (Эконом / Стандарт / Премиум)
   {
-    id: "proflist-c8-0.45",
+    id: "proflist-econom",
     category: "proflist",
-    title: "Профлист С8, 0,45 мм",
-    short: "Базовый забор. Полимерное покрытие, полная зашивка.",
-    pricePerM: 1990,
+    title: "Профлист «Эконом»",
+    short: "Каркас грунтован ГФ-021. Базовый бюджетный вариант.",
+    pricePerM: 2470,
     height: "1.8 м",
-    features: ["Столб 60×60×2 мм", "Лаги 40×20×2 мм", "Бетонирование", "Цвет на выбор RAL"],
-    images: [proflist1, proflist2, proflist3],
+    features: ["Столб 60×60 мм", "Лаги 40×20 мм", "Профлист С8 0,4 мм", "Покрытие ГФ-021"],
+    images: [proflist1, proflist2],
+  },
+  {
+    id: "proflist-standart",
+    category: "proflist",
+    title: "Профлист «Стандарт»",
+    short: "Окрашенный каркас эмалью 3в1. Самый популярный вариант.",
+    pricePerM: 2680,
+    height: "1.8 м",
+    features: ["Столб 60×60 мм", "Лаги 40×20 мм", "Профлист С8 0,4 мм", "Эмаль 3в1"],
+    images: [proflist2, proflist1],
     badge: "Хит",
   },
   {
-    id: "proflist-c8-0.5",
+    id: "proflist-premium",
     category: "proflist",
-    title: "Профлист С8, 0,5 мм",
-    short: "Усиленный металл, гарантия от выгорания.",
-    pricePerM: 2290,
+    title: "Профлист «Премиум»",
+    short: "Усиленный каркас, двусторонний полимер.",
+    pricePerM: 3290,
     height: "2.0 м",
-    features: ["Столб 60×60×2 мм", "Лаги 40×40×2 мм", "Двусторонний ECOSTEEL", "Заглушки"],
-    images: [proflist2, proflist3, proflist1],
+    features: ["Столб 60×60×2 мм", "Лаги 40×40 мм", "Профлист 0,5 мм", "ECOSTEEL 2-сторон."],
+    images: [proflist1, proflist2],
   },
+
+  // Евроштакетник — цены lenzk.ru
   {
-    id: "proflist-c20",
-    category: "proflist",
-    title: "Профлист С20, 0,5 мм",
-    short: "Высокая ветровая нагрузка. Для открытых участков.",
-    pricePerM: 2590,
-    height: "2.0 м",
-    features: ["Жёсткое ребро С20", "Столб 60×60×3 мм", "3 лаги", "Антикоррозия"],
-    images: [proflist3, proflist1, proflist2],
-  },
-  // Evroshtaketnik
-  {
-    id: "evro-1ryad",
+    id: "evro-econom",
     category: "evroshtaketnik",
-    title: "Евроштакетник в один ряд",
-    short: "Классическая зашивка с просветом.",
-    pricePerM: 2290,
-    height: "1.8 м",
-    features: ["Штакетник 110 мм", "Двусторонний полимер", "Просвет 30–50 мм", "RAL на выбор"],
-    images: [evro1, evro2, evro3],
+    title: "Евроштакетник «Эконом»",
+    short: "В один ряд, зазор 4 см. Каркас грунтован ГФ-021.",
+    pricePerM: 2770,
+    height: "1.5 м",
+    features: ["Столб 60×60 мм", "Лаги 40×20 мм", "Штакетник 0,4 мм", "Двустороннее покрытие"],
+    images: [evro1, evro2],
+  },
+  {
+    id: "evro-standart",
+    category: "evroshtaketnik",
+    title: "Евроштакетник «Стандарт»",
+    short: "В один ряд, зазор 4 см. Окрашенный каркас.",
+    pricePerM: 2880,
+    height: "1.5 м",
+    features: ["Столб 60×60 мм", "Лаги 40×20 мм", "Штакетник 0,4 мм", "Эмаль 3в1"],
+    images: [evro2, evro1],
     badge: "Хит",
   },
   {
-    id: "evro-shahmatka",
+    id: "evro-standart-18",
     category: "evroshtaketnik",
-    title: "Евроштакетник «шахматка»",
-    short: "Двойная зашивка. Не видно с улицы — продувается.",
-    pricePerM: 2890,
+    title: "Евроштакетник «Стандарт» 1,8 м",
+    short: "Один ряд, оптимальная высота для дома.",
+    pricePerM: 3040,
     height: "1.8 м",
-    features: ["2 ряда штакетника", "Полная приватность", "Эффект объёма", "ГОСТовая сварка"],
-    images: [evro2, evro3, evro1],
+    features: ["Столб 60×60 мм", "Лаги 40×20 мм", "Штакетник 0,4 мм", "Эмаль 3в1"],
+    images: [evro1, evro2],
   },
   {
-    id: "evro-gorizont",
+    id: "evro-premium",
     category: "evroshtaketnik",
-    title: "Евроштакетник горизонтальный",
-    short: "Современный вид, акцент на ширине участка.",
-    pricePerM: 2790,
-    height: "1.8 м",
-    features: ["Горизонтальная зашивка", "Доп. опоры", "Скрытый крепёж", "Любая длина"],
-    images: [evro3, evro1, evro2],
+    title: "Евроштакетник «Премиум» шахматка",
+    short: "Два ряда в шахматном порядке. Не просматривается.",
+    pricePerM: 3730,
+    height: "1.5 м",
+    features: ["Двойная зашивка", "Зазор 7 см", "Полная приватность", "Окрашенный каркас"],
+    images: [shahmatka1, shahmatka2],
+    badge: "Премиум",
   },
-  // Gitter
+  {
+    id: "evro-premium-18",
+    category: "evroshtaketnik",
+    title: "Евроштакетник «Премиум» 1,8 м",
+    short: "Шахматка, оптимальная высота.",
+    pricePerM: 3930,
+    height: "1.8 м",
+    features: ["Шахматное заполнение", "Эмаль 3в1", "Зазор 7 см", "Двусторонний"],
+    images: [shahmatka2, shahmatka1],
+  },
+
+  // 3D Gitter — цены lenzk.ru
   {
     id: "gitter-1.5",
     category: "gitter",
@@ -149,7 +179,7 @@ export const PRODUCTS: Product[] = [
     short: "Дачные участки, СНТ, разделение территорий.",
     pricePerM: 1490,
     height: "1.5 м",
-    features: ["Пруток 4 мм", "Полимер RAL 6005", "Столб 60×40", "Хомутовый крепёж"],
+    features: ["Пруток 4 мм", "Полимер RAL 6005/7024", "Столб 60×40", "Хомутовый крепёж"],
     images: [gitter1, gitter2],
   },
   {
@@ -162,11 +192,12 @@ export const PRODUCTS: Product[] = [
     features: ["Пруток 5 мм", "Усиленный столб 80×40", "Антивандальный крепёж", "Цинк + полимер"],
     images: [gitter2, gitter1],
   },
-  // Jaluzi
+
+  // Жалюзи
   {
     id: "jaluzi-standart",
     category: "jaluzi",
-    title: "Жалюзи Standart",
+    title: "Жалюзи «Стандарт»",
     short: "Закрытый дизайнерский забор с продуваемостью.",
     pricePerM: 4490,
     height: "2.0 м",
@@ -175,38 +206,62 @@ export const PRODUCTS: Product[] = [
     badge: "Премиум",
   },
   {
-    id: "jaluzi-wood",
+    id: "jaluzi-premium",
     category: "jaluzi",
-    title: "Жалюзи Wood-print",
-    short: "Текстура дерева на металле. Без обслуживания.",
+    title: "Жалюзи «Премиум»",
+    short: "Полная приватность с эффектом продуваемости.",
     pricePerM: 5290,
     height: "2.0 м",
-    features: ["Печать под дерево", "ПЭ-полимер 35 мкм", "Гарантия цвета 10 лет", "Скрытый крепёж"],
+    features: ["Усиленная ламель", "ПЭ-полимер 35 мкм", "Гарантия цвета 10 лет", "Скрытый крепёж"],
     images: [jaluzi2, jaluzi1],
   },
-  // Design
+
+  // Деревянный штакетник
   {
-    id: "design-brick",
-    category: "design",
-    title: "Кирпичные столбы + профлист",
-    short: "Премиальный вид. Бетонное основание.",
-    pricePerM: 7990,
-    height: "2.0 м",
-    features: ["Столб 380×380 мм", "Бетонная балка-цоколь", "Облицовочный кирпич", "Колпаки"],
-    images: [design1, design2],
+    id: "derevo-standart",
+    category: "derevo",
+    title: "Деревянный штакетник «Стандарт»",
+    short: "Сосна камерной сушки с антисептиком.",
+    pricePerM: 1990,
+    height: "1.8 м",
+    features: ["Доска 20×90 мм", "Антисептик-морилка", "Металлический каркас", "Бетонирование"],
+    images: [derevo1, derevo2],
   },
+  {
+    id: "derevo-premium",
+    category: "derevo",
+    title: "Деревянный штакетник «Премиум»",
+    short: "Лиственница с маслом. Долговечный вариант.",
+    pricePerM: 2790,
+    height: "1.8 м",
+    features: ["Лиственница", "Масло Pinotex", "Скрытый крепёж", "Гарантия 5 лет"],
+    images: [derevo2, derevo1],
+  },
+
+  // Авторские
   {
     id: "design-gabion",
     category: "design",
-    title: "Габионы + ламели",
-    short: "Современный ландшафтный дизайн.",
+    title: "Габионы каменные",
+    short: "Стена из камня в сетке. Ландшафтный премиум.",
     pricePerM: 8990,
     height: "1.8 м",
-    features: ["Габион 0,5 м", "Деревянные/металл. ламели", "Подсветка опционально", "Долговечно"],
-    images: [design2, design1],
+    features: ["Сетка 4 мм оцинк.", "Гранитный камень 40–70 мм", "Каркас из проф. трубы", "Долговечно"],
+    images: [design1, design2],
     badge: "Эксклюзив",
   },
-  // Gates
+  {
+    id: "design-wood-gate",
+    category: "design",
+    title: "Авторские деревянные ворота",
+    short: "Массивная конструкция из обрезной доски.",
+    pricePerM: 7490,
+    height: "2.0 м",
+    features: ["Сосна/лиственница", "Кованая фурнитура", "Антисептик", "Под ваш проект"],
+    images: [design2, design1],
+  },
+
+  // Ворота
   {
     id: "gates-otkat",
     category: "gates",
@@ -214,8 +269,8 @@ export const PRODUCTS: Product[] = [
     short: "С автоматикой. Расчёт противовеса по ГОСТ.",
     pricePerM: 89000,
     height: "2.0 м",
-    features: ["Каркас 60×40", "Зашивка любая", "Автоматика CAME/AN-Motors", "Пульт + фотоэлементы"],
-    images: [gates1, gates2],
+    features: ["Каркас 60×40", "Зашивка любая", "Автоматика NICE/AN-Motors", "Пульт + фотоэлементы"],
+    images: [shahmatka1, shahmatka2],
     badge: "Под ключ",
   },
   {
@@ -226,7 +281,7 @@ export const PRODUCTS: Product[] = [
     pricePerM: 64000,
     height: "2.0 м",
     features: ["2 створки + калитка", "Усиленные петли", "Засов, замок", "Автоматика по запросу"],
-    images: [gates2, gates1],
+    images: [shahmatka2, shahmatka1],
   },
 ];
 

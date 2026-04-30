@@ -39,47 +39,58 @@
   --color-steel: var(--steel);
   --color-orange: var(--brand-orange);
   --color-orange-bright: var(--brand-orange-bright);
+  --color-yellow: var(--brand-yellow);
+  --color-forest: var(--brand-forest);
+  --color-forest-dark: var(--brand-forest-dark);
+  --color-wood: var(--brand-wood);
+  --color-cream: var(--brand-cream);
   --color-telegram: var(--brand-telegram);
   --color-success: var(--brand-success);
 
   --shadow-brutal: 6px 6px 0 0 var(--graphite-deep);
   --shadow-brutal-orange: 6px 6px 0 0 var(--brand-orange);
-  --shadow-card: 0 20px 50px -20px oklch(0 0 0 / 0.35);
+  --shadow-card: 0 20px 50px -20px oklch(0 0 0 / 0.25);
   --shadow-glow-orange: 0 12px 40px -12px var(--brand-orange);
+  --shadow-glow-yellow: 0 12px 40px -12px var(--brand-yellow);
 }
 
 :root {
-  --radius: 0.5rem;
+  --radius: 0.6rem;
 
-  /* Brand */
-  --graphite-deep: oklch(0.18 0.01 250);
-  --graphite: oklch(0.24 0.012 250);
-  --steel: oklch(0.42 0.012 250);
-  --brand-orange: oklch(0.72 0.19 48);
-  --brand-orange-bright: oklch(0.78 0.20 55);
+  /* Brand — взято из логотипа: жёлтая каска, оранжевая роба, зелень, дерево */
+  --graphite-deep: oklch(0.22 0.015 145);   /* тёмная зелень-графит */
+  --graphite: oklch(0.32 0.04 145);
+  --steel: oklch(0.5 0.03 145);
+  --brand-orange: oklch(0.72 0.18 50);
+  --brand-orange-bright: oklch(0.78 0.20 60);
+  --brand-yellow: oklch(0.86 0.18 90);       /* каска */
+  --brand-forest: oklch(0.55 0.14 145);      /* трава/деревья */
+  --brand-forest-dark: oklch(0.35 0.09 145);
+  --brand-wood: oklch(0.55 0.10 60);         /* забор/дерево */
+  --brand-cream: oklch(0.97 0.025 90);       /* тёплый фон */
   --brand-telegram: oklch(0.65 0.13 235);
   --brand-success: oklch(0.65 0.16 145);
 
-  /* Light scheme — used as default. The site is graphite-dominant though. */
-  --background: oklch(0.985 0.003 250);
-  --foreground: oklch(0.18 0.01 250);
+  /* Тёплая кремовая база */
+  --background: oklch(0.985 0.012 90);
+  --foreground: oklch(0.22 0.015 145);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.18 0.01 250);
+  --card-foreground: oklch(0.22 0.015 145);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.18 0.01 250);
-  --primary: oklch(0.18 0.01 250);
-  --primary-foreground: oklch(0.985 0.003 250);
-  --secondary: oklch(0.94 0.005 250);
-  --secondary-foreground: oklch(0.18 0.01 250);
-  --muted: oklch(0.94 0.005 250);
-  --muted-foreground: oklch(0.45 0.012 250);
-  --accent: oklch(0.72 0.19 48);
-  --accent-foreground: oklch(0.18 0.01 250);
+  --popover-foreground: oklch(0.22 0.015 145);
+  --primary: oklch(0.35 0.09 145);
+  --primary-foreground: oklch(0.97 0.025 90);
+  --secondary: oklch(0.94 0.02 90);
+  --secondary-foreground: oklch(0.22 0.015 145);
+  --muted: oklch(0.94 0.02 90);
+  --muted-foreground: oklch(0.45 0.02 100);
+  --accent: oklch(0.86 0.18 90);
+  --accent-foreground: oklch(0.22 0.015 145);
   --destructive: oklch(0.6 0.22 25);
   --destructive-foreground: oklch(0.985 0.003 250);
-  --border: oklch(0.9 0.005 250);
-  --input: oklch(0.9 0.005 250);
-  --ring: oklch(0.72 0.19 48);
+  --border: oklch(0.9 0.015 90);
+  --input: oklch(0.9 0.015 90);
+  --ring: oklch(0.72 0.18 50);
 }
 
 @layer base {
@@ -127,17 +138,40 @@
   .hazard-stripe {
     background-image: repeating-linear-gradient(
       135deg,
-      var(--brand-orange) 0 12px,
+      var(--brand-yellow) 0 12px,
       var(--graphite-deep) 12px 24px
+    );
+  }
+
+  .wood-stripe {
+    background-image: repeating-linear-gradient(
+      90deg,
+      var(--brand-wood) 0 8px,
+      oklch(0.48 0.10 60) 8px 16px
     );
   }
 
   .section-dark {
     background: var(--graphite-deep);
-    color: oklch(0.97 0.003 250);
+    color: oklch(0.97 0.025 90);
   }
   .section-graphite {
     background: var(--graphite);
-    color: oklch(0.97 0.003 250);
+    color: oklch(0.97 0.025 90);
+  }
+  .section-cream {
+    background: var(--brand-cream);
+    color: var(--graphite-deep);
+  }
+
+  .btn-yellow {
+    background: var(--brand-yellow);
+    color: var(--graphite-deep);
+    font-weight: 700;
+    transition: all 0.2s;
+  }
+  .btn-yellow:hover {
+    background: oklch(0.92 0.20 90);
+    box-shadow: var(--shadow-glow-yellow);
   }
 }

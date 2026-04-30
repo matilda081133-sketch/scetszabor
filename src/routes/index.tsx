@@ -35,14 +35,14 @@ function HomePage() {
         />
         <div className="absolute inset-0 bg-gradient-to-r from-graphite-deep via-graphite-deep/85 to-transparent" />
         <div className="container-x relative py-20 md:py-32 max-w-3xl">
-          <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-orange">
+          <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-yellow">
             <span className="hazard-stripe h-1 w-10 rounded-sm" />
             СПб и Ленинградская область
           </div>
           <h1 className="font-display text-4xl md:text-7xl leading-[0.95] mt-4">
             Заборы под ключ
             <br />
-            <span className="text-orange">с реальной гарантией</span> по договору
+            <span className="text-yellow">с реальной гарантией</span> по договору
           </h1>
           <p className="text-white/75 text-lg mt-5 max-w-xl">
             Инженерный замер с учётом грунта. ГОСТовая сварка. Фото- и видеофиксация скрытых работ.
@@ -51,13 +51,13 @@ function HomePage() {
           <div className="mt-8 flex flex-wrap gap-3">
             <a
               href="#calc"
-              className="rounded-md bg-orange text-graphite-deep font-bold px-6 py-3.5 shadow-glow-orange hover:bg-orange-bright transition-colors"
+              className="rounded-md btn-yellow px-6 py-3.5"
             >
               Рассчитать стоимость
             </a>
             <Link
               to="/catalog"
-              className="rounded-md border border-white/25 hover:border-orange hover:text-orange px-6 py-3.5 font-semibold transition-colors"
+              className="rounded-md border border-white/25 hover:border-yellow hover:text-yellow px-6 py-3.5 font-semibold transition-colors"
             >
               Смотреть каталог
             </Link>
@@ -70,7 +70,7 @@ function HomePage() {
               { v: "0 ₽", l: "за замер" },
             ].map((s) => (
               <div key={s.l}>
-                <div className="font-display text-3xl text-orange">{s.v}</div>
+                <div className="font-display text-3xl text-yellow">{s.v}</div>
                 <div className="text-xs text-white/60 uppercase tracking-wider">{s.l}</div>
               </div>
             ))}
