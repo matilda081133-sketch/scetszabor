@@ -66,10 +66,10 @@ export function ProductCard({ product }: { product: Product }) {
       <div className="p-5 flex flex-col flex-1">
         <h3 className="font-display text-xl">{product.title}</h3>
         <p className="text-sm text-muted-foreground mt-1">{product.short}</p>
-        <ul className="mt-3 grid grid-cols-2 gap-x-3 gap-y-1 text-xs text-muted-foreground">
+        <ul className="mt-3 grid grid-cols-2 gap-x-3 gap-y-1.5 text-xs text-foreground/80">
           {product.features.map((f) => (
-            <li key={f} className="flex gap-1.5">
-              <span className="text-orange">▪</span>
+            <li key={f} className="flex items-start gap-2">
+              <span className="mt-1.5 size-1.5 rounded-full bg-forest shrink-0" />
               <span>{f}</span>
             </li>
           ))}
