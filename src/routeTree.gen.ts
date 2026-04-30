@@ -9,16 +9,27 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ShahmatkaRouteImport } from './routes/shahmatka'
+import { Route as RaschoskaRouteImport } from './routes/raschoska'
 import { Route as ProflistRouteImport } from './routes/proflist'
 import { Route as JaluziRouteImport } from './routes/jaluzi'
 import { Route as GitterRouteImport } from './routes/gitter'
-import { Route as GatesRouteImport } from './routes/gates'
 import { Route as EvroshtaketnikRouteImport } from './routes/evroshtaketnik'
 import { Route as DesignRouteImport } from './routes/design'
 import { Route as DerevoRouteImport } from './routes/derevo'
 import { Route as CatalogRouteImport } from './routes/catalog'
 import { Route as IndexRouteImport } from './routes/index'
 
+const ShahmatkaRoute = ShahmatkaRouteImport.update({
+  id: '/shahmatka',
+  path: '/shahmatka',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RaschoskaRoute = RaschoskaRouteImport.update({
+  id: '/raschoska',
+  path: '/raschoska',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProflistRoute = ProflistRouteImport.update({
   id: '/proflist',
   path: '/proflist',
@@ -32,11 +43,6 @@ const JaluziRoute = JaluziRouteImport.update({
 const GitterRoute = GitterRouteImport.update({
   id: '/gitter',
   path: '/gitter',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const GatesRoute = GatesRouteImport.update({
-  id: '/gates',
-  path: '/gates',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EvroshtaketnikRoute = EvroshtaketnikRouteImport.update({
@@ -71,10 +77,11 @@ export interface FileRoutesByFullPath {
   '/derevo': typeof DerevoRoute
   '/design': typeof DesignRoute
   '/evroshtaketnik': typeof EvroshtaketnikRoute
-  '/gates': typeof GatesRoute
   '/gitter': typeof GitterRoute
   '/jaluzi': typeof JaluziRoute
   '/proflist': typeof ProflistRoute
+  '/raschoska': typeof RaschoskaRoute
+  '/shahmatka': typeof ShahmatkaRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -82,10 +89,11 @@ export interface FileRoutesByTo {
   '/derevo': typeof DerevoRoute
   '/design': typeof DesignRoute
   '/evroshtaketnik': typeof EvroshtaketnikRoute
-  '/gates': typeof GatesRoute
   '/gitter': typeof GitterRoute
   '/jaluzi': typeof JaluziRoute
   '/proflist': typeof ProflistRoute
+  '/raschoska': typeof RaschoskaRoute
+  '/shahmatka': typeof ShahmatkaRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -94,10 +102,11 @@ export interface FileRoutesById {
   '/derevo': typeof DerevoRoute
   '/design': typeof DesignRoute
   '/evroshtaketnik': typeof EvroshtaketnikRoute
-  '/gates': typeof GatesRoute
   '/gitter': typeof GitterRoute
   '/jaluzi': typeof JaluziRoute
   '/proflist': typeof ProflistRoute
+  '/raschoska': typeof RaschoskaRoute
+  '/shahmatka': typeof ShahmatkaRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -107,10 +116,11 @@ export interface FileRouteTypes {
     | '/derevo'
     | '/design'
     | '/evroshtaketnik'
-    | '/gates'
     | '/gitter'
     | '/jaluzi'
     | '/proflist'
+    | '/raschoska'
+    | '/shahmatka'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -118,10 +128,11 @@ export interface FileRouteTypes {
     | '/derevo'
     | '/design'
     | '/evroshtaketnik'
-    | '/gates'
     | '/gitter'
     | '/jaluzi'
     | '/proflist'
+    | '/raschoska'
+    | '/shahmatka'
   id:
     | '__root__'
     | '/'
@@ -129,10 +140,11 @@ export interface FileRouteTypes {
     | '/derevo'
     | '/design'
     | '/evroshtaketnik'
-    | '/gates'
     | '/gitter'
     | '/jaluzi'
     | '/proflist'
+    | '/raschoska'
+    | '/shahmatka'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -141,14 +153,29 @@ export interface RootRouteChildren {
   DerevoRoute: typeof DerevoRoute
   DesignRoute: typeof DesignRoute
   EvroshtaketnikRoute: typeof EvroshtaketnikRoute
-  GatesRoute: typeof GatesRoute
   GitterRoute: typeof GitterRoute
   JaluziRoute: typeof JaluziRoute
   ProflistRoute: typeof ProflistRoute
+  RaschoskaRoute: typeof RaschoskaRoute
+  ShahmatkaRoute: typeof ShahmatkaRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/shahmatka': {
+      id: '/shahmatka'
+      path: '/shahmatka'
+      fullPath: '/shahmatka'
+      preLoaderRoute: typeof ShahmatkaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/raschoska': {
+      id: '/raschoska'
+      path: '/raschoska'
+      fullPath: '/raschoska'
+      preLoaderRoute: typeof RaschoskaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/proflist': {
       id: '/proflist'
       path: '/proflist'
@@ -168,13 +195,6 @@ declare module '@tanstack/react-router' {
       path: '/gitter'
       fullPath: '/gitter'
       preLoaderRoute: typeof GitterRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/gates': {
-      id: '/gates'
-      path: '/gates'
-      fullPath: '/gates'
-      preLoaderRoute: typeof GatesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/evroshtaketnik': {
@@ -221,10 +241,11 @@ const rootRouteChildren: RootRouteChildren = {
   DerevoRoute: DerevoRoute,
   DesignRoute: DesignRoute,
   EvroshtaketnikRoute: EvroshtaketnikRoute,
-  GatesRoute: GatesRoute,
   GitterRoute: GitterRoute,
   JaluziRoute: JaluziRoute,
   ProflistRoute: ProflistRoute,
+  RaschoskaRoute: RaschoskaRoute,
+  ShahmatkaRoute: ShahmatkaRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

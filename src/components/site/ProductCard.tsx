@@ -80,7 +80,7 @@ export function ProductCard({ product }: { product: Product }) {
             <div className="font-display text-2xl">
               {product.pricePerM.toLocaleString("ru-RU")}
               <span className="text-sm text-muted-foreground font-sans ml-1">
-                ₽/{product.category === "gates" ? "комплект" : "м.п."}
+                ₽/м.п.
               </span>
             </div>
             <div className="text-[11px] text-muted-foreground">высота {product.height}</div>
