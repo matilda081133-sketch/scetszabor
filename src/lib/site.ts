@@ -3,8 +3,9 @@ export const CONTACTS = {
   phone: "+7 (921) 641-33-88",
   phoneRaw: "+79216413388",
   phoneHref: "tel:+79216413388",
-  // Telegram по номеру (универсальная ссылка t.me/+phone)
-  telegramUrl: "https://t.me/+79216413388",
+  // Telegram-аккаунт компании
+  telegramUrl: "https://t.me/SpecZabor",
+  telegramHandle: "@SpecZabor",
   telegramLabel: "Telegram",
   // Max — для шапки/подвала как доп. канал
   maxUrl: "https://max.ru/+79216413388",
