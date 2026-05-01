@@ -9,16 +9,36 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as VorotaRaspashnyeRouteImport } from './routes/vorota-raspashnye'
+import { Route as VorotaOtkatnyeRouteImport } from './routes/vorota-otkatnye'
 import { Route as ProflistRouteImport } from './routes/proflist'
+import { Route as KalitkiRouteImport } from './routes/kalitki'
 import { Route as JaluziRouteImport } from './routes/jaluzi'
 import { Route as GitterRouteImport } from './routes/gitter'
 import { Route as EvroshtaketnikRouteImport } from './routes/evroshtaketnik'
+import { Route as DizainerskieRouteImport } from './routes/dizainerskie'
 import { Route as CatalogRouteImport } from './routes/catalog'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ProductsProductIdRouteImport } from './routes/products.$productId'
 
+const VorotaRaspashnyeRoute = VorotaRaspashnyeRouteImport.update({
+  id: '/vorota-raspashnye',
+  path: '/vorota-raspashnye',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VorotaOtkatnyeRoute = VorotaOtkatnyeRouteImport.update({
+  id: '/vorota-otkatnye',
+  path: '/vorota-otkatnye',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProflistRoute = ProflistRouteImport.update({
   id: '/proflist',
   path: '/proflist',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KalitkiRoute = KalitkiRouteImport.update({
+  id: '/kalitki',
+  path: '/kalitki',
   getParentRoute: () => rootRouteImport,
 } as any)
 const JaluziRoute = JaluziRouteImport.update({
@@ -36,6 +56,11 @@ const EvroshtaketnikRoute = EvroshtaketnikRouteImport.update({
   path: '/evroshtaketnik',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DizainerskieRoute = DizainerskieRouteImport.update({
+  id: '/dizainerskie',
+  path: '/dizainerskie',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CatalogRoute = CatalogRouteImport.update({
   id: '/catalog',
   path: '/catalog',
@@ -46,69 +71,136 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProductsProductIdRoute = ProductsProductIdRouteImport.update({
+  id: '/products/$productId',
+  path: '/products/$productId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/catalog': typeof CatalogRoute
+  '/dizainerskie': typeof DizainerskieRoute
   '/evroshtaketnik': typeof EvroshtaketnikRoute
   '/gitter': typeof GitterRoute
   '/jaluzi': typeof JaluziRoute
+  '/kalitki': typeof KalitkiRoute
   '/proflist': typeof ProflistRoute
+  '/vorota-otkatnye': typeof VorotaOtkatnyeRoute
+  '/vorota-raspashnye': typeof VorotaRaspashnyeRoute
+  '/products/$productId': typeof ProductsProductIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/catalog': typeof CatalogRoute
+  '/dizainerskie': typeof DizainerskieRoute
   '/evroshtaketnik': typeof EvroshtaketnikRoute
   '/gitter': typeof GitterRoute
   '/jaluzi': typeof JaluziRoute
+  '/kalitki': typeof KalitkiRoute
   '/proflist': typeof ProflistRoute
+  '/vorota-otkatnye': typeof VorotaOtkatnyeRoute
+  '/vorota-raspashnye': typeof VorotaRaspashnyeRoute
+  '/products/$productId': typeof ProductsProductIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/catalog': typeof CatalogRoute
+  '/dizainerskie': typeof DizainerskieRoute
   '/evroshtaketnik': typeof EvroshtaketnikRoute
   '/gitter': typeof GitterRoute
   '/jaluzi': typeof JaluziRoute
+  '/kalitki': typeof KalitkiRoute
   '/proflist': typeof ProflistRoute
+  '/vorota-otkatnye': typeof VorotaOtkatnyeRoute
+  '/vorota-raspashnye': typeof VorotaRaspashnyeRoute
+  '/products/$productId': typeof ProductsProductIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/catalog'
+    | '/dizainerskie'
     | '/evroshtaketnik'
     | '/gitter'
     | '/jaluzi'
+    | '/kalitki'
     | '/proflist'
+    | '/vorota-otkatnye'
+    | '/vorota-raspashnye'
+    | '/products/$productId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/catalog' | '/evroshtaketnik' | '/gitter' | '/jaluzi' | '/proflist'
+  to:
+    | '/'
+    | '/catalog'
+    | '/dizainerskie'
+    | '/evroshtaketnik'
+    | '/gitter'
+    | '/jaluzi'
+    | '/kalitki'
+    | '/proflist'
+    | '/vorota-otkatnye'
+    | '/vorota-raspashnye'
+    | '/products/$productId'
   id:
     | '__root__'
     | '/'
     | '/catalog'
+    | '/dizainerskie'
     | '/evroshtaketnik'
     | '/gitter'
     | '/jaluzi'
+    | '/kalitki'
     | '/proflist'
+    | '/vorota-otkatnye'
+    | '/vorota-raspashnye'
+    | '/products/$productId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CatalogRoute: typeof CatalogRoute
+  DizainerskieRoute: typeof DizainerskieRoute
   EvroshtaketnikRoute: typeof EvroshtaketnikRoute
   GitterRoute: typeof GitterRoute
   JaluziRoute: typeof JaluziRoute
+  KalitkiRoute: typeof KalitkiRoute
   ProflistRoute: typeof ProflistRoute
+  VorotaOtkatnyeRoute: typeof VorotaOtkatnyeRoute
+  VorotaRaspashnyeRoute: typeof VorotaRaspashnyeRoute
+  ProductsProductIdRoute: typeof ProductsProductIdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/vorota-raspashnye': {
+      id: '/vorota-raspashnye'
+      path: '/vorota-raspashnye'
+      fullPath: '/vorota-raspashnye'
+      preLoaderRoute: typeof VorotaRaspashnyeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/vorota-otkatnye': {
+      id: '/vorota-otkatnye'
+      path: '/vorota-otkatnye'
+      fullPath: '/vorota-otkatnye'
+      preLoaderRoute: typeof VorotaOtkatnyeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/proflist': {
       id: '/proflist'
       path: '/proflist'
       fullPath: '/proflist'
       preLoaderRoute: typeof ProflistRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kalitki': {
+      id: '/kalitki'
+      path: '/kalitki'
+      fullPath: '/kalitki'
+      preLoaderRoute: typeof KalitkiRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/jaluzi': {
@@ -132,6 +224,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EvroshtaketnikRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dizainerskie': {
+      id: '/dizainerskie'
+      path: '/dizainerskie'
+      fullPath: '/dizainerskie'
+      preLoaderRoute: typeof DizainerskieRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/catalog': {
       id: '/catalog'
       path: '/catalog'
@@ -146,16 +245,28 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/products/$productId': {
+      id: '/products/$productId'
+      path: '/products/$productId'
+      fullPath: '/products/$productId'
+      preLoaderRoute: typeof ProductsProductIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CatalogRoute: CatalogRoute,
+  DizainerskieRoute: DizainerskieRoute,
   EvroshtaketnikRoute: EvroshtaketnikRoute,
   GitterRoute: GitterRoute,
   JaluziRoute: JaluziRoute,
+  KalitkiRoute: KalitkiRoute,
   ProflistRoute: ProflistRoute,
+  VorotaOtkatnyeRoute: VorotaOtkatnyeRoute,
+  VorotaRaspashnyeRoute: VorotaRaspashnyeRoute,
+  ProductsProductIdRoute: ProductsProductIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
