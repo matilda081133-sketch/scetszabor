@@ -1,26 +1,38 @@
 // Site-wide config: contacts, links, brand
 export const CONTACTS = {
-  phone: "+7 (812) 000-00-00",
-  phoneHref: "tel:+78120000000",
-  // Max messenger (placeholder — to replace later)
-  maxUrl: "https://max.ru/speczabor",
-  maxLabel: "Max",
-  telegramUrl: "https://t.me/speczabor",
+  phone: "+7 (921) 641-33-88",
+  phoneRaw: "+79216413388",
+  phoneHref: "tel:+79216413388",
+  // Telegram по номеру (универсальная ссылка t.me/+phone)
+  telegramUrl: "https://t.me/+79216413388",
   telegramLabel: "Telegram",
+  // Max — для шапки/подвала как доп. канал
+  maxUrl: "https://max.ru/+79216413388",
+  maxLabel: "Max",
   workHours: "Ежедневно 9:00 — 21:00",
   region: "СПб и Ленинградская область",
-  email: "info@speczabor.ru",
+  email: "info@speczabor.рф",
+  brand: "СПЕЦЗАБОР.РФ",
 };
+
+/**
+ * Сформировать ссылку в Telegram с предзаполненным сообщением.
+ * `subject` — название услуги/забора, попадает в текст письма.
+ */
+export function tgLink(subject: string) {
+  const text = `Здравствуйте. Пишу с Вашего сайта по услуге: ${subject}.`;
+  return `${CONTACTS.telegramUrl}?text=${encodeURIComponent(text)}`;
+}
 
 export const NAV = [
   { to: "/", label: "Главная" },
-  { to: "/gitter", label: "Сетка 3D Gutter" },
-  { to: "/jaluzi", label: "Жалюзи" },
+  { to: "/vorota-otkatnye", label: "Откатные ворота" },
+  { to: "/vorota-raspashnye", label: "Распашные ворота" },
+  { to: "/kalitki", label: "Калитки" },
   { to: "/proflist", label: "Профлист" },
   { to: "/evroshtaketnik", label: "Евроштакетник" },
-  { to: "/shahmatka", label: "Шахматка" },
-  { to: "/design", label: "Авторские" },
-  { to: "/raschoska", label: "Расчёска" },
-  { to: "/derevo", label: "Деревянный штакетник" },
+  { to: "/gitter", label: "3D Gitter" },
+  { to: "/jaluzi", label: "Жалюзи" },
+  { to: "/dizainerskie", label: "Дизайнерские" },
   { to: "/catalog", label: "Каталог" },
 ] as const;
