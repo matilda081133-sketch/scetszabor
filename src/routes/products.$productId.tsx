@@ -3,7 +3,7 @@ import { useState } from "react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { LeadBlock } from "@/components/site/LeadBlock";
 import { ProductCard } from "@/components/site/ProductCard";
-import { CATEGORIES, PRODUCTS, productById, productsByCategory } from "@/lib/catalog";
+import { CATEGORIES, productById, productsByCategory } from "@/lib/catalog";
 import { tgLink } from "@/lib/site";
 import { ChevronLeft, ChevronRight, Check, Ruler, Hammer, Camera, ShieldCheck } from "lucide-react";
 
