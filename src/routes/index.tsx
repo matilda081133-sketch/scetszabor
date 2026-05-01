@@ -8,6 +8,7 @@ import { ProductCard } from "@/components/site/ProductCard";
 import { ShieldCheck, Hammer, Camera, Ruler, Award, Users } from "lucide-react";
 import { CountStat } from "@/components/site/CountStat";
 import { FAQ } from "@/components/site/FAQ";
+import { Reviews } from "@/components/site/Reviews";
 import heroImg from "@/assets/hero-fence.jpg";
 
 export const Route = createFileRoute("/")({
@@ -59,17 +60,11 @@ function HomePage() {
               <a href="#calc" className="rounded-md btn-yellow px-6 py-3.5">
                 Рассчитать стоимость
               </a>
-              <Link
-                to="/catalog"
-                className="rounded-md border border-white/30 hover:border-yellow hover:text-yellow px-6 py-3.5 font-semibold transition-colors"
-              >
-                Смотреть каталог
-              </Link>
               <a
                 href={tgLink("получить консультацию по сайту")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-md bg-white/10 hover:bg-white/15 text-white px-6 py-3.5 font-semibold transition-colors backdrop-blur"
+                className="rounded-md border border-white/30 hover:border-yellow hover:text-yellow px-6 py-3.5 font-semibold transition-colors"
               >
                 Получить консультацию
               </a>
@@ -176,6 +171,11 @@ function HomePage() {
           <PromoCard icon={Users} title="Реферальная программа" body="Приведите друга — получите 3% от суммы его договора наличными." accent cta="Стать партнёром" subject="реферальная программа" />
           <PromoCard icon={ShieldCheck} title="Подарок при замере" body="3D-эскиз забора и черновая смета — бесплатно при вызове инженера." cta="Вызвать инженера" subject="подарок при замере" />
         </div>
+      </section>
+
+      {/* REVIEWS */}
+      <section className="border-t border-border">
+        <Reviews />
       </section>
 
       {/* FAQ */}

@@ -11,15 +11,19 @@ export function LeadBlock({
   giftLabel?: string;
 }) {
   return (
-    <section className="section-dark relative overflow-hidden rounded-3xl border border-white/5">
-      <div className="absolute inset-y-0 right-0 w-1/2 hazard-stripe opacity-10 hidden md:block" />
+    <section className="section-dark relative rounded-3xl border border-white/5 md:overflow-visible overflow-hidden">
+      {/* Внутренний контейнер с локальным overflow для жёлтых полос */}
+      <div className="absolute inset-0 overflow-hidden rounded-3xl pointer-events-none">
+        <div className="absolute inset-y-0 right-0 w-1/2 hazard-stripe opacity-10 hidden md:block" />
+      </div>
+      {/* Инженер выходит за пределы карточки сверху и снизу */}
       <img
         src={engineerImg}
         alt="Инженер СПЕЦЗАБОР"
         loading="lazy"
         width={768}
         height={1024}
-        className="hidden md:block absolute right-4 lg:right-10 bottom-0 h-[110%] w-auto object-contain pointer-events-none select-none animate-float drop-shadow-[0_20px_30px_rgba(0,0,0,0.5)]"
+        className="hidden md:block absolute right-2 lg:right-8 -bottom-6 -top-16 h-[130%] w-auto object-contain pointer-events-none select-none animate-float drop-shadow-[0_30px_40px_rgba(0,0,0,0.55)] z-20"
       />
       <div className="relative p-8 md:p-14 grid gap-6 md:grid-cols-[1fr_auto] items-center">
         <div className="max-w-xl">
@@ -30,7 +34,7 @@ export function LeadBlock({
           <h2 className="font-display text-3xl md:text-5xl mt-3 leading-[1.05]">{title}</h2>
           <p className="text-white/70 mt-3">{subtitle}</p>
         </div>
-        <div className="grid gap-3 w-full md:w-auto md:min-w-[280px] relative z-10">
+        <div className="grid gap-3 w-full md:w-auto md:min-w-[280px] relative z-30">
           <a
             href={CONTACTS.telegramUrl}
             target="_blank"
