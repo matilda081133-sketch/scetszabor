@@ -233,7 +233,15 @@ export function CategoryPage({
       {/* Products */}
       <section id="products" className="container-x pb-10">
         <SectionHeader kicker="Каталог" title={`${cat.title} — позиции`} />
-        <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div
+          className={`mt-10 grid gap-6 ${
+            products.length === 1
+              ? "md:grid-cols-1 max-w-2xl mx-auto"
+              : products.length === 2
+              ? "md:grid-cols-2 max-w-4xl mx-auto"
+              : "md:grid-cols-2 lg:grid-cols-3"
+          }`}
+        >
           {products.map((p) => (
             <ProductCard key={p.id} product={p} />
           ))}
