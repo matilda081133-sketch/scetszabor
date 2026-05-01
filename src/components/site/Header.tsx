@@ -2,22 +2,21 @@ import { Link } from "@tanstack/react-router";
 import { Phone, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { CONTACTS, NAV } from "@/lib/site";
-import logo from "@/assets/logo-spec-rf.png";
 
 export function Header() {
   const [open, setOpen] = useState(false);
   return (
     <header className="sticky top-0 z-40 border-b border-white/10 bg-graphite-deep/95 backdrop-blur supports-[backdrop-filter]:bg-graphite-deep/80 text-white">
-      <div className="container-x flex items-center gap-3 lg:gap-5 py-2 lg:py-2.5">
-        <Link to="/" className="flex items-center gap-2.5 shrink-0" onClick={() => setOpen(false)}>
-          <img src={logo} alt="СПЕЦЗАБОР.РФ" className="h-10 lg:h-12 w-auto drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]" width={1280} height={853} />
-          <span className="hidden lg:flex flex-col leading-tight whitespace-nowrap">
-            <span className="font-display text-base tracking-tight">{CONTACTS.brand}</span>
-            <span className="text-[10px] text-white/55 uppercase tracking-wider">{CONTACTS.region}</span>
+      <div className="container-x grid grid-cols-[1fr_auto_1fr] items-center gap-4 py-3">
+        {/* Left: logo */}
+        <Link to="/" className="flex items-center justify-self-start" onClick={() => setOpen(false)}>
+          <span className="font-display text-2xl lg:text-3xl tracking-tight whitespace-nowrap">
+            СПЕЦ<span className="text-orange">/</span>ЗАБОР<span className="text-white">.РФ</span>
           </span>
         </Link>
 
-        <nav className="hidden xl:flex items-center justify-center gap-3.5 flex-1 text-[12.5px]">
+        {/* Center: nav */}
+        <nav className="hidden xl:flex items-center justify-center gap-4 text-[13px] justify-self-center">
           {NAV.slice(1).map((n) => (
             <Link
               key={n.to}
@@ -31,7 +30,8 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="ml-auto xl:ml-0 flex items-center gap-2 md:gap-3 shrink-0">
+        {/* Right: contacts */}
+        <div className="flex items-center gap-2 md:gap-3 justify-self-end">
           <a
             href={CONTACTS.phoneHref}
             className="hidden md:flex items-center gap-2 text-sm font-semibold hover:text-yellow transition-colors whitespace-nowrap"
