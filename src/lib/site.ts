@@ -34,6 +34,6 @@ export const NAV = [
   { to: "/evroshtaketnik", label: "Евроштакетник" },
   { to: "/gitter", label: "3D Gitter" },
   { to: "/jaluzi", label: "Жалюзи" },
-  { to: "/dizainerskie", label: "Дизайнерские" },
+  { to: "/dizainerskie", label: "Авторские" },
   { to: "/catalog", label: "Каталог" },
 ] as const;
