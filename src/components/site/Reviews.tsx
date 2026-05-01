@@ -94,11 +94,26 @@ const REVIEWS: Review[] = [
       </>
     ),
   },
+  {
+    name: "Михаил Р.",
+    initials: "М",
+    avatarColor: "#ef4444",
+    time: "12:08",
+    variant: "ios-light",
+    product: "Распашные ворота + калитка",
+    message: (
+      <>
+        Делали распашные ворота с калиткой и забор из профлиста, всего 70 метров.
+        Договор подписали в субботу, в пятницу уже сдали объект. Бригада чистая,
+        никакого мусора. Спасибо за работу <span className="not-italic">🤝</span>
+      </>
+    ),
+  },
 ];
 
 export function Reviews() {
   return (
-    <section className="container-x py-14 md:py-20">
+    <section id="reviews" className="container-x py-14 md:py-20">
       <div className="text-left">
         <div className="text-xs uppercase tracking-[0.25em] text-orange flex items-center gap-3">
           <span className="hazard-stripe h-1 w-10 rounded-sm" />
