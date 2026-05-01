@@ -21,7 +21,7 @@ export const Route = createFileRoute("/products/$productId")({
       ],
     };
   },
-  loader: ({ params }) => {
+  loader: ({ params }: { params: { productId: string } }) => {
     const product = productById(params.productId);
     if (!product) throw notFound();
     return { product };
@@ -48,7 +48,8 @@ export const Route = createFileRoute("/products/$productId")({
 });
 
 function ProductPage() {
-  const { product } = Route.useLoaderData();
+  const { productId } = Route.useParams();
+  const product = productById(productId)!;
   const [idx, setIdx] = useState(0);
   const total = product.images.length;
   const next = () => setIdx((i) => (i + 1) % total);
