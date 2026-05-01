@@ -44,6 +44,9 @@ export function ProductCard({ product }: { product: Product }) {
               }`}
             />
           ))}
+          {/* Brand tint overlay on hover */}
+          <div className="absolute inset-0 pointer-events-none bg-orange/0 group-hover:bg-orange/25 mix-blend-multiply transition-colors duration-500" />
+          <div className="absolute inset-0 pointer-events-none ring-0 group-hover:ring-2 group-hover:ring-orange/70 ring-inset transition-all" />
           {product.badge && (
             <span
               className={`absolute top-3 left-3 text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-sm ${

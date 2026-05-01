@@ -172,9 +172,9 @@ function HomePage() {
       <section className="container-x py-14 md:py-16 border-t border-border">
         <SectionHeader kicker="Акции" title="Спецпредложения" />
         <div className="mt-8 grid gap-4 md:grid-cols-3">
-          <PromoCard icon={Award} title="−10% участникам СВО и пенсионерам" body="Честная скидка по удостоверению. Без ограничений по сумме заказа." />
-          <PromoCard icon={Users} title="Реферальная программа" body="Приведите друга — получите 3% от суммы его договора наличными." accent />
-          <PromoCard icon={ShieldCheck} title="Подарок при замере" body="3D-эскиз забора и черновая смета — бесплатно при вызове инженера." />
+          <PromoCard icon={Award} title="−10% участникам СВО и пенсионерам" body="Честная скидка по удостоверению. Без ограничений по сумме заказа." cta="Получить скидку" subject="скидка СВО / пенсионерам" />
+          <PromoCard icon={Users} title="Реферальная программа" body="Приведите друга — получите 3% от суммы его договора наличными." accent cta="Стать партнёром" subject="реферальная программа" />
+          <PromoCard icon={ShieldCheck} title="Подарок при замере" body="3D-эскиз забора и черновая смета — бесплатно при вызове инженера." cta="Вызвать инженера" subject="подарок при замере" />
         </div>
       </section>
 
@@ -218,15 +218,19 @@ function PromoCard({
   title,
   body,
   accent,
+  cta,
+  subject,
 }: {
   icon: typeof Award;
   title: string;
   body: string;
   accent?: boolean;
+  cta: string;
+  subject: string;
 }) {
   return (
     <div
-      className={`rounded-xl p-6 border transition-transform hover:-translate-y-1 ${
+      className={`rounded-xl p-6 border flex flex-col transition-transform hover:-translate-y-1 ${
         accent
           ? "bg-graphite-deep text-white border-yellow shadow-brutal-orange"
           : "bg-card border-border shadow-card"
@@ -238,9 +242,19 @@ function PromoCard({
         <Icon className="size-6" />
       </div>
       <div className={`font-display text-xl mt-4 ${accent ? "text-yellow" : ""}`}>{title}</div>
-      <div className={`text-sm mt-2 ${accent ? "text-white/80" : "text-muted-foreground"}`}>
+      <div className={`text-sm mt-2 flex-1 ${accent ? "text-white/85" : "text-muted-foreground"}`}>
         {body}
       </div>
+      <a
+        href={tgLink(subject)}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`mt-5 inline-flex items-center justify-center rounded-md px-4 py-2.5 text-sm font-bold transition-colors ${
+          accent ? "btn-yellow" : "bg-graphite-deep text-white hover:bg-orange hover:text-graphite-deep"
+        }`}
+      >
+        {cta} →
+      </a>
     </div>
   );
 }
