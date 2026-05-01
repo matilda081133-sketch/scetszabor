@@ -35,5 +35,5 @@ export const NAV = [
   { to: "/gitter", label: "3D Gitter" },
   { to: "/jaluzi", label: "Жалюзи" },
   { to: "/dizainerskie", label: "Авторские" },
-  { to: "/catalog", label: "Каталог" },
+  { to: "/#reviews", label: "Отзывы" },
 ] as const;
