@@ -2,7 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Calculator } from "@/components/site/Calculator";
 import { LeadBlock } from "@/components/site/LeadBlock";
-import { CATEGORIES, PRODUCTS } from "@/lib/catalog";
+import { CATEGORIES_ORDERED, PRODUCTS } from "@/lib/catalog";
+import { tgLink } from "@/lib/site";
 import { ProductCard } from "@/components/site/ProductCard";
 import { ShieldCheck, Hammer, Camera, Ruler, Award, Users } from "lucide-react";
 import { CountStat } from "@/components/site/CountStat";
@@ -64,6 +65,14 @@ function HomePage() {
               >
                 Смотреть каталог
               </Link>
+              <a
+                href={tgLink("получить консультацию по сайту")}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-md bg-white/10 hover:bg-white/15 text-white px-6 py-3.5 font-semibold transition-colors backdrop-blur"
+              >
+                Получить консультацию
+              </a>
             </div>
             <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-4 max-w-2xl">
               <CountStat value={12} suffix="+" label="лет опыта" />
@@ -79,7 +88,7 @@ function HomePage() {
       <section className="container-x py-14 md:py-16">
         <SectionHeader kicker="Направления" title="Что мы строим" />
         <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {Object.values(CATEGORIES).map((c) => {
+          {CATEGORIES_ORDERED.map((c) => {
             const sample = PRODUCTS.find((p) => p.category === c.slug);
             return (
               <Link
