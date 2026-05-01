@@ -360,7 +360,7 @@ function ContactsBlock({ title }: { title: string }) {
           </p>
           <ul className="mt-6 grid gap-4">
             <ContactRow icon={Phone} label="Телефон" value={CONTACTS.phone} href={CONTACTS.phoneHref} />
-            <ContactRow icon={Send} label="Telegram" value={CONTACTS.phone} href={CONTACTS.telegramUrl} external />
+            <ContactRow icon={Send} label="Telegram" value={CONTACTS.telegramHandle} href={CONTACTS.telegramUrl} external />
             <ContactRow icon={Mail} label="Email" value={CONTACTS.email} href={`mailto:${CONTACTS.email}`} />
             <ContactRow icon={MapPin} label="Регион" value={CONTACTS.region} />
             <ContactRow icon={Clock} label="Часы работы" value={CONTACTS.workHours} />
