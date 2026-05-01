@@ -29,7 +29,7 @@ export function Header() {
             ) : (
               <Link
                 key={n.to}
-                to={n.to}
+                to={n.to as "/proflist"}
                 className="text-white/80 hover:text-yellow transition-colors whitespace-nowrap"
                 activeProps={{ className: "text-yellow" }}
                 activeOptions={{ exact: true }}
@@ -83,7 +83,7 @@ export function Header() {
               ) : (
                 <Link
                   key={n.to}
-                  to={n.to}
+                  to={n.to as "/proflist"}
                   onClick={() => setOpen(false)}
                   className="py-2 text-white/85 hover:text-yellow"
                   activeProps={{ className: "text-yellow font-semibold" }}
