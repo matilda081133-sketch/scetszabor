@@ -17,17 +17,27 @@ export function Header() {
 
         {/* Center: nav */}
         <nav className="hidden xl:flex items-center justify-center gap-4 text-[13px]">
-          {NAV.slice(1).map((n) => (
-            <Link
-              key={n.to}
-              to={n.to}
-              className="text-white/80 hover:text-yellow transition-colors whitespace-nowrap"
-              activeProps={{ className: "text-yellow" }}
-              activeOptions={{ exact: true }}
-            >
-              {n.label}
-            </Link>
-          ))}
+          {NAV.slice(1).map((n) =>
+            n.hash ? (
+              <a
+                key={n.to}
+                href={n.to}
+                className="text-white/80 hover:text-yellow transition-colors whitespace-nowrap"
+              >
+                {n.label}
+              </a>
+            ) : (
+              <Link
+                key={n.to}
+                to={n.to}
+                className="text-white/80 hover:text-yellow transition-colors whitespace-nowrap"
+                activeProps={{ className: "text-yellow" }}
+                activeOptions={{ exact: true }}
+              >
+                {n.label}
+              </Link>
+            )
+          )}
         </nav>
 
         {/* Right: contacts */}
@@ -60,18 +70,29 @@ export function Header() {
       {open && (
         <div className="xl:hidden border-t border-white/10 bg-graphite">
           <div className="container-x py-4 grid gap-1">
-            {NAV.map((n) => (
-              <Link
-                key={n.to}
-                to={n.to}
-                onClick={() => setOpen(false)}
-                className="py-2 text-white/85 hover:text-yellow"
-                activeProps={{ className: "text-yellow font-semibold" }}
-                activeOptions={{ exact: true }}
-              >
-                {n.label}
-              </Link>
-            ))}
+            {NAV.map((n) =>
+              n.hash ? (
+                <a
+                  key={n.to}
+                  href={n.to}
+                  onClick={() => setOpen(false)}
+                  className="py-2 text-white/85 hover:text-yellow"
+                >
+                  {n.label}
+                </a>
+              ) : (
+                <Link
+                  key={n.to}
+                  to={n.to}
+                  onClick={() => setOpen(false)}
+                  className="py-2 text-white/85 hover:text-yellow"
+                  activeProps={{ className: "text-yellow font-semibold" }}
+                  activeOptions={{ exact: true }}
+                >
+                  {n.label}
+                </Link>
+              )
+            )}
             <a
               href={CONTACTS.phoneHref}
               className="mt-2 inline-flex items-center gap-2 text-yellow font-semibold"
