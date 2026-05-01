@@ -41,12 +41,21 @@ export function ProductCard({ product }: { product: Product }) {
               height={960}
               className={`absolute inset-0 size-full object-cover transition-all duration-500 ${
                 i === idx ? "opacity-100 scale-105" : "opacity-0 scale-100"
-              }`}
+              } group-hover:opacity-0`}
             />
           ))}
-          {/* Brand tint overlay on hover */}
-          <div className="absolute inset-0 pointer-events-none bg-orange/0 group-hover:bg-orange/25 mix-blend-multiply transition-colors duration-500" />
-          <div className="absolute inset-0 pointer-events-none ring-0 group-hover:ring-2 group-hover:ring-orange/70 ring-inset transition-all" />
+          {/* Brand orange overlay on hover (как у конкурента) */}
+          <div className="absolute inset-0 bg-orange opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center text-center px-6">
+            <div className="text-graphite-deep">
+              <div className="font-display text-2xl md:text-3xl uppercase tracking-tight leading-tight">
+                {product.title}
+              </div>
+              <div className="mt-3 inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest">
+                Подробнее
+                <ChevronRight className="size-4" />
+              </div>
+            </div>
+          </div>
           {product.badge && (
             <span
               className={`absolute top-3 left-3 text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-sm ${

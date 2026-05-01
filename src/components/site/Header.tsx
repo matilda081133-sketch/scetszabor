@@ -7,16 +7,16 @@ export function Header() {
   const [open, setOpen] = useState(false);
   return (
     <header className="sticky top-0 z-40 border-b border-white/10 bg-graphite-deep/95 backdrop-blur supports-[backdrop-filter]:bg-graphite-deep/80 text-white">
-      <div className="container-x grid grid-cols-[1fr_auto_1fr] items-center gap-4 py-3">
+      <div className="w-full px-4 md:px-8 grid grid-cols-[auto_1fr_auto] items-center gap-4 py-3">
         {/* Left: logo */}
-        <Link to="/" className="flex items-center justify-self-start" onClick={() => setOpen(false)}>
+        <Link to="/" className="flex items-center" onClick={() => setOpen(false)}>
           <span className="font-display text-2xl lg:text-3xl tracking-tight whitespace-nowrap">
-            СПЕЦ<span className="text-orange">/</span>ЗАБОР<span className="text-white">.РФ</span>
+            СПЕЦ<span className="text-orange">/</span>ЗАБОР<span className="text-yellow">.РФ</span>
           </span>
         </Link>
 
         {/* Center: nav */}
-        <nav className="hidden xl:flex items-center justify-center gap-4 text-[13px] justify-self-center">
+        <nav className="hidden xl:flex items-center justify-center gap-4 text-[13px]">
           {NAV.slice(1).map((n) => (
             <Link
               key={n.to}
@@ -31,7 +31,7 @@ export function Header() {
         </nav>
 
         {/* Right: contacts */}
-        <div className="flex items-center gap-2 md:gap-3 justify-self-end">
+        <div className="flex items-center gap-2 md:gap-3">
           <a
             href={CONTACTS.phoneHref}
             className="hidden md:flex items-center gap-2 text-sm font-semibold hover:text-yellow transition-colors whitespace-nowrap"
