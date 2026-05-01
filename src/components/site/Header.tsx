@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Phone, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { CONTACTS, NAV } from "@/lib/site";
-import logo from "@/assets/logo-spec.png";
+import logo from "@/assets/logo-spec-rf.png";
 
 export function Header() {
   const [open, setOpen] = useState(false);
@@ -10,14 +10,14 @@ export function Header() {
     <header className="sticky top-0 z-40 border-b border-white/10 bg-graphite-deep/95 backdrop-blur supports-[backdrop-filter]:bg-graphite-deep/80 text-white">
       <div className="container-x flex items-center gap-3 lg:gap-5 py-2 lg:py-2.5">
         <Link to="/" className="flex items-center gap-2.5 shrink-0" onClick={() => setOpen(false)}>
-          <img src={logo} alt="СПЕЦЗАБОР" className="h-10 lg:h-12 w-auto drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]" width={1280} height={853} />
+          <img src={logo} alt="СПЕЦЗАБОР.РФ" className="h-10 lg:h-12 w-auto drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]" width={1280} height={853} />
           <span className="hidden lg:flex flex-col leading-tight whitespace-nowrap">
-            <span className="font-display text-base tracking-tight">СПЕЦЗАБОР</span>
+            <span className="font-display text-base tracking-tight">{CONTACTS.brand}</span>
             <span className="text-[10px] text-white/55 uppercase tracking-wider">{CONTACTS.region}</span>
           </span>
         </Link>
 
-        <nav className="hidden xl:flex items-center justify-center gap-4 flex-1 text-[13px]">
+        <nav className="hidden xl:flex items-center justify-center gap-3.5 flex-1 text-[12.5px]">
           {NAV.slice(1).map((n) => (
             <Link
               key={n.to}
@@ -45,7 +45,7 @@ export function Header() {
             rel="noopener noreferrer"
             className="hidden sm:inline-flex items-center gap-2 rounded-md btn-yellow px-4 py-2 text-sm whitespace-nowrap"
           >
-            Написать
+            Получить консультацию
           </a>
           <button
             type="button"

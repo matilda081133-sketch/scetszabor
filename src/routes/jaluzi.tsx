@@ -1,13 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { CategoryPage } from "@/components/site/CategoryPage";
-import j1 from "@/assets/jaluzi-1.jpg";
-import j2 from "@/assets/jaluzi-2.jpg";
+import j1 from "@/assets/catalog/jaluzi-1.jpg";
+import j2 from "@/assets/catalog/jaluzi-2.jpg";
 
 export const Route = createFileRoute("/jaluzi")({
   head: () => ({
     meta: [
-      { title: "Заборы-жалюзи (ламели) — СПЕЦЗАБОР" },
-      { name: "description", content: "Премиальные заборы из ламелей-жалюзи. Приватность с продуваемостью, любой RAL и текстуры дерева." },
+      { title: "Заборы-жалюзи (ламели) — СПЕЦЗАБОР.РФ" },
+      { name: "description", content: "Премиальные заборы из ламелей-жалюзи. Приватность с продуваемостью, любой RAL и текстуры дерева. От 4 490 ₽/м.п." },
       { property: "og:title", content: "Заборы-жалюзи" },
       { property: "og:image", content: j1 },
     ],
