@@ -10,6 +10,14 @@ import gitter1 from "@/assets/catalog/gitter-1.jpg";
 import gitter2 from "@/assets/catalog/gitter-2.jpg";
 import jaluzi1 from "@/assets/catalog/jaluzi-1.jpg";
 import jaluzi2 from "@/assets/catalog/jaluzi-2.jpg";
+import jaluzi3 from "@/assets/catalog/jaluzi-3.jpg";
+import jaluzi4 from "@/assets/catalog/jaluzi-4.jpg";
+import jaluzi5 from "@/assets/catalog/jaluzi-5.jpg";
+import jaluzi6 from "@/assets/catalog/jaluzi-6.jpg";
+import jaluzi7 from "@/assets/catalog/jaluzi-7.jpg";
+import avtorskie1 from "@/assets/catalog/avtorskie-1.jpg";
+import avtorskie2 from "@/assets/catalog/avtorskie-2.jpg";
+import avtorskie3 from "@/assets/catalog/avtorskie-3.jpg";
 import design1 from "@/assets/catalog/design-1.jpg";
 import design2 from "@/assets/catalog/design-2.jpg";
 import raschoska1 from "@/assets/catalog/raschoska-1.jpg";
@@ -108,9 +116,9 @@ export const CATEGORIES: Record<
   },
   dizainerskie: {
     slug: "dizainerskie",
-    title: "Дизайнерские заборы",
+    title: "Авторские заборы",
     href: "/dizainerskie",
-    lead: "Габионы, бетонные ленты, кирпичные столбы, сварные секции, расчёска.",
+    lead: "Кирпичные столбы, габионы, бетонные ленты, сварные секции, расчёска.",
     order: 8,
   },
 };
@@ -284,7 +292,7 @@ export const PRODUCTS: Product[] = [
     heights: heightsFromBase(4490),
     features: ["Ламель 100 мм", "Двусторонний цвет", "Алюминиевые направляющие", "Не выгорает"],
     tags: ["Самый частый запрос", "Современный дизайн", "Приватность"],
-    images: [jaluzi1, jaluzi2],
+    images: [jaluzi3, jaluzi5, jaluzi4, jaluzi6, jaluzi7, jaluzi1, jaluzi2],
     badge: "Премиум",
     description:
       "Закрытый дизайнерский забор с эффектом продуваемости. Ламели 100 мм устанавливаются с перекрытием — изнутри и снаружи участка не просматривается. Покрытие — двусторонний полимер ПЭ 25–35 мкм, не выгорает. Гарантия цвета до 10 лет.",
@@ -327,7 +335,7 @@ export const PRODUCTS: Product[] = [
     height: "1,8 м",
     features: ["Кирпич клинкерный", "Армопояс", "Закладные детали", "Колпаки на столбы"],
     tags: ["Премиум", "Классика", "Долговечно"],
-    images: [kirpichStolb, design2],
+    images: [avtorskie1, avtorskie2],
     badge: "Премиум",
     description:
       "Кирпичные столбы 380×380 мм на ленточном фундаменте, между ними — металлическая зашивка (евроштакетник, жалюзи, ковка). Закладные детали интегрированы в кладку. Колпаки металлические или бетонные.",
@@ -373,6 +381,20 @@ export const PRODUCTS: Product[] = [
     badge: "Эксклюзив",
     description:
       "Эксклюзивные сварные секции под индивидуальный проект. Лазерная резка декоративных элементов, кованая фурнитура, комбинированные материалы. Антикоррозионная обработка + порошковое покрытие.",
+  },
+  {
+    id: "design-avtorskiy",
+    category: "dizainerskie",
+    title: "Авторский забор-жалюзи",
+    short: "Индивидуальный проект — жалюзи, авторский каркас, нестандартная высота.",
+    pricePerM: 5490,
+    height: "1,8 м",
+    features: ["Индивидуальный эскиз", "Усиленный каркас", "Двусторонний полимер", "Любой RAL"],
+    tags: ["Авторский", "Под проект", "Премиум"],
+    images: [avtorskie3, jaluzi3],
+    badge: "Премиум",
+    description:
+      "Авторская реализация забора-жалюзи под индивидуальный проект. Подходит для участков с акцентом на современную архитектуру. Двусторонний полимер, любой RAL, усиленные стойки и направляющие.",
   },
 ];
 

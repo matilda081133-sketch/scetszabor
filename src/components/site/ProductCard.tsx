@@ -45,14 +45,14 @@ export function ProductCard({ product }: { product: Product }) {
             />
           ))}
           {/* Brand orange overlay on hover (как у конкурента) */}
-          <div className="absolute inset-0 bg-orange opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center text-center px-6">
+          <div className="absolute inset-0 bg-orange opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center text-center px-4">
             <div className="text-graphite-deep">
-              <div className="font-display text-2xl md:text-3xl uppercase tracking-tight leading-tight">
+              <div className="font-display text-base md:text-lg uppercase tracking-tight leading-tight">
                 {product.title}
               </div>
-              <div className="mt-3 inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest">
+              <div className="mt-2 inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-widest">
                 Подробнее
-                <ChevronRight className="size-4" />
+                <ChevronRight className="size-3.5" />
               </div>
             </div>
           </div>

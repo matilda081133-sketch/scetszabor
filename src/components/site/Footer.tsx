@@ -37,7 +37,7 @@ export function Footer() {
           <ul className="space-y-2 text-sm text-white/75">
             {NAV.slice(1, 9).map((n) => (
               <li key={n.to}>
-                <Link to={n.to} className="hover:text-orange">{n.label}</Link>
+                <Link to={n.to as "/proflist"} className="hover:text-orange">{n.label}</Link>
               </li>
             ))}
           </ul>
