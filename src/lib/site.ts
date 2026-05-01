@@ -25,7 +25,14 @@ export function tgLink(subject: string) {
   return `${CONTACTS.telegramUrl}?text=${encodeURIComponent(text)}`;
 }
 
-export const NAV = [
+export type NavItem = {
+  to: string;
+  label: string;
+  /** Якорь / внешняя ссылка — рендерим через <a>, а не <Link> */
+  hash?: boolean;
+};
+
+export const NAV: NavItem[] = [
   { to: "/", label: "Главная" },
   { to: "/vorota-otkatnye", label: "Откатные ворота" },
   { to: "/vorota-raspashnye", label: "Распашные ворота" },
@@ -35,5 +42,5 @@ export const NAV = [
   { to: "/gitter", label: "3D Gitter" },
   { to: "/jaluzi", label: "Жалюзи" },
   { to: "/dizainerskie", label: "Авторские" },
-  { to: "/#reviews", label: "Отзывы" },
-] as const;
+  { to: "/#reviews", label: "Отзывы", hash: true },
+];
