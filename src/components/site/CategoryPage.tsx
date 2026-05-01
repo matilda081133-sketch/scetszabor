@@ -130,9 +130,13 @@ export function CategoryPage({
                     loading="lazy"
                     width={1280}
                     height={960}
-                    className="size-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="size-full object-cover transition-all duration-500 group-hover:opacity-0"
                   />
-                  <div className="absolute inset-0 bg-orange/0 group-hover:bg-orange/25 mix-blend-multiply transition-colors duration-500" />
+                  <div className="absolute inset-0 bg-orange opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center px-6 text-center">
+                    <div className="font-display text-graphite-deep text-2xl uppercase leading-tight">
+                      {v.title}
+                    </div>
+                  </div>
                 </div>
                 <div className="p-5 text-left">
                   <div className="font-display text-xl">{v.title}</div>
@@ -140,6 +144,32 @@ export function CategoryPage({
                 </div>
               </div>
             ))}
+          </div>
+          {/* CTA */}
+          <div className="mt-10 rounded-2xl section-dark p-6 md:p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-5 relative overflow-hidden">
+            <div className="absolute inset-y-0 right-0 w-1/3 hazard-stripe opacity-[0.07] pointer-events-none" />
+            <div className="relative">
+              <div className="text-xs uppercase tracking-widest text-yellow">Не уверены, какой вариант ваш?</div>
+              <div className="font-display text-2xl md:text-3xl text-white mt-1">
+                Инженер приедет на замер и подскажет лучшее решение
+              </div>
+            </div>
+            <div className="relative flex flex-wrap gap-3">
+              <a
+                href={tgLink(`вызов инженера — ${cat.title}`)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-md btn-yellow px-6 py-3.5 whitespace-nowrap"
+              >
+                Вызвать инженера
+              </a>
+              <a
+                href="#calc"
+                className="rounded-md border border-white/25 hover:border-yellow hover:text-yellow px-6 py-3.5 font-semibold transition-colors text-white whitespace-nowrap"
+              >
+                Рассчитать стоимость
+              </a>
+            </div>
           </div>
         </section>
       )}
