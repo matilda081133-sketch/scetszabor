@@ -3,7 +3,7 @@ import { useState } from "react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { ProductCard } from "@/components/site/ProductCard";
 import { LeadBlock } from "@/components/site/LeadBlock";
-import { CATEGORIES, PRODUCTS, type CategorySlug } from "@/lib/catalog";
+import { CATEGORIES_ORDERED, PRODUCTS, type CategorySlug } from "@/lib/catalog";
 
 export const Route = createFileRoute("/catalog")({
   head: () => ({
@@ -44,9 +44,9 @@ function CatalogPage() {
           <Chip active={active === "all"} onClick={() => setActive("all")}>
             Все ({PRODUCTS.length})
           </Chip>
-          {Object.values(CATEGORIES).map((c) => (
+          {CATEGORIES_ORDERED.map((c) => (
             <Chip key={c.slug} active={active === c.slug} onClick={() => setActive(c.slug)}>
-              {c.title.replace(/^Заборы\s/i, "").replace(/^из\s/i, "")}
+              {c.title.replace(/^Заборы\s/i, "").replace(/^Забор\s/i, "").replace(/^из\s/i, "")}
             </Chip>
           ))}
         </div>
