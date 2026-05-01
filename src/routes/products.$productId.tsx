@@ -275,5 +275,3 @@ function ProductPage() {
     </SiteLayout>
   );
 }
-
-void PRODUCTS;
