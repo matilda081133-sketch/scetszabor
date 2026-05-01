@@ -116,9 +116,9 @@ export const CATEGORIES: Record<
   },
   dizainerskie: {
     slug: "dizainerskie",
-    title: "Дизайнерские заборы",
+    title: "Авторские заборы",
     href: "/dizainerskie",
-    lead: "Габионы, бетонные ленты, кирпичные столбы, сварные секции, расчёска.",
+    lead: "Кирпичные столбы, габионы, бетонные ленты, сварные секции, расчёска.",
     order: 8,
   },
 };
