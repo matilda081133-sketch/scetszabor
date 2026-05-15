@@ -1,10 +1,14 @@
 import { Link } from "@tanstack/react-router";
-import { Phone, Menu, X } from "lucide-react";
+import { Phone, Menu, X, Send } from "lucide-react";
 import { useState } from "react";
 import { CONTACTS, NAV } from "@/lib/site";
+import { useCMS } from "@/lib/cms";
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const { content } = useCMS();
+  const displayPhone = content.phone || CONTACTS.phone;
+  const phoneHref = `tel:${displayPhone.replace(/[^\d+]/g, "")}`;
   return (
     <header className="sticky top-0 z-40 border-b border-white/10 bg-graphite-deep/95 backdrop-blur supports-[backdrop-filter]:bg-graphite-deep/80 text-white">
       <div className="w-full px-4 md:px-8 grid grid-cols-[auto_1fr_auto] items-center gap-4 py-3">
@@ -43,18 +47,19 @@ export function Header() {
         {/* Right: contacts */}
         <div className="flex items-center gap-2 md:gap-3">
           <a
-            href={CONTACTS.phoneHref}
+            href={phoneHref}
             className="hidden md:flex items-center gap-2 text-sm font-semibold hover:text-yellow transition-colors whitespace-nowrap"
           >
             <Phone className="size-4 text-yellow shrink-0" />
-            <span>{CONTACTS.phone}</span>
+            <span>{displayPhone}</span>
           </a>
           <a
             href={CONTACTS.telegramUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden sm:inline-flex items-center gap-2 rounded-md btn-yellow px-4 py-2 text-sm whitespace-nowrap"
+            className="hidden sm:inline-flex items-center gap-2 rounded-md btn-yellow btn-shiny px-4 py-2 text-sm whitespace-nowrap"
           >
+            <Send className="size-3.5" />
             Получить консультацию
           </a>
           <button
@@ -94,11 +99,11 @@ export function Header() {
               )
             )}
             <a
-              href={CONTACTS.phoneHref}
+              href={phoneHref}
               className="mt-2 inline-flex items-center gap-2 text-yellow font-semibold"
             >
               <Phone className="size-4" />
-              {CONTACTS.phone}
+              {displayPhone}
             </a>
             <span className="text-xs text-white/55">{CONTACTS.workHours}</span>
           </div>

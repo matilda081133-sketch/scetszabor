@@ -19,6 +19,8 @@ import {
   Send,
 } from "lucide-react";
 import { useState } from "react";
+import { useCMS } from "@/lib/cms";
+import { urlFor } from "@/lib/sanity/client";
 
 type RalColor = { name: string; ral: string; hex: string };
 
@@ -61,13 +63,19 @@ export function CategoryPage({
   const cat = CATEGORIES[slug];
   const products = productsByCategory(slug);
   const showRal = CATS_WITH_RAL.includes(slug);
+  const { getProductContent } = useCMS();
+  const cmsData = getProductContent(slug);
+
+  const displayTitle = cmsData?.heroTitle || cat.title;
+  const displayLead = cmsData?.fullContent || cat.lead;
+  const displayHeroImg = cmsData?.mainImage ? urlFor(cmsData.mainImage).url() : hero;
 
   return (
     <SiteLayout>
       {/* Hero — левое выравнивание */}
       <section className="relative section-dark overflow-hidden">
         <img
-          src={hero}
+          src={displayHeroImg}
           alt={cat.title}
           width={1280}
           height={960}
@@ -81,27 +89,21 @@ export function CategoryPage({
               Направление
             </div>
             <h1 className="font-display text-4xl md:text-6xl mt-3 leading-[0.95]">
-              {cat.title} <span className="text-orange">с реальной гарантией</span>
+              {displayTitle} <span className="text-orange">с реальной гарантией</span>
             </h1>
-            <p className="text-white/75 text-lg mt-4 max-w-2xl">{cat.lead}</p>
+            <p className="text-white/75 text-lg mt-4 max-w-2xl">{displayLead}</p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a
                 href="#calc"
-                className="rounded-md btn-yellow px-6 py-3.5 shadow-glow-yellow"
+                className="rounded-md btn-yellow btn-shiny px-6 py-3.5 shadow-glow-yellow"
               >
                 Рассчитать стоимость
-              </a>
-              <a
-                href="#products"
-                className="rounded-md border border-white/25 hover:border-yellow hover:text-yellow px-6 py-3.5 font-semibold transition-colors"
-              >
-                Смотреть варианты
               </a>
               <a
                 href={tgLink(`консультация — ${cat.title}`)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-md bg-white/10 hover:bg-white/15 px-6 py-3.5 font-semibold transition-colors backdrop-blur"
+                className="rounded-md border border-white/25 hover:border-yellow hover:text-yellow px-6 py-3.5 font-semibold transition-colors"
               >
                 Получить консультацию
               </a>
@@ -460,8 +462,8 @@ function MiniLeadForm({ subject }: { subject: string }) {
           <button type="submit" className="rounded-md btn-yellow px-6 py-3.5">
             Отправить заявку
           </button>
-          <p className="text-[11px] text-white/45">
-            Нажимая кнопку, вы соглашаетесь с обработкой персональных данных.
+          <p className="text-[10px] text-white/40 leading-tight">
+            Нажимая «Отправить», вы даете согласие на обработку персональных данных в соответствии с ФЗ-152 и принимаете условия политики конфиденциальности.
           </p>
         </div>
       </div>

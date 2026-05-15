@@ -10,15 +10,16 @@ import { CountStat } from "@/components/site/CountStat";
 import { FAQ } from "@/components/site/FAQ";
 import { Reviews } from "@/components/site/Reviews";
 import heroImg from "@/assets/hero-fence.jpg";
+import { useCMS } from "@/lib/cms";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "СПЕЦЗАБОР — заборы под ключ в СПб и Ленобласти" },
+      { title: "СПЕЦЗАБОР | Заборы под ключ в Санкт-Петербурге и ЛО" },
       {
         name: "description",
         content:
-          "Изготовление и монтаж заборов под ключ в Санкт-Петербурге и ЛО. Профлист, евроштакетник, 3D-сетка, жалюзи, ворота. Реальная гарантия по договору.",
+          "Профессиональное изготовление и установка заборов СПЕЦЗАБОР в СПб и Ленинградской области. Профлист, евроштакетник, 3D-сетка, жалюзи, ворота. Точный расчет и гарантия по договору.",
       },
     ],
   }),
@@ -26,6 +27,7 @@ export const Route = createFileRoute("/")({
 });
 
 function HomePage() {
+  const { content } = useCMS();
   return (
     <SiteLayout>
       {/* HERO */}
@@ -45,20 +47,15 @@ function HomePage() {
               <span className="hazard-stripe h-1 w-10 rounded-sm" />
               СПб и Ленинградская область
             </div>
-            <h1 className="font-display text-4xl md:text-6xl lg:text-7xl leading-[0.95] mt-4 text-left animate-fade-up">
-              Заборы под ключ
-              <br />
-              <span className="text-yellow">с реальной гарантией</span>
-              <br />
-              по договору
+            <h1 className="font-display text-4xl md:text-6xl lg:text-7xl leading-[0.95] mt-4 text-left animate-fade-up whitespace-pre-line">
+              {content.heroTitle || "Заборы под ключ\nс реальной гарантией\nпо договору"}
             </h1>
             <p className="text-white/80 text-base md:text-lg mt-5 max-w-xl text-left animate-fade-up" style={{ animationDelay: "0.15s" }}>
-              Инженерный замер с учётом грунта. ГОСТовая сварка. Фото- и видеофиксация скрытых работ.
-              Точная смета до старта работ — без сюрпризов.
+              {content.heroSubtitle}
             </p>
             <div className="mt-7 flex flex-wrap gap-3 animate-fade-up" style={{ animationDelay: "0.3s" }}>
-              <a href="#calc" className="rounded-md btn-yellow px-6 py-3.5">
-                Рассчитать стоимость
+              <a href="#calc" className="rounded-md btn-yellow btn-shiny px-6 py-3.5">
+                Калькулятор стоимости забора
               </a>
               <a
                 href={tgLink("получить консультацию по сайту")}
@@ -81,7 +78,9 @@ function HomePage() {
 
       {/* DIRECTIONS */}
       <section className="container-x py-14 md:py-16">
-        <SectionHeader kicker="Направления" title="Что мы строим" />
+        <Link to="/catalog" className="group">
+          <SectionHeader kicker="Направления" title="Что мы строим" />
+        </Link>
         <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {CATEGORIES_ORDERED.map((c) => {
             const sample = PRODUCTS.find((p) => p.category === c.slug);
@@ -113,6 +112,15 @@ function HomePage() {
               </Link>
             );
           })}
+        </div>
+      </section>
+
+      {/* RANDOM PRODUCTS PREVIEW */}
+      <section className="container-x pb-14 md:pb-16">
+        <div className="grid gap-5 md:grid-cols-3 lg:grid-cols-4">
+          {[...PRODUCTS].sort(() => 0.5 - Math.random()).slice(0, 4).map((p) => (
+            <ProductCard key={p.id} product={p} />
+          ))}
         </div>
       </section>
 
@@ -206,7 +214,7 @@ export function SectionHeader({
         <span className="hazard-stripe h-1 w-10 rounded-sm" />
         {kicker}
       </div>
-      <h2 className={`font-display text-3xl md:text-5xl mt-3 text-left ${light ? "text-white" : ""}`}>
+      <h2 className={`font-display text-3xl md:text-5xl mt-3 text-left transition-colors group-hover:text-orange ${light ? "text-white" : ""}`}>
         {title}
       </h2>
     </div>
@@ -250,7 +258,7 @@ function PromoCard({
         target="_blank"
         rel="noopener noreferrer"
         className={`mt-5 inline-flex items-center justify-center rounded-md px-4 py-2.5 text-sm font-bold transition-colors ${
-          accent ? "btn-yellow" : "bg-graphite-deep text-white hover:bg-orange hover:text-graphite-deep"
+          accent ? "btn-yellow btn-shiny" : "bg-graphite-deep text-white hover:bg-orange hover:text-graphite-deep"
         }`}
       >
         {cta} →

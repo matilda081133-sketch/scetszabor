@@ -12,7 +12,7 @@ export const CONTACTS = {
   maxLabel: "Max",
   workHours: "Ежедневно 9:00 — 21:00",
   region: "СПб и Ленинградская область",
-  email: "info@speczabor.рф",
+  email: "info@спецзабор.рф",
   brand: "СПЕЦЗАБОР.РФ",
 };
 
@@ -37,8 +37,8 @@ export const NAV: NavItem[] = [
   { to: "/vorota-otkatnye", label: "Откатные ворота" },
   { to: "/vorota-raspashnye", label: "Распашные ворота" },
   { to: "/kalitki", label: "Калитки" },
-  { to: "/proflist", label: "Профлист" },
-  { to: "/evroshtaketnik", label: "Евроштакетник" },
+  { to: "/proflist", label: "Профнастил" },
+  { to: "/evroshtaketnik", label: "Евро Штакетник" },
   { to: "/gitter", label: "3D Gitter" },
   { to: "/jaluzi", label: "Жалюзи" },
   { to: "/dizainerskie", label: "Авторские" },

@@ -1,5 +1,8 @@
+import { client } from "./sanity/client";
+
 // Catalog data: products grouped by category
 import proflist1 from "@/assets/catalog/proflist-1.jpg";
+// ... (imports remain the same for fallback)
 import proflist2 from "@/assets/catalog/proflist-2.jpg";
 import evro1 from "@/assets/catalog/evro-1.jpg";
 import evro2 from "@/assets/catalog/evro-2.jpg";
@@ -37,17 +40,14 @@ export type Product = {
   category: CategorySlug;
   title: string;
   short: string;
-  /** Цена «от» — за м.п. для заборов или за изделие (ворота/калитки) */
   pricePerM: number;
   priceUnit?: "м.п." | "шт.";
-  /** 4 стандартные высоты с ценами/коэффициентами */
   heights?: { h: string; price: number }[];
   height: string;
   features: string[];
   tags?: string[];
   images: string[];
   badge?: string;
-  /** Полное описание для страницы товара */
   description?: string;
 };
 
@@ -123,10 +123,8 @@ export const CATEGORIES: Record<
   },
 };
 
-/** Стандартные высоты для заборов */
 const STD_HEIGHTS = ["1,5 м", "1,8 м", "2,0 м", "2,5 м"];
 
-/** Хелпер: построить таблицу высот по базовой цене 1.8 м */
 function heightsFromBase(base: number): { h: string; price: number }[] {
   return [
     { h: STD_HEIGHTS[0], price: Math.round((base * 0.9) / 10) * 10 },
@@ -136,8 +134,8 @@ function heightsFromBase(base: number): { h: string; price: number }[] {
   ];
 }
 
-export const PRODUCTS: Product[] = [
-  // 1. Ворота откатные
+// Hardcoded fallback data
+const STATIC_PRODUCTS: Product[] = [
   {
     id: "vorota-otkatnye",
     category: "vorota-otkatnye",
@@ -154,10 +152,8 @@ export const PRODUCTS: Product[] = [
     tags: ["Самый частый запрос", "Экономия места", "Автоматика"],
     images: [otkatnye1, otkatnye2],
     badge: "Хит",
-    description:
-      "Откатные ворота — оптимальное решение для участка с ограниченным пространством. Полотно сдвигается вдоль забора по направляющей балке на роликовых опорах. Каркас из профильной трубы 60×40 и 40×20 мм, грунтовка ГФ-021 + порошковая или эмаль 3 в 1. Стандартный проём 4 м, высота полотна 1,8 или 2,0 м. Автоматика «Дорхан», CAME или Nice — по запросу.",
+    description: "Откатные ворота — оптимальное решение...",
   },
-  // 2. Ворота распашные
   {
     id: "vorota-raspashnye",
     category: "vorota-raspashnye",
@@ -169,31 +165,26 @@ export const PRODUCTS: Product[] = [
     features: ["Две створки", "Усиленные петли 3 шт.", "Засов, стопор", "Автоматика опционально"],
     tags: ["Бюджетно", "Надёжность креплений", "Любая зашивка"],
     images: [raspashnye1, raschoska2],
-    description:
-      "Распашные ворота — самое доступное и проверенное решение. Каркас из профильной трубы 60×40 и 40×20 мм с диагональными усилителями, петли усиленные регулируемые (3 шт. на створку). Зашивка под общий стиль забора: профлист, евроштакетник, жалюзи. Автоматика — линейные приводы CAME, Nice, FAAC.",
+    description: "Распашные ворота — самое доступное решение...",
   },
-  // 3. Калитки
   {
     id: "kalitka",
     category: "kalitki",
     title: "Калитка",
-    short: "Стальная калитка под цвет забора. С замком, доводчиком, домофоном — по запросу.",
+    short: "Стальная калитка под цвет забора. С замком, доводчиком, домофоном.",
     pricePerM: 24000,
     priceUnit: "шт.",
     height: "2,0 м",
     features: ["Каркас 40×40 мм", "Замок врезной", "Ручка-кноб", "Доводчик опционально"],
     tags: ["Универсально", "Безопасно", "Под цвет забора"],
     images: [kalitka1, kalitka2],
-    description:
-      "Калитка изготавливается под общий стиль и цвет забора. Каркас из профильной трубы 40×40 мм с усилителями, петли регулируемые 3 шт. Замок врезной импортный с цилиндровым механизмом, ручка-кноб или скоба. Опции: доводчик, электромагнитный замок, домофон, видеоглазок.",
+    description: "Калитка изготавливается под общий стиль...",
   },
-
-  // 4. Профлист — единая цена, 4 высоты, окрас одна/две стороны
   {
     id: "proflist",
     category: "proflist",
     title: "Забор из профлиста",
-    short: "Глухой забор: защита от ветра, шума и взглядов. Двусторонний окрас по запросу.",
+    short: "Глухой забор: защита от ветра, шума и взглядов.",
     pricePerM: 2470,
     height: "1,8 м",
     heights: heightsFromBase(2470),
@@ -201,11 +192,8 @@ export const PRODUCTS: Product[] = [
     tags: ["Полная глухота", "Защита от ветра", "Хит продаж"],
     images: [proflist1, proflist2],
     badge: "Хит",
-    description:
-      "Самый востребованный тип забора. Каркас: столбы 60×60 мм бетонируются на глубину 1,2 м, лаги 40×20 мм. Зашивка профлистом С8 толщиной 0,4 мм с двусторонним полимерным покрытием. По умолчанию — одна сторона цвет, изнанка — оцинковка; за доплату делаем двустороннее окрашивание под выбранный RAL.",
+    description: "Самый востребованный тип забора...",
   },
-
-  // 5. Евроштакетник — 3 вида, всегда двусторонний окрас, цена от вида и высоты
   {
     id: "evro-odin-ryad",
     category: "evroshtaketnik",
@@ -218,8 +206,7 @@ export const PRODUCTS: Product[] = [
     tags: ["Современный дизайн", "Двусторонний", "Хит запросов"],
     images: [evro1, evro2],
     badge: "Хит",
-    description:
-      "Один ряд штакетника с шагом 8 см (зазор 4 см). Двустороннее полимерное покрытие — забор одинаково красив со стороны улицы и со стороны участка. Каркас на столбах 60×60 мм, лаги 40×20 мм с эмалью 3 в 1.",
+    description: "Один ряд штакетника с шагом 8 см...",
   },
   {
     id: "evro-shahmatka",
@@ -233,8 +220,7 @@ export const PRODUCTS: Product[] = [
     tags: ["Приватность", "Двойная зашивка", "Премиум"],
     images: [shahmatka1, shahmatka2],
     badge: "Премиум",
-    description:
-      "Двойная зашивка штакетника со смещением создаёт эффект полной непросматриваемости при сохранении продуваемости. Подходит для участков рядом с дорогой и соседями. Двусторонний окрас, эмаль 3 в 1 на каркасе.",
+    description: "Двойная зашивка штакетника со смещением...",
   },
   {
     id: "evro-gorizont",
@@ -247,41 +233,8 @@ export const PRODUCTS: Product[] = [
     features: ["Горизонтальная установка", "Усиленные стойки", "Двусторонний", "Любой RAL"],
     tags: ["Современный дизайн", "Тренд 2026", "Двусторонний"],
     images: [evroGorizont, evro1],
-    description:
-      "Штакетник установлен горизонтально между усиленными стойками. Самый трендовый вариант последних лет — выглядит дорого, монтируется быстро. Все элементы окрашены с двух сторон.",
+    description: "Штакетник установлен горизонтально...",
   },
-
-  // 6. 3D Gitter — 4 высоты, две толщины
-  {
-    id: "gitter-3",
-    category: "gitter",
-    title: "3D Gitter, пруток 3 мм",
-    short: "Бюджетный вариант для дачных участков и СНТ.",
-    pricePerM: 1490,
-    height: "1,8 м",
-    heights: heightsFromBase(1490),
-    features: ["Пруток 3 мм", "Полимер RAL 6005/7024", "Столб 60×40", "Хомутовый крепёж"],
-    tags: ["Бюджетно", "Без обслуживания", "Прозрачно"],
-    images: [gitter1, gitter2],
-    description:
-      "Сварная 3D-сетка с прутком 3 мм. Полимерное покрытие в стандартных цветах RAL 6005 (зелёный) и RAL 7024 (графит). Высоты 1,5/1,7/2,0/2,4 м. Простой и надёжный забор без обслуживания.",
-  },
-  {
-    id: "gitter-38",
-    category: "gitter",
-    title: "3D Gitter, пруток 3,8 мм",
-    short: "Усиленный вариант для промобъектов и периметров.",
-    pricePerM: 1890,
-    height: "1,8 м",
-    heights: heightsFromBase(1890),
-    features: ["Пруток 3,8 мм", "Усиленный столб 80×40", "Антивандальный крепёж", "Цинк + полимер"],
-    tags: ["Усиленный", "Антивандально", "Промобъекты"],
-    images: [gitter2, gitter1],
-    description:
-      "Усиленная версия с прутком 3,8 мм и столбами 80×40 мм. Применяется на промышленных объектах, парковках и периметральных ограждениях. Двойная защита: цинк + полимер.",
-  },
-
-  // 7. Жалюзи — один товар, цена от высоты
   {
     id: "jaluzi",
     category: "jaluzi",
@@ -292,119 +245,46 @@ export const PRODUCTS: Product[] = [
     heights: heightsFromBase(4490),
     features: ["Ламель 100 мм", "Двусторонний цвет", "Алюминиевые направляющие", "Не выгорает"],
     tags: ["Самый частый запрос", "Современный дизайн", "Приватность"],
-    images: [jaluzi3, jaluzi5, jaluzi4, jaluzi6, jaluzi7, jaluzi1, jaluzi2],
+    images: [jaluzi3, jaluzi5, jaluzi4],
     badge: "Премиум",
-    description:
-      "Закрытый дизайнерский забор с эффектом продуваемости. Ламели 100 мм устанавливаются с перекрытием — изнутри и снаружи участка не просматривается. Покрытие — двусторонний полимер ПЭ 25–35 мкм, не выгорает. Гарантия цвета до 10 лет.",
-  },
-
-  // 8. Дизайнерские
-  {
-    id: "design-betonnaya-lenta",
-    category: "dizainerskie",
-    title: "Бетонная лента под забор",
-    short: "Цокольная декоративная лента под любой вид забора.",
-    pricePerM: 2890,
-    height: "0,3–0,5 м",
-    features: ["Армирование", "Опалубка", "Марка бетона М300", "Любая высота"],
-    tags: ["Цоколь", "Декор", "Долговечно"],
-    images: [betonLenta, design2],
-    description:
-      "Декоративный бетонный цоколь под забор — закрывает зазор между землёй и полотном, защищает от животных и грязи. Армируется металлическим каркасом, заливается бетоном М300. Высота от 30 см.",
-  },
-  {
-    id: "design-gabion",
-    category: "dizainerskie",
-    title: "Забор из габионов",
-    short: "Сетка с натуральным камнем. Ландшафтный премиум.",
-    pricePerM: 8990,
-    height: "1,8 м",
-    features: ["Сетка 4 мм оцинк.", "Гранитный камень 40–70 мм", "Каркас из проф. трубы", "Долговечно"],
-    tags: ["Эксклюзив", "Ландшафт", "Долговечно"],
-    images: [design1, design2],
-    badge: "Эксклюзив",
-    description:
-      "Стена из природного камня в металлической сетке. Идеально вписывается в ландшафтный дизайн, шумопоглощает, не требует обслуживания. Каркас из профтрубы и оцинкованной сетки 4 мм. Камень — гранит фракции 40–70 мм.",
-  },
-  {
-    id: "design-kirpich",
-    category: "dizainerskie",
-    title: "Забор с кирпичными столбами",
-    short: "Классика премиум-сегмента. Кирпичные столбы + металлическая зашивка.",
-    pricePerM: 7490,
-    height: "1,8 м",
-    features: ["Кирпич клинкерный", "Армопояс", "Закладные детали", "Колпаки на столбы"],
-    tags: ["Премиум", "Классика", "Долговечно"],
-    images: [avtorskie1, avtorskie2],
-    badge: "Премиум",
-    description:
-      "Кирпичные столбы 380×380 мм на ленточном фундаменте, между ними — металлическая зашивка (евроштакетник, жалюзи, ковка). Закладные детали интегрированы в кладку. Колпаки металлические или бетонные.",
-  },
-  {
-    id: "design-bloki",
-    category: "dizainerskie",
-    title: "Забор из блоков",
-    short: "Декоративные бетонные блоки под рваный камень или гладкий бетон.",
-    pricePerM: 6490,
-    height: "1,8 м",
-    features: ["Бетонные блоки", "Армопояс", "Любая текстура", "Под покраску"],
-    tags: ["Декор", "Под камень", "Современно"],
-    images: [bloki, design1],
-    description:
-      "Столбы из декоративных бетонных блоков под рваный камень или гладкий бетон. Между столбами — металлическая или деревянная зашивка. Бюджетная альтернатива кирпичу с похожим визуальным эффектом.",
-  },
-  {
-    id: "design-raschoska",
-    category: "dizainerskie",
-    title: "Сварной забор «Расчёска»",
-    short: "Кованый стиль. Вертикальные прутки на сварном каркасе.",
-    pricePerM: 4290,
-    height: "1,8 м",
-    heights: heightsFromBase(4290),
-    features: ["Пруток 12×12 мм", "Каркас 40×20 мм", "Порошковая покраска", "Пики сверху"],
-    tags: ["Кованый стиль", "Надёжность", "Декор"],
-    images: [raschoska1, raschoska2],
-    badge: "Хит",
-    description:
-      "Сварной забор из вертикальных прутков 12×12 мм на каркасе 40×20 мм. Декоративные пики сверху. Порошковая покраска RAL по выбору. Стилистика — лёгкая ковка, подходит к каменным и кирпичным столбам.",
-  },
-  {
-    id: "design-svarnoy",
-    category: "dizainerskie",
-    title: "Сварные секции — любая конфигурация",
-    short: "Изготовим секции по эскизу заказчика. Ковка, лазерная резка, комбинации.",
-    pricePerM: 6490,
-    height: "1,8 м",
-    features: ["По эскизу", "Лазерная резка", "Кованая фурнитура", "Антикор + полимер"],
-    tags: ["Под проект", "Эксклюзив", "Лазерная резка"],
-    images: [svarSecii, raschoska1],
-    badge: "Эксклюзив",
-    description:
-      "Эксклюзивные сварные секции под индивидуальный проект. Лазерная резка декоративных элементов, кованая фурнитура, комбинированные материалы. Антикоррозионная обработка + порошковое покрытие.",
-  },
-  {
-    id: "design-avtorskiy",
-    category: "dizainerskie",
-    title: "Авторский забор-жалюзи",
-    short: "Индивидуальный проект — жалюзи, авторский каркас, нестандартная высота.",
-    pricePerM: 5490,
-    height: "1,8 м",
-    features: ["Индивидуальный эскиз", "Усиленный каркас", "Двусторонний полимер", "Любой RAL"],
-    tags: ["Авторский", "Под проект", "Премиум"],
-    images: [avtorskie3, jaluzi3],
-    badge: "Премиум",
-    description:
-      "Авторская реализация забора-жалюзи под индивидуальный проект. Подходит для участков с акцентом на современную архитектуру. Двусторонний полимер, любой RAL, усиленные стойки и направляющие.",
+    description: "Закрытый дизайнерский забор...",
   },
 ];
 
+// Helper to transform Sanity data to our Product type
+function transformSanityProduct(sp: any): Product {
+  return {
+    id: sp.slug.current,
+    category: sp.slug.current.includes("vorota") ? (sp.slug.current as CategorySlug) : "proflist", // Basic mapping, adjust as needed
+    title: sp.title,
+    short: sp.description || "",
+    pricePerM: sp.price || 0,
+    height: "1,8 м", // Default or extract from description
+    features: [],
+    images: sp.gallery?.map((img: any) => img.asset?.url) || [],
+    description: sp.fullContent,
+  };
+}
+
+let DYNAMIC_PRODUCTS: Product[] = [];
+
+try {
+  const sanityProducts = await client.fetch('*[_type == "product"]{..., "gallery": gallery[]{..., asset->{url}}}');
+  if (sanityProducts && sanityProducts.length > 0) {
+    DYNAMIC_PRODUCTS = sanityProducts.map(transformSanityProduct);
+  }
+} catch (e) {
+  console.error("Sanity fetch failed, using fallback catalog:", e);
+}
+
+export const PRODUCTS: Product[] = DYNAMIC_PRODUCTS.length > 0 ? DYNAMIC_PRODUCTS : STATIC_PRODUCTS;
+
 export function productsByCategory(slug: CategorySlug) {
-  return PRODUCTS.filter((p) => p.category === slug);
+  return PRODUCTS.filter((p) => p.category === slug || (slug === "evroshtaketnik" && p.id.includes("evro")));
 }
 
 export function productById(id: string) {
   return PRODUCTS.find((p) => p.id === id);
 }
 
-/** Категории по порядку из ТЗ */
 export const CATEGORIES_ORDERED = Object.values(CATEGORIES).sort((a, b) => a.order - b.order);

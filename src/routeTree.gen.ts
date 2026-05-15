@@ -18,7 +18,10 @@ import { Route as GitterRouteImport } from './routes/gitter'
 import { Route as EvroshtaketnikRouteImport } from './routes/evroshtaketnik'
 import { Route as DizainerskieRouteImport } from './routes/dizainerskie'
 import { Route as CatalogRouteImport } from './routes/catalog'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as StudioIndexRouteImport } from './routes/studio/index'
+import { Route as StudioSplatRouteImport } from './routes/studio/$'
 import { Route as ProductsProductIdRouteImport } from './routes/products.$productId'
 
 const VorotaRaspashnyeRoute = VorotaRaspashnyeRouteImport.update({
@@ -66,9 +69,24 @@ const CatalogRoute = CatalogRouteImport.update({
   path: '/catalog',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StudioIndexRoute = StudioIndexRouteImport.update({
+  id: '/studio/',
+  path: '/studio/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StudioSplatRoute = StudioSplatRouteImport.update({
+  id: '/studio/$',
+  path: '/studio/$',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProductsProductIdRoute = ProductsProductIdRouteImport.update({
@@ -79,6 +97,7 @@ const ProductsProductIdRoute = ProductsProductIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
   '/catalog': typeof CatalogRoute
   '/dizainerskie': typeof DizainerskieRoute
   '/evroshtaketnik': typeof EvroshtaketnikRoute
@@ -89,9 +108,12 @@ export interface FileRoutesByFullPath {
   '/vorota-otkatnye': typeof VorotaOtkatnyeRoute
   '/vorota-raspashnye': typeof VorotaRaspashnyeRoute
   '/products/$productId': typeof ProductsProductIdRoute
+  '/studio/$': typeof StudioSplatRoute
+  '/studio/': typeof StudioIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
   '/catalog': typeof CatalogRoute
   '/dizainerskie': typeof DizainerskieRoute
   '/evroshtaketnik': typeof EvroshtaketnikRoute
@@ -102,10 +124,13 @@ export interface FileRoutesByTo {
   '/vorota-otkatnye': typeof VorotaOtkatnyeRoute
   '/vorota-raspashnye': typeof VorotaRaspashnyeRoute
   '/products/$productId': typeof ProductsProductIdRoute
+  '/studio/$': typeof StudioSplatRoute
+  '/studio': typeof StudioIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
   '/catalog': typeof CatalogRoute
   '/dizainerskie': typeof DizainerskieRoute
   '/evroshtaketnik': typeof EvroshtaketnikRoute
@@ -116,11 +141,14 @@ export interface FileRoutesById {
   '/vorota-otkatnye': typeof VorotaOtkatnyeRoute
   '/vorota-raspashnye': typeof VorotaRaspashnyeRoute
   '/products/$productId': typeof ProductsProductIdRoute
+  '/studio/$': typeof StudioSplatRoute
+  '/studio/': typeof StudioIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/admin'
     | '/catalog'
     | '/dizainerskie'
     | '/evroshtaketnik'
@@ -131,9 +159,12 @@ export interface FileRouteTypes {
     | '/vorota-otkatnye'
     | '/vorota-raspashnye'
     | '/products/$productId'
+    | '/studio/$'
+    | '/studio/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/admin'
     | '/catalog'
     | '/dizainerskie'
     | '/evroshtaketnik'
@@ -144,9 +175,12 @@ export interface FileRouteTypes {
     | '/vorota-otkatnye'
     | '/vorota-raspashnye'
     | '/products/$productId'
+    | '/studio/$'
+    | '/studio'
   id:
     | '__root__'
     | '/'
+    | '/admin'
     | '/catalog'
     | '/dizainerskie'
     | '/evroshtaketnik'
@@ -157,10 +191,13 @@ export interface FileRouteTypes {
     | '/vorota-otkatnye'
     | '/vorota-raspashnye'
     | '/products/$productId'
+    | '/studio/$'
+    | '/studio/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRoute
   CatalogRoute: typeof CatalogRoute
   DizainerskieRoute: typeof DizainerskieRoute
   EvroshtaketnikRoute: typeof EvroshtaketnikRoute
@@ -171,6 +208,8 @@ export interface RootRouteChildren {
   VorotaOtkatnyeRoute: typeof VorotaOtkatnyeRoute
   VorotaRaspashnyeRoute: typeof VorotaRaspashnyeRoute
   ProductsProductIdRoute: typeof ProductsProductIdRoute
+  StudioSplatRoute: typeof StudioSplatRoute
+  StudioIndexRoute: typeof StudioIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -238,11 +277,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CatalogRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/studio/': {
+      id: '/studio/'
+      path: '/studio'
+      fullPath: '/studio/'
+      preLoaderRoute: typeof StudioIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/studio/$': {
+      id: '/studio/$'
+      path: '/studio/$'
+      fullPath: '/studio/$'
+      preLoaderRoute: typeof StudioSplatRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/products/$productId': {
@@ -257,6 +317,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRoute,
   CatalogRoute: CatalogRoute,
   DizainerskieRoute: DizainerskieRoute,
   EvroshtaketnikRoute: EvroshtaketnikRoute,
@@ -267,6 +328,8 @@ const rootRouteChildren: RootRouteChildren = {
   VorotaOtkatnyeRoute: VorotaOtkatnyeRoute,
   VorotaRaspashnyeRoute: VorotaRaspashnyeRoute,
   ProductsProductIdRoute: ProductsProductIdRoute,
+  StudioSplatRoute: StudioSplatRoute,
+  StudioIndexRoute: StudioIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

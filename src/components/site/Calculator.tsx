@@ -1,57 +1,89 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { tgLink } from "@/lib/site";
+import { client } from "@/lib/sanity/client";
+import { Check } from "lucide-react";
 
 type Type = {
   key: string;
   label: string;
-  /** Базовая цена за м.п. при высоте 1,8 м (для заборов) */
   pricePerM: number;
-  /** Если true — изделие, цена за штуку, высота не масштабируется */
   perUnit?: boolean;
 };
 
-const TYPES: Type[] = [
-  // Изделия
+const DEFAULT_TYPES: Type[] = [
   { key: "vorota-otkatnye", label: "Ворота откатные", pricePerM: 85000, perUnit: true },
   { key: "vorota-raspashnye", label: "Ворота распашные", pricePerM: 55000, perUnit: true },
   { key: "kalitka", label: "Калитка", pricePerM: 24000, perUnit: true },
-  // Заборы
-  { key: "proflist", label: "Профлист", pricePerM: 2470 },
-  { key: "evro-1ryad", label: "Евроштакетник в 1 ряд", pricePerM: 2770 },
-  { key: "evro-shahmatka", label: "Шахматка (2 ряда)", pricePerM: 3730 },
-  { key: "evro-gorizont", label: "Евроштакетник горизонталь", pricePerM: 3290 },
+  { key: "proflist", label: "Профнастил", pricePerM: 2470 },
+  { key: "evro-1ryad", label: "Евро Штакетник в 1 ряд", pricePerM: 2770 },
+  { key: "evro-shahmatka", label: "Евро Штакетник в 2 ряда", pricePerM: 3730 },
+  { key: "evro-gorizont", label: "Евро Штакетник \"горизонт\"", pricePerM: 3290 },
   { key: "gitter", label: "3D Gitter", pricePerM: 1490 },
   { key: "jaluzi", label: "Жалюзи", pricePerM: 4490 },
 ];
 
-const HEIGHTS = [
+const DEFAULT_HEIGHTS = [
   { v: 1.5, label: "1,5 м", k: 0.9 },
   { v: 1.8, label: "1,8 м", k: 1.0 },
   { v: 2.0, label: "2,0 м", k: 1.12 },
   { v: 2.5, label: "2,5 м", k: 1.32 },
 ] as const;
 
-type HeightVal = typeof HEIGHTS[number]["v"];
+type HeightVal = typeof DEFAULT_HEIGHTS[number]["v"];
 
 export function Calculator({ defaultType }: { defaultType?: string } = {}) {
+  const [types, setTypes] = useState<Type[]>(DEFAULT_TYPES);
+  const [heights, setHeights] = useState<any[]>(DEFAULT_HEIGHTS as any);
   const [typeKey, setTypeKey] = useState(defaultType ?? "evro-1ryad");
   const [length, setLength] = useState(40);
   const [height, setHeight] = useState<HeightVal>(1.8);
   const [otkatnye, setOtkatnye] = useState(0);
   const [raspashnye, setRaspashnye] = useState(0);
   const [wicket, setWicket] = useState(1);
+  const [screwPiles, setScrewPiles] = useState(false);
 
-  const type = TYPES.find((t) => t.key === typeKey) ?? TYPES[0];
+  useEffect(() => {
+    async function loadSettings() {
+      try {
+        const data = await client.fetch('*[_type == "calcSettings"][0]');
+        if (data) {
+          if (data.prices) {
+            const mappedTypes = DEFAULT_TYPES.map(dt => {
+              const remote = data.prices.find((p: any) => p.key === dt.key);
+              // Use manual labels from user request if remote doesn't have it
+              const label = dt.label; 
+              return remote ? { ...dt, label, pricePerM: remote.price } : dt;
+            });
+            setTypes(mappedTypes);
+          }
+          if (data.heights) {
+            setHeights(data.heights);
+          }
+        }
+      } catch (e) {
+        console.error("Failed to load calc settings from Sanity", e);
+      }
+    }
+    loadSettings();
+  }, []);
+
+  const type = types.find((t) => t.key === typeKey) ?? types[0];
   const isUnit = !!type.perUnit;
 
   const total = useMemo(() => {
-    const heightK = HEIGHTS.find((h) => h.v === height)?.k ?? 1;
-    const main = isUnit ? type.pricePerM : type.pricePerM * length * heightK;
-    const g1 = otkatnye * 85000;
-    const g2 = raspashnye * 55000;
-    const w = wicket * 24000;
+    const heightK = heights.find((h) => h.v === height || h.value === height)?.k ?? 1;
+    const basePrice = type.pricePerM + (screwPiles && !isUnit ? 1500 : 0);
+    const main = isUnit ? type.pricePerM : basePrice * length * heightK;
+    
+    const pOtkat = types.find(t => t.key === "vorota-otkatnye")?.pricePerM ?? 85000;
+    const pRaspash = types.find(t => t.key === "vorota-raspashnye")?.pricePerM ?? 55000;
+    const pWicket = types.find(t => t.key === "kalitka")?.pricePerM ?? 24000;
+
+    const g1 = otkatnye * pOtkat;
+    const g2 = raspashnye * pRaspash;
+    const w = wicket * pWicket;
     return Math.round((main + g1 + g2 + w) / 100) * 100;
-  }, [type, length, height, otkatnye, raspashnye, wicket, isUnit]);
+  }, [type, types, heights, length, height, otkatnye, raspashnye, wicket, isUnit, screwPiles]);
 
   return (
     <div className="rounded-2xl bg-card border border-border shadow-card overflow-hidden">
@@ -61,7 +93,7 @@ export function Calculator({ defaultType }: { defaultType?: string } = {}) {
           <div>
             <div className="text-xs uppercase tracking-widest text-orange mb-2">Тип конструкции</div>
             <div className="grid grid-cols-2 gap-2">
-              {TYPES.map((t) => (
+              {types.map((t) => (
                 <button
                   key={t.key}
                   type="button"
@@ -81,9 +113,17 @@ export function Calculator({ defaultType }: { defaultType?: string } = {}) {
           {!isUnit && (
             <>
               <div>
-                <div className="flex justify-between items-baseline">
+                <div className="flex justify-between items-center mb-1">
                   <div className="text-xs uppercase tracking-widest text-orange">Длина участка</div>
-                  <div className="font-display text-lg">{length} м</div>
+                  <div className="flex items-center gap-2">
+                    <input 
+                      type="number" 
+                      value={length} 
+                      onChange={(e) => setLength(Math.max(0, Number(e.target.value)))}
+                      className="w-16 px-2 py-1 bg-secondary border border-border rounded text-right font-display text-lg focus:outline-none focus:border-orange"
+                    />
+                    <span className="font-display text-lg">м</span>
+                  </div>
                 </div>
                 <input
                   type="range"
@@ -101,20 +141,38 @@ export function Calculator({ defaultType }: { defaultType?: string } = {}) {
                   Высота забора
                 </div>
                 <div className="grid grid-cols-4 gap-2">
-                  {HEIGHTS.map((h) => (
-                    <button
-                      key={h.v}
-                      type="button"
-                      onClick={() => setHeight(h.v)}
-                      className={`px-2 py-2 rounded-md text-sm border transition-colors ${
-                        height === h.v
-                          ? "bg-graphite-deep text-white border-graphite-deep"
-                          : "bg-secondary border-border hover:border-orange"
-                      }`}
-                    >
-                      {h.label}
-                    </button>
-                  ))}
+                  {heights.map((h) => {
+                    const hVal = h.v || h.value;
+                    return (
+                      <button
+                        key={hVal}
+                        type="button"
+                        onClick={() => setHeight(hVal)}
+                        className={`px-2 py-2 rounded-md text-sm border transition-colors ${
+                          height === hVal
+                            ? "bg-graphite-deep text-white border-graphite-deep"
+                            : "bg-secondary border-border hover:border-orange"
+                        }`}
+                      >
+                        {h.label}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              <div 
+                className="flex items-center gap-3 cursor-pointer select-none group mt-1"
+                onClick={() => setScrewPiles(!screwPiles)}
+              >
+                <div className={`size-5 rounded border flex items-center justify-center transition-colors ${
+                  screwPiles ? "bg-orange border-orange" : "bg-secondary border-border group-hover:border-orange"
+                }`}>
+                  {screwPiles && <Check className="size-3.5 text-white stroke-[3px]" />}
+                </div>
+                <div className="text-sm font-medium">
+                  монтаж на винтовые сваи 
+                  <span className="text-orange ml-2">+1,5 т.р к метру</span>
                 </div>
               </div>
             </>
@@ -137,10 +195,10 @@ export function Calculator({ defaultType }: { defaultType?: string } = {}) {
           </p>
           <div className="mt-auto pt-5 grid gap-2">
             <a
-              href={tgLink(`зафиксировать цену — ${type.label}, высота ${height} м${isUnit ? "" : `, ${length} м`}`)}
+              href={tgLink(`зафиксировать цену — ${type.label}, высота ${height} м${isUnit ? "" : `, ${length} м`}${screwPiles ? ', на винтовых сваях' : ''}`)}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-md btn-yellow px-4 py-3 text-sm text-center"
+              className="rounded-md btn-yellow btn-shiny px-4 py-3 text-sm text-center"
             >
               Зафиксировать цену
             </a>

@@ -43,6 +43,9 @@ export function LeadBlock({
           <a href={CONTACTS.phoneHref} className="text-center text-sm text-white/60 hover:text-yellow">
             или {CONTACTS.phone}
           </a>
+          <p className="text-[10px] text-white/30 text-center leading-tight mt-1">
+            Нажимая на кнопки связи, вы соглашаетесь с обработкой персональных данных (ФЗ-152).
+          </p>
         </div>
       </div>
     </section>

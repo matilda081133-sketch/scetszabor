@@ -4,6 +4,7 @@ import { SiteLayout } from "@/components/site/SiteLayout";
 import { ProductCard } from "@/components/site/ProductCard";
 import { LeadBlock } from "@/components/site/LeadBlock";
 import { CATEGORIES_ORDERED, PRODUCTS, type CategorySlug } from "@/lib/catalog";
+import { useCMS } from "@/lib/cms";
 
 export const Route = createFileRoute("/catalog")({
   head: () => ({
@@ -20,8 +21,23 @@ export const Route = createFileRoute("/catalog")({
 });
 
 function CatalogPage() {
+  const { content, loading } = useCMS();
   const [active, setActive] = useState<CategorySlug | "all">("all");
-  const list = active === "all" ? PRODUCTS : PRODUCTS.filter((p) => p.category === active);
+  
+  // Use products from CMS if available, otherwise fallback to static products
+  const displayProducts = content.products && content.products.length > 0 
+    ? content.products.map((p: any) => ({
+        id: p.slug?.current || p._id,
+        category: p.category || "proflist",
+        title: p.title,
+        short: p.description,
+        pricePerM: p.price,
+        image: p.mainImage, // We will handle Sanity images in the ProductCard
+        ...p
+      }))
+    : PRODUCTS;
+
+  const list = active === "all" ? displayProducts : displayProducts.filter((p: any) => p.category === active);
 
   return (
     <SiteLayout>

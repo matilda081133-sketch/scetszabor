@@ -1,10 +1,12 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useState } from "react";
+import { useCMS } from "@/lib/cms";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { LeadBlock } from "@/components/site/LeadBlock";
 import { ProductCard } from "@/components/site/ProductCard";
-import { CATEGORIES, productById, productsByCategory } from "@/lib/catalog";
+import { CATEGORIES, productById, productsByCategory, type CategorySlug } from "@/lib/catalog";
 import { tgLink } from "@/lib/site";
+import { urlFor } from "@/lib/sanity/client";
 import { ChevronLeft, ChevronRight, Check, Ruler, Hammer, Camera, ShieldCheck } from "lucide-react";
 
 export const Route = createFileRoute("/products/$productId")({
@@ -49,13 +51,32 @@ export const Route = createFileRoute("/products/$productId")({
 
 function ProductPage() {
   const { productId } = Route.useParams();
-  const product = productById(productId)!;
+  const { content, loading } = useCMS();
+  
+  // Try to find in CMS products first, then fallback to static
+  const cmsProduct = content.products?.find((p: any) => p.slug?.current === productId || p._id === productId);
+  
+  const product = cmsProduct 
+    ? {
+        ...cmsProduct,
+        id: cmsProduct.slug?.current || cmsProduct._id,
+        pricePerM: cmsProduct.price,
+        short: cmsProduct.description,
+        images: cmsProduct.gallery || [cmsProduct.mainImage],
+        description: cmsProduct.fullContent,
+        features: cmsProduct.features || [],
+      }
+    : productById(productId);
+
+  if (!product && !loading) throw notFound();
+  if (!product) return <div className="h-screen bg-background" />;
+
   const [idx, setIdx] = useState(0);
   const total = product.images.length;
   const next = () => setIdx((i) => (i + 1) % total);
   const prev = () => setIdx((i) => (i - 1 + total) % total);
-  const cat = CATEGORIES[product.category];
-  const others = productsByCategory(product.category).filter((p) => p.id !== product.id);
+  const cat = CATEGORIES[product.category as CategorySlug] || CATEGORIES["proflist"];
+  const others = productsByCategory(product.category as CategorySlug).filter((p) => p.id !== product.id);
   const unit = product.priceUnit ?? "м.п.";
 
   return (
@@ -76,18 +97,21 @@ function ProductPage() {
         {/* Gallery */}
         <div>
           <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-muted shadow-card group">
-            {product.images.map((src, i) => (
-              <img
-                key={src}
-                src={src}
-                alt={product.title}
-                width={1280}
-                height={960}
-                className={`absolute inset-0 size-full object-cover transition-opacity duration-500 ${
-                  i === idx ? "opacity-100" : "opacity-0"
-                }`}
-              />
-            ))}
+            {product.images.map((img: any, i: number) => {
+              const src = typeof img === 'string' ? img : urlFor(img).width(1200).url();
+              return (
+                <img
+                  key={src || i}
+                  src={src}
+                  alt={product.title}
+                  width={1280}
+                  height={960}
+                  className={`absolute inset-0 size-full object-cover transition-opacity duration-500 ${
+                    i === idx ? "opacity-100" : "opacity-0"
+                  }`}
+                />
+              );
+            })}
             {product.badge && (
               <span
                 className={`absolute top-4 left-4 text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-sm ${
@@ -122,18 +146,21 @@ function ProductPage() {
           </div>
           {total > 1 && (
             <div className="mt-3 grid grid-cols-4 gap-2">
-              {product.images.map((src, i) => (
-                <button
-                  key={src}
-                  type="button"
-                  onClick={() => setIdx(i)}
-                  className={`aspect-[4/3] rounded-md overflow-hidden border-2 transition-colors ${
-                    i === idx ? "border-orange" : "border-transparent"
-                  }`}
-                >
-                  <img src={src} alt="" className="size-full object-cover" />
-                </button>
-              ))}
+              {product.images.map((img: any, i: number) => {
+                const src = typeof img === 'string' ? img : urlFor(img).width(300).url();
+                return (
+                  <button
+                    key={src || i}
+                    type="button"
+                    onClick={() => setIdx(i)}
+                    className={`aspect-[4/3] rounded-md overflow-hidden border-2 transition-colors ${
+                      i === idx ? "border-orange" : "border-transparent"
+                    }`}
+                  >
+                    <img src={src} alt="" className="size-full object-cover" />
+                  </button>
+                );
+              })}
             </div>
           )}
         </div>

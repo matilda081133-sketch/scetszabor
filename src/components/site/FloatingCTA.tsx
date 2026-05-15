@@ -1,49 +1,41 @@
-import { useState } from "react";
 import { CONTACTS } from "@/lib/site";
-import { MessageCircle, X } from "lucide-react";
+import { Send, User } from "lucide-react";
 
 export function FloatingCTA() {
-  const [open, setOpen] = useState(false);
   return (
-    <div className="fixed bottom-4 right-4 z-50 flex flex-col items-end gap-3">
-      {open && (
-        <div className="rounded-xl bg-graphite-deep text-white p-4 shadow-card border border-white/10 max-w-[280px] animate-in fade-in slide-in-from-bottom-2">
-          <div className="flex items-start gap-2">
-            <p className="text-sm leading-snug">
-              Напишите нам — ответим за 5 минут и пришлём расчёт стоимости.
-            </p>
-            <button onClick={() => setOpen(false)} aria-label="Закрыть" className="text-white/60 hover:text-white">
-              <X className="size-4" />
-            </button>
-          </div>
-          <div className="mt-3 grid gap-2">
-            <a
-              href={CONTACTS.telegramUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-md bg-telegram px-3 py-2 text-center text-sm font-semibold"
-            >
-              Написать в Telegram
-            </a>
-            <a
-              href={CONTACTS.maxUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-md bg-orange px-3 py-2 text-center text-sm font-bold text-graphite-deep"
-            >
-              Написать в Max
-            </a>
-          </div>
-        </div>
-      )}
-      <button
-        type="button"
-        onClick={() => setOpen((v) => !v)}
-        aria-label="Связаться"
-        className="size-14 rounded-full bg-orange text-graphite-deep shadow-glow-orange flex items-center justify-center hover:bg-orange-bright transition-all hover:scale-105 ring-4 ring-orange/30"
+    <div className="fixed bottom-6 right-6 z-[60] flex flex-col items-end gap-4 pointer-events-none">
+      {/* Telegram Button */}
+      <a
+        href={CONTACTS.telegramUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Написать в Telegram"
+        className="pointer-events-auto group relative flex items-center justify-center size-12 rounded-full bg-[#229ED9] text-white shadow-xl hover:scale-110 transition-all duration-300 hover:shadow-[0_0_20px_rgba(34,158,217,0.5)] animate-in fade-in slide-in-from-bottom-4 duration-500 delay-150"
       >
-        {open ? <X className="size-6" /> : <MessageCircle className="size-6" />}
-      </button>
+        <Send className="size-5 fill-current" />
+        {/* Tooltip */}
+        <span className="absolute right-full mr-3 px-2 py-1 rounded bg-graphite-deep/80 backdrop-blur-sm text-white text-[10px] font-bold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none border border-white/10 uppercase tracking-wider">
+          Telegram
+        </span>
+      </a>
+
+      {/* Max Button */}
+      <a
+        href={CONTACTS.maxUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Связаться с Максом"
+        className="pointer-events-auto group relative flex items-center justify-center size-14 rounded-full bg-orange text-graphite-deep shadow-glow-orange hover:scale-110 transition-all duration-300 hover:bg-orange-bright ring-4 ring-orange/20 animate-in fade-in slide-in-from-bottom-6 duration-700"
+      >
+        <User className="size-6 fill-current" />
+        <div className="absolute -top-1 -right-1 size-3 bg-red-500 rounded-full border-2 border-white animate-pulse" />
+        
+        {/* Tooltip */}
+        <span className="absolute right-full mr-3 px-2 py-1 rounded bg-graphite-deep/80 backdrop-blur-sm text-white text-[10px] font-bold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none border border-white/10 uppercase tracking-wider">
+          Связаться с Максом
+        </span>
+      </a>
     </div>
   );
 }
+

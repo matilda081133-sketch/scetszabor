@@ -29,28 +29,26 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "СПЕЦЗАБОР — установка заборов в СПб и ЛО" },
+      { title: "СПЕЦЗАБОР | Заборы под ключ в СПб и ЛО" },
       {
         name: "description",
         content:
-          "Изготовление и монтаж заборов под ключ в Санкт-Петербурге и Ленинградской области. Профлист, евроштакетник, 3D-сетка, жалюзи, ворота. Реальная гарантия по договору.",
+          "Профессиональное строительство и установка заборов СПЕЦЗАБОР в Санкт-Петербурге и Ленинградской области. Профлист, евроштакетник, 3D-сетка, жалюзи, ворота. Гарантия 10 лет.",
       },
-      { property: "og:title", content: "СПЕЦЗАБОР — установка заборов в СПб и ЛО" },
+      { property: "og:title", content: "СПЕЦЗАБОР | Заборы под ключ в СПб и ЛО" },
       {
         property: "og:description",
         content:
-          "Инженерный замер, монтаж по ГОСТ, фотофиксация скрытых работ. Реальная гарантия.",
+          "Инженерный замер, монтаж по ГОСТ, фотофиксация скрытых работ. Реальная гарантия 10 лет на все работы.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "СПЕЦЗАБОР — установка заборов в СПб и ЛО" },
-      { name: "description", content: "Solid Spb Fences is a website for a fence installation company serving St. Petersburg and Leningrad Oblast." },
-      { property: "og:description", content: "Solid Spb Fences is a website for a fence installation company serving St. Petersburg and Leningrad Oblast." },
-      { name: "twitter:description", content: "Solid Spb Fences is a website for a fence installation company serving St. Petersburg and Leningrad Oblast." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/f1287189-7998-4055-9e4e-73e0835c7201/id-preview-c5abdbe7--9138e12c-c3e0-4bb8-a790-4add5967a43e.lovable.app-1777564523620.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/f1287189-7998-4055-9e4e-73e0835c7201/id-preview-c5abdbe7--9138e12c-c3e0-4bb8-a790-4add5967a43e.lovable.app-1777564523620.png" },
+      { name: "twitter:title", content: "СПЕЦЗАБОР | Заборы под ключ в СПб и ЛО" },
+      { property: "og:image", content: "/favicon.png" },
+      { name: "twitter:image", content: "/favicon.png" },
     ],
     links: [
+      { rel: "icon", type: "image/png", href: "/favicon.png" },
       { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
@@ -65,14 +63,17 @@ export const Route = createRootRoute({
   notFoundComponent: NotFoundComponent,
 });
 
+import { CookieConsent } from "../components/site/CookieConsent";
+
 function RootShell({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="ru">
       <head>
         <HeadContent />
       </head>
       <body>
         {children}
+        <CookieConsent />
         <Scripts />
       </body>
     </html>

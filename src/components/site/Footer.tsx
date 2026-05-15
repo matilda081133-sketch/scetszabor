@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { CONTACTS, NAV, tgLink } from "@/lib/site";
+import { Send, User } from "lucide-react";
 
 export function Footer() {
   return (
@@ -20,6 +21,7 @@ export function Footer() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-md bg-telegram px-4 py-2 text-sm font-semibold text-white"
             >
+              <Send className="size-4" />
               Telegram
             </a>
             <a
@@ -28,6 +30,7 @@ export function Footer() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-md bg-orange px-4 py-2 text-sm font-bold text-graphite-deep"
             >
+              <User className="size-4" />
               Max
             </a>
           </div>
