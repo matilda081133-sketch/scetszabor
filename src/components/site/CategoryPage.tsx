@@ -17,6 +17,7 @@ import {
   MapPin,
   Clock,
   Send,
+  User,
 } from "lucide-react";
 import { useState } from "react";
 import { useCMS } from "@/lib/cms";
@@ -103,9 +104,17 @@ export function CategoryPage({
                 href={tgLink(`консультация — ${cat.title}`)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-md border border-white/25 hover:border-yellow hover:text-yellow px-6 py-3.5 font-semibold transition-colors"
+                className="rounded-md bg-[#229ED9] text-white px-6 py-3.5 font-semibold transition-transform hover:-translate-y-0.5 shadow-md flex items-center gap-2"
               >
-                Получить консультацию
+                Telegram
+              </a>
+              <a
+                href={CONTACTS.maxUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-md bg-orange text-graphite-deep px-6 py-3.5 font-bold transition-transform hover:-translate-y-0.5 shadow-glow-orange flex items-center gap-2"
+              >
+                Max
               </a>
             </div>
           </div>
@@ -363,6 +372,7 @@ function ContactsBlock({ title }: { title: string }) {
           <ul className="mt-6 grid gap-4">
             <ContactRow icon={Phone} label="Телефон" value={CONTACTS.phone} href={CONTACTS.phoneHref} />
             <ContactRow icon={Send} label="Telegram" value={CONTACTS.telegramHandle} href={CONTACTS.telegramUrl} external />
+            <ContactRow icon={User} label="Max" value="Связаться с Максом" href={CONTACTS.maxUrl} external />
             <ContactRow icon={Mail} label="Email" value={CONTACTS.email} href={`mailto:${CONTACTS.email}`} />
             <ContactRow icon={MapPin} label="Регион" value={CONTACTS.region} />
             <ContactRow icon={Clock} label="Часы работы" value={CONTACTS.workHours} />

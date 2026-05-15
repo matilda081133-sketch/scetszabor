@@ -33,7 +33,7 @@ export function CookieConsent() {
           <div className="flex-1">
             <h3 className="text-white font-display text-lg leading-tight">Мы используем файлы cookie</h3>
             <p className="mt-2 text-sm text-white/60 leading-relaxed">
-              Это помогает нам улучшать сайт и делать его удобнее для вас. Оставаясь на сайте, вы соглашаетесь с нашей политикой конфиденциальности.
+              Это помогает нам улучшать сайт и делать его удобнее для вас. Оставаясь на сайте, вы соглашаетесь с нашей политикой конфиденциальности и обработкой персональных данных (в соответствии с 152-ФЗ).
             </p>
             
             <div className="mt-5 flex items-center gap-3">
