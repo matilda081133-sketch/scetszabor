@@ -17,6 +17,9 @@ const { default: workerHandler } = await import(serverIndexPath);
 import express from 'express';
 const app = express();
 
+// Serve static client assets
+app.use(express.static(join(__dirname, 'dist', 'client')));
+
 app.use(async (req, res) => {
   try {
     const url = new URL(req.url, `http://${req.headers.host}`);
