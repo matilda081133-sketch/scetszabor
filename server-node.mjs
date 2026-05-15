@@ -17,7 +17,7 @@ const { default: workerHandler } = await import(serverIndexPath);
 import express from 'express';
 const app = express();
 
-app.all('*', async (req, res) => {
+app.use(async (req, res) => {
   try {
     const url = new URL(req.url, `http://${req.headers.host}`);
     const request = new Request(url.href, {
