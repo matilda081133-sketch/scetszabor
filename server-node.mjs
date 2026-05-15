@@ -4,11 +4,12 @@ import express from 'express';
 import fs from 'fs';
 
 // Глобальный полифилл в самом начале
-globalThis.getBuiltinModule = (name) => {
-  console.log('Polyfill called for:', name);
-  if (name === 'node:process') return process;
-  return null;
-};
+if (!process.getBuiltinModule) {
+  process.getBuiltinModule = (name) => {
+    if (name === 'node:process') return process;
+    return null;
+  };
+}
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const PORT = process.env.PORT || 3000;
