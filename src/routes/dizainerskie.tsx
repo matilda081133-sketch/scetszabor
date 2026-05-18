@@ -19,9 +19,9 @@ export const Route = createFileRoute("/dizainerskie")({
       slug="dizainerskie"
       hero={hero}
       variants={[
-        { title: "Кирпичные столбы", img: img1, desc: "Премиум-классика на ленточном фундаменте." },
-        { title: "Авторский жалюзи", img: img2, desc: "Индивидуальный проект под архитектуру дома." },
-        { title: "Бетонная лента", img: img3, desc: "Декоративный цоколь под любой забор." },
+        { title: "Кирпичные столбы", img: img1, desc: "Премиум-классика на ленточном фундаменте.", href: "/products/dizainerskie" },
+        { title: "Авторский жалюзи", img: img2, desc: "Индивидуальный проект под архитектуру дома.", href: "/products/dizainerskie" },
+        { title: "Бетонная лента", img: img3, desc: "Декоративный цоколь под любой забор.", href: "/products/dizainerskie" },
       ]}
       techPoints={[
         { title: "Индивидуальный проект", desc: "Эскиз и смета — после замера." },

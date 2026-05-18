@@ -3,9 +3,9 @@ import { SiteLayout } from "@/components/site/SiteLayout";
 import { Calculator } from "@/components/site/Calculator";
 import { LeadBlock } from "@/components/site/LeadBlock";
 import { CATEGORIES_ORDERED, PRODUCTS } from "@/lib/catalog";
-import { tgLink } from "@/lib/site";
+import { tgLink, CONTACTS } from "@/lib/site";
 import { ProductCard } from "@/components/site/ProductCard";
-import { ShieldCheck, Hammer, Camera, Ruler, Award, Users } from "lucide-react";
+import { ShieldCheck, Hammer, Camera, Ruler, Award, Users, MessageCircle } from "lucide-react";
 import { CountStat } from "@/components/site/CountStat";
 import { FAQ } from "@/components/site/FAQ";
 import { Reviews } from "@/components/site/Reviews";
@@ -193,7 +193,7 @@ function HomePage() {
       </section>
 
       {/* LEAD */}
-      <section className="container-x py-10">
+      <section className="container-x py-14 md:py-16">
         <LeadBlock />
       </section>
     </SiteLayout>

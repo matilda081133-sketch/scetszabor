@@ -39,7 +39,8 @@ export function ProductCard({ product }: { product: any }) {
         onMouseLeave={onLeave}
       >
         <Link
-          to={product.id.startsWith('/') ? product.id : `/products/${product.id}`}
+          to="/products/$productId"
+          params={{ productId: product.id }}
           className="absolute inset-0 z-0"
         >
           {productImages.map((img: any, i: number) => {

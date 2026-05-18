@@ -18,9 +18,9 @@ export const Route = createFileRoute("/gitter")({
       hero={g1}
       calcDefault="gitter"
       variants={[
-        { title: "Пруток 3 мм", img: g1, desc: "Бюджетный вариант для дач и СНТ." },
-        { title: "Пруток 3,8 мм", img: g2, desc: "Усиленный вариант для промобъектов." },
-        { title: "С козырьком", img: g2, desc: "Антивандальный верх — для периметров." },
+        { title: "Пруток 3 мм", img: g1, desc: "Бюджетный вариант для дач и СНТ.", href: "/products/gitter" },
+        { title: "Пруток 3,8 мм", img: g2, desc: "Усиленный вариант для промобъектов.", href: "/products/gitter" },
+        { title: "С козырьком", img: g2, desc: "Антивандальный верх — для периметров.", href: "/products/gitter" },
       ]}
       techPoints={[
         { title: "Цинк + полимер", desc: "Двойная защита: не ржавеет десятилетиями." },

@@ -11,9 +11,6 @@ type Type = {
 };
 
 const DEFAULT_TYPES: Type[] = [
-  { key: "vorota-otkatnye", label: "Ворота откатные", pricePerM: 85000, perUnit: true },
-  { key: "vorota-raspashnye", label: "Ворота распашные", pricePerM: 55000, perUnit: true },
-  { key: "kalitka", label: "Калитка", pricePerM: 24000, perUnit: true },
   { key: "proflist", label: "Профнастил", pricePerM: 2470 },
   { key: "evro-1ryad", label: "Евро Штакетник в 1 ряд", pricePerM: 2770 },
   { key: "evro-shahmatka", label: "Евро Штакетник в 2 ряда", pricePerM: 3730 },
@@ -37,9 +34,6 @@ export function Calculator({ defaultType }: { defaultType?: string } = {}) {
   const [typeKey, setTypeKey] = useState(defaultType ?? "evro-1ryad");
   const [length, setLength] = useState(40);
   const [height, setHeight] = useState<HeightVal>(1.8);
-  const [otkatnye, setOtkatnye] = useState(0);
-  const [raspashnye, setRaspashnye] = useState(0);
-  const [wicket, setWicket] = useState(1);
   const [screwPiles, setScrewPiles] = useState(false);
 
   useEffect(() => {
@@ -75,15 +69,8 @@ export function Calculator({ defaultType }: { defaultType?: string } = {}) {
     const basePrice = type.pricePerM + (screwPiles && !isUnit ? 1500 : 0);
     const main = isUnit ? type.pricePerM : basePrice * length * heightK;
     
-    const pOtkat = types.find(t => t.key === "vorota-otkatnye")?.pricePerM ?? 85000;
-    const pRaspash = types.find(t => t.key === "vorota-raspashnye")?.pricePerM ?? 55000;
-    const pWicket = types.find(t => t.key === "kalitka")?.pricePerM ?? 24000;
-
-    const g1 = otkatnye * pOtkat;
-    const g2 = raspashnye * pRaspash;
-    const w = wicket * pWicket;
-    return Math.round((main + g1 + g2 + w) / 100) * 100;
-  }, [type, types, heights, length, height, otkatnye, raspashnye, wicket, isUnit, screwPiles]);
+    return Math.round(main / 100) * 100;
+  }, [type, types, heights, length, height, isUnit, screwPiles]);
 
   return (
     <div className="rounded-2xl bg-card border border-border shadow-card overflow-hidden">
@@ -178,12 +165,7 @@ export function Calculator({ defaultType }: { defaultType?: string } = {}) {
             </>
           )}
 
-          <div className="grid grid-cols-3 gap-3">
-            <NumberPicker label="Откатные" value={otkatnye} onChange={setOtkatnye} max={3} />
-            <NumberPicker label="Распашные" value={raspashnye} onChange={setRaspashnye} max={3} />
-            <NumberPicker label="Калитки" value={wicket} onChange={setWicket} max={3} />
           </div>
-        </div>
 
         <div className="bg-graphite-deep text-white rounded-xl p-6 flex flex-col">
           <div className="text-xs uppercase tracking-widest text-orange">Ориентировочно</div>

@@ -19,9 +19,9 @@ export const Route = createFileRoute("/evroshtaketnik")({
       hero={e1}
       calcDefault="evro-1ryad"
       variants={[
-        { title: "В один ряд", img: e1, desc: "Зазор 4 см. Аккуратность и современный вид." },
-        { title: "Шахматка (2 ряда)", img: e2, desc: "Полная приватность, двойная зашивка." },
-        { title: "Горизонтальный", img: e3, desc: "Тренд 2026 — горизонтальная установка штакетника." },
+        { title: "В один ряд", img: e1, desc: "Зазор 4 см. Аккуратность и современный вид.", href: "/products/evro-odin-ryad" },
+        { title: "Шахматка (2 ряда)", img: e2, desc: "Полная приватность, двойная зашивка.", href: "/products/evro-shahmatka" },
+        { title: "Горизонтальный", img: e3, desc: "Тренд 2026 — горизонтальная установка штакетника.", href: "/products/evro-gorizont" },
       ]}
       techPoints={[
         { title: "Замер инженером", desc: "Учёт перепада высот: каждая секция выровнена." },

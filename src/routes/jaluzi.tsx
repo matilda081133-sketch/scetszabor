@@ -18,9 +18,9 @@ export const Route = createFileRoute("/jaluzi")({
       hero={j1}
       calcDefault="jaluzi"
       variants={[
-        { title: "Стандартные ламели", img: j1, desc: "Двусторонний RAL, ширина 100 мм." },
-        { title: "Wood-print", img: j2, desc: "Печать «под дерево» на металле, без обслуживания." },
-        { title: "С автоматикой створок", img: j1, desc: "Поворотные ламели на отдельных секциях." },
+        { title: "Стандартные ламели", img: j1, desc: "Двусторонний RAL, ширина 100 мм.", href: "/products/jaluzi" },
+        { title: "Wood-print", img: j2, desc: "Печать «под дерево» на металле, без обслуживания.", href: "/products/jaluzi" },
+        { title: "С автоматикой створок", img: j1, desc: "Поворотные ламели на отдельных секциях.", href: "/products/jaluzi" },
       ]}
       techPoints={[
         { title: "Алюм. направляющие", desc: "Жёсткий каркас, никаких просадок и зазоров." },

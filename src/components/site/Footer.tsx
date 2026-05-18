@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { CONTACTS, NAV, tgLink } from "@/lib/site";
-import { Send, User } from "lucide-react";
+import { Send, MessageCircle } from "lucide-react";
 
 export function Footer() {
   return (
@@ -28,10 +28,10 @@ export function Footer() {
               href={CONTACTS.maxUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-md bg-orange px-4 py-2 text-sm font-bold text-graphite-deep"
+              className="inline-flex items-center gap-2 rounded-md bg-orange px-4 py-2 text-sm font-bold text-graphite-deep uppercase"
             >
-              <User className="size-4" />
-              Max
+              <MessageCircle className="size-4" />
+              MAX
             </a>
           </div>
         </div>

@@ -18,9 +18,9 @@ export const Route = createFileRoute("/vorota-otkatnye")({
       hero={img1}
       calcDefault="vorota-otkatnye"
       variants={[
-        { title: "Зашивка профлистом", img: img2, desc: "Бюджетная, но прочная зашивка." },
-        { title: "Зашивка жалюзи", img: img1, desc: "Дизайнерский вариант под современный дом." },
-        { title: "Зашивка штакетником", img: img2, desc: "Воздушная и стильная композиция." },
+        { title: "Зашивка профлистом", img: img2, desc: "Бюджетная, но прочная зашивка.", href: "/products/vorota-otkatnye" },
+        { title: "Зашивка жалюзи", img: img1, desc: "Дизайнерский вариант под современный дом.", href: "/products/vorota-otkatnye" },
+        { title: "Зашивка штакетником", img: img2, desc: "Воздушная и стильная композиция.", href: "/products/vorota-otkatnye" },
       ]}
       techPoints={[
         { title: "Балка с роликами", desc: "Усиленная направляющая, ролики Дорхан в комплекте." },

@@ -18,9 +18,9 @@ export const Route = createFileRoute("/vorota-raspashnye")({
       hero={img1}
       calcDefault="vorota-raspashnye"
       variants={[
-        { title: "С зашивкой штакетником", img: img1, desc: "Самый популярный вариант. Аккуратный двусторонний вид." },
-        { title: "С зашивкой профлистом", img: img2, desc: "Глухие ворота — закрытый двор." },
-        { title: "С автоматикой", img: img1, desc: "Линейные приводы CAME/Nice. Открытие с пульта." },
+        { title: "С зашивкой штакетником", img: img1, desc: "Самый популярный вариант. Аккуратный двусторонний вид.", href: "/products/vorota-raspashnye" },
+        { title: "С зашивкой профлистом", img: img2, desc: "Глухие ворота — закрытый двор.", href: "/products/vorota-raspashnye" },
+        { title: "С автоматикой", img: img1, desc: "Линейные приводы CAME/Nice. Открытие с пульта.", href: "/products/vorota-raspashnye" },
       ]}
       techPoints={[
         { title: "Каркас 60×40", desc: "С диагональными усилителями — не провиснут." },

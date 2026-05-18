@@ -200,7 +200,7 @@ function ProductPage() {
                 rel="noopener noreferrer"
                 className="rounded-md btn-yellow text-center py-3"
               >
-                Рассчитать стоимость
+                Калькулятор стоимости
               </a>
               <a
                 href={tgLink(`получить подробности — ${product.title}`)}
@@ -293,7 +293,7 @@ function ProductPage() {
         </section>
       )}
 
-      <section className="container-x pb-10">
+      <section className="container-x py-14 md:py-16">
         <LeadBlock
           title={`Вызвать инженера — ${product.title}`}
           subtitle="Бесплатный замер. 3D-эскиз и смета в подарок."

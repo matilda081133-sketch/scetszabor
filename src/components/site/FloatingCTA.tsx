@@ -1,5 +1,5 @@
 import { CONTACTS } from "@/lib/site";
-import { Send, User } from "lucide-react";
+import { Send, MessageCircle } from "lucide-react";
 
 export function FloatingCTA() {
   return (
@@ -24,15 +24,15 @@ export function FloatingCTA() {
         href={CONTACTS.maxUrl}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Связаться с Максом"
+        aria-label="MAX"
         className="pointer-events-auto group relative flex items-center justify-center size-14 rounded-full bg-orange text-graphite-deep shadow-glow-orange hover:scale-110 transition-all duration-300 hover:bg-orange-bright ring-4 ring-orange/20 animate-in fade-in slide-in-from-bottom-6 duration-700"
       >
-        <User className="size-6 fill-current" />
+        <MessageCircle className="size-6 fill-current" />
         <div className="absolute -top-1 -right-1 size-3 bg-red-500 rounded-full border-2 border-white animate-pulse" />
         
         {/* Tooltip */}
         <span className="absolute right-full mr-3 px-2 py-1 rounded bg-graphite-deep/80 backdrop-blur-sm text-white text-[10px] font-bold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none border border-white/10 uppercase tracking-wider">
-          Связаться с Максом
+          MAX
         </span>
       </a>
     </div>

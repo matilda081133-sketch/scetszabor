@@ -18,9 +18,9 @@ export const Route = createFileRoute("/kalitki")({
       hero={img1}
       calcDefault="kalitka"
       variants={[
-        { title: "Калитка штакетник", img: img2, desc: "Под общий стиль забора, двусторонний окрас." },
-        { title: "Калитка профлист", img: img1, desc: "Закрытая, бюджетная, надёжная." },
-        { title: "С доводчиком", img: img2, desc: "Не хлопает, не остаётся открытой." },
+        { title: "Калитка штакетник", img: img2, desc: "Под общий стиль забора, двусторонний окрас.", href: "/products/kalitka" },
+        { title: "Калитка профлист", img: img1, desc: "Закрытая, бюджетная, надёжная.", href: "/products/kalitka" },
+        { title: "С доводчиком", img: img2, desc: "Не хлопает, не остаётся открытой.", href: "/products/kalitka" },
       ]}
       techPoints={[
         { title: "Каркас 40×40", desc: "Профильная труба с усилением." },

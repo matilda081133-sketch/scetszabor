@@ -2,7 +2,8 @@ import { SiteLayout } from "@/components/site/SiteLayout";
 import { ProductCard } from "@/components/site/ProductCard";
 import { Calculator } from "@/components/site/Calculator";
 import { SectionHeader } from "@/routes/index";
-import { CATEGORIES, productsByCategory, type CategorySlug } from "@/lib/catalog";
+import { Link } from "@tanstack/react-router";
+import { CATEGORIES, productsByCategory, type CategorySlug, PRODUCTS } from "@/lib/catalog";
 import { CONTACTS, tgLink } from "@/lib/site";
 import {
   ShieldCheck,
@@ -17,7 +18,7 @@ import {
   MapPin,
   Clock,
   Send,
-  User,
+  MessageCircle,
 } from "lucide-react";
 import { useState } from "react";
 import { useCMS } from "@/lib/cms";
@@ -26,16 +27,14 @@ import { urlFor } from "@/lib/sanity/client";
 type RalColor = { name: string; ral: string; hex: string };
 
 const RAL_PALETTE: RalColor[] = [
-  { name: "Зелёный мох", ral: "RAL 6005", hex: "#114232" },
   { name: "Шоколад", ral: "RAL 8017", hex: "#3a2519" },
-  { name: "Вишня", ral: "RAL 3005", hex: "#651722" },
   { name: "Графит", ral: "RAL 7024", hex: "#2c2c2e" },
+  { name: "Зелёный мох", ral: "RAL 6005", hex: "#114232" },
+  { name: "Вишня", ral: "RAL 3005", hex: "#651722" },
   { name: "Чёрный", ral: "RAL 9005", hex: "#0d0d0f" },
   { name: "Белый", ral: "RAL 9003", hex: "#f0f0eb" },
-  { name: "Слоновая кость", ral: "RAL 1015", hex: "#e6d2a4" },
-  { name: "Синий", ral: "RAL 5005", hex: "#1f3a78" },
-  { name: "Красно-коричневый", ral: "RAL 3009", hex: "#612e2a" },
-  { name: "Серый", ral: "RAL 7004", hex: "#9c9c9c" },
+  { name: "Светлое дерево", ral: "Принт", hex: "#dcb283" },
+  { name: "Тёмное дерево", ral: "Принт", hex: "#5c3a21" },
 ];
 
 const CATS_WITH_RAL: CategorySlug[] = [
@@ -57,7 +56,7 @@ export function CategoryPage({
 }: {
   slug: CategorySlug;
   hero: string;
-  variants: { title: string; img: string; desc: string }[];
+  variants: { title: string; img: string; desc: string; href?: string }[];
   techPoints: { title: string; desc: string }[];
   calcDefault?: string;
 }) {
@@ -98,7 +97,7 @@ export function CategoryPage({
                 href="#calc"
                 className="rounded-md btn-yellow btn-shiny px-6 py-3.5 shadow-glow-yellow"
               >
-                Рассчитать стоимость
+                Калькулятор стоимости
               </a>
               <a
                 href={tgLink(`консультация — ${cat.title}`)}
@@ -112,9 +111,10 @@ export function CategoryPage({
                 href={CONTACTS.maxUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-md bg-orange text-graphite-deep px-6 py-3.5 font-bold transition-transform hover:-translate-y-0.5 shadow-glow-orange flex items-center gap-2"
+                className="rounded-md bg-orange text-graphite-deep px-6 py-3.5 font-bold transition-transform hover:-translate-y-0.5 shadow-glow-orange flex items-center gap-2 uppercase"
               >
-                Max
+                <MessageCircle className="size-5" />
+                MAX
               </a>
             </div>
           </div>
@@ -129,32 +129,39 @@ export function CategoryPage({
         <section className="container-x py-16">
           <SectionHeader kicker="Варианты исполнения" title="Подберите под свой участок" />
           <div className="mt-10 grid gap-5 md:grid-cols-3">
-            {variants.map((v) => (
-              <div
-                key={v.title}
-                className="group rounded-xl overflow-hidden bg-card border border-border hover:border-orange hover:-translate-y-0.5 transition-all"
-              >
-                <div className="relative aspect-[4/3] overflow-hidden">
-                  <img
-                    src={v.img}
-                    alt={v.title}
-                    loading="lazy"
-                    width={1280}
-                    height={960}
-                    className="size-full object-cover transition-all duration-500 group-hover:opacity-0"
-                  />
-                  <div className="absolute inset-0 bg-orange opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center px-6 text-center">
-                    <div className="font-display text-graphite-deep text-2xl uppercase leading-tight">
-                      {v.title}
+            {variants.map((v) => {
+              const card = (
+                <div className="group rounded-xl overflow-hidden bg-card border border-border hover:border-orange hover:-translate-y-0.5 transition-all h-full">
+                  <div className="relative aspect-[4/3] overflow-hidden">
+                    <img
+                      src={v.img}
+                      alt={v.title}
+                      loading="lazy"
+                      width={1280}
+                      height={960}
+                      className="size-full object-cover transition-all duration-500 group-hover:opacity-0"
+                    />
+                    <div className="absolute inset-0 bg-orange opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center px-6 text-center">
+                      <div className="font-display text-graphite-deep text-2xl uppercase leading-tight">
+                        {v.title}
+                      </div>
                     </div>
                   </div>
+                  <div className="p-5 text-left">
+                    <div className="font-display text-xl">{v.title}</div>
+                    <p className="text-sm text-muted-foreground mt-1">{v.desc}</p>
+                  </div>
                 </div>
-                <div className="p-5 text-left">
-                  <div className="font-display text-xl">{v.title}</div>
-                  <p className="text-sm text-muted-foreground mt-1">{v.desc}</p>
-                </div>
-              </div>
-            ))}
+              );
+
+              return v.href ? (
+                <Link key={v.title} to={v.href} className="block">
+                  {card}
+                </Link>
+              ) : (
+                <div key={v.title}>{card}</div>
+              );
+            })}
           </div>
           {/* CTA */}
           <div className="mt-10 rounded-2xl section-dark p-6 md:p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-5 relative overflow-hidden">
@@ -178,7 +185,7 @@ export function CategoryPage({
                 href="#calc"
                 className="rounded-md border border-white/25 hover:border-yellow hover:text-yellow px-6 py-3.5 font-semibold transition-colors text-white whitespace-nowrap"
               >
-                Рассчитать стоимость
+                Калькулятор стоимости
               </a>
             </div>
           </div>
@@ -243,17 +250,11 @@ export function CategoryPage({
 
       {/* Products */}
       <section id="products" className="container-x pb-10">
-        <SectionHeader kicker="Каталог" title={`${cat.title} — позиции`} />
+        <SectionHeader kicker="Каталог" title="Топ позиций каталога" />
         <div
-          className={`mt-10 grid gap-6 ${
-            products.length === 1
-              ? "md:grid-cols-1 max-w-2xl mx-auto"
-              : products.length === 2
-              ? "md:grid-cols-2 max-w-4xl mx-auto"
-              : "md:grid-cols-2 lg:grid-cols-3"
-          }`}
+          className={`mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3`}
         >
-          {products.map((p) => (
+          {[...PRODUCTS].sort(() => 0.5 - Math.random()).slice(0, 3).map((p) => (
             <ProductCard key={p.id} product={p} />
           ))}
         </div>
@@ -372,7 +373,7 @@ function ContactsBlock({ title }: { title: string }) {
           <ul className="mt-6 grid gap-4">
             <ContactRow icon={Phone} label="Телефон" value={CONTACTS.phone} href={CONTACTS.phoneHref} />
             <ContactRow icon={Send} label="Telegram" value={CONTACTS.telegramHandle} href={CONTACTS.telegramUrl} external />
-            <ContactRow icon={User} label="Max" value="Связаться с Максом" href={CONTACTS.maxUrl} external />
+            <ContactRow icon={MessageCircle} label="MAX" value="Написать в MAX" href={CONTACTS.maxUrl} external />
             <ContactRow icon={Mail} label="Email" value={CONTACTS.email} href={`mailto:${CONTACTS.email}`} />
             <ContactRow icon={MapPin} label="Регион" value={CONTACTS.region} />
             <ContactRow icon={Clock} label="Часы работы" value={CONTACTS.workHours} />
@@ -429,11 +430,31 @@ function MiniLeadForm({ subject }: { subject: string }) {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [comment, setComment] = useState("");
-  const handleSubmit = (e: React.FormEvent) => {
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const text = `Заявка с сайта.\nУслуга: ${subject}\nИмя: ${name || "—"}\nТелефон: ${phone || "—"}\nКомментарий: ${comment || "—"}`;
-    window.open(`${CONTACTS.telegramUrl}?text=${encodeURIComponent(text)}`, "_blank", "noopener");
+    setStatus("loading");
+    try {
+      const res = await fetch("/api/lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, phone, comment, subject }),
+      });
+      if (res.ok) {
+        setStatus("success");
+        setName("");
+        setPhone("");
+        setComment("");
+      } else {
+        setStatus("error");
+      }
+    } catch (err) {
+      console.error(err);
+      setStatus("error");
+    }
   };
+
   return (
     <form
       onSubmit={handleSubmit}
@@ -469,9 +490,18 @@ function MiniLeadForm({ subject }: { subject: string }) {
             rows={3}
             className="w-full rounded-md bg-white/10 border border-white/15 px-4 py-3 text-white placeholder:text-white/45 outline-none focus:border-yellow resize-none"
           />
-          <button type="submit" className="rounded-md btn-yellow px-6 py-3.5">
-            Отправить заявку
+          <button 
+            type="submit" 
+            disabled={status === "loading" || status === "success"}
+            className={`rounded-md px-6 py-3.5 transition-colors ${
+              status === "success" ? "bg-green-600 text-white" : "btn-yellow text-graphite-deep"
+            }`}
+          >
+            {status === "loading" ? "Отправка..." : status === "success" ? "Заявка отправлена!" : "Отправить заявку"}
           </button>
+          {status === "error" && (
+            <p className="text-red-400 text-sm mt-1">Ошибка отправки. Попробуйте еще раз.</p>
+          )}
           <p className="text-[10px] text-white/40 leading-tight">
             Нажимая «Отправить», вы даете согласие на обработку персональных данных в соответствии с ФЗ-152 и принимаете условия политики конфиденциальности.
           </p>

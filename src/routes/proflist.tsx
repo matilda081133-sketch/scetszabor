@@ -18,9 +18,9 @@ export const Route = createFileRoute("/proflist")({
       hero={p1}
       calcDefault="proflist"
       variants={[
-        { title: "Окрас одна сторона", img: p1, desc: "Базовый вариант. Снаружи цвет, изнанка — оцинковка." },
-        { title: "Окрас две стороны", img: p2, desc: "Двусторонний полимер. Любой RAL по выбору." },
-        { title: "С кирпичными столбами", img: p2, desc: "Премиальный вид. Бетонная балка-цоколь." },
+        { title: "Окрас одна сторона", img: p1, desc: "Базовый вариант. Снаружи цвет, изнанка — оцинковка.", href: "/products/proflist" },
+        { title: "Окрас две стороны", img: p2, desc: "Двусторонний полимер. Любой RAL по выбору.", href: "/products/proflist" },
+        { title: "С кирпичными столбами", img: p2, desc: "Премиальный вид. Бетонная балка-цоколь.", href: "/products/proflist" },
       ]}
       techPoints={[
         { title: "Бурение лунки 1.5 м", desc: "Ниже глубины промерзания грунта по СПб и ЛО." },

@@ -1,4 +1,5 @@
 import { CONTACTS } from "@/lib/site";
+import { MessageCircle } from "lucide-react";
 
 export function LeadBlock({
   title = "Вызвать инженера на замер",
@@ -16,11 +17,13 @@ export function LeadBlock({
       <div className="absolute -left-16 -bottom-16 size-64 rounded-full bg-yellow/10 blur-3xl pointer-events-none" />
       <div className="relative p-8 md:p-14 grid gap-6 md:grid-cols-[1fr_auto] items-center">
         <div className="max-w-2xl">
-          <div className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-yellow">
-            <span className="size-1.5 rounded-full bg-yellow animate-pulse" />
-            {giftLabel}
-          </div>
-          <h2 className="font-display text-3xl md:text-5xl mt-3 leading-[1.05]">{title}</h2>
+          {giftLabel && (
+            <div className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-yellow mb-3">
+              <span className="size-1.5 rounded-full bg-yellow animate-pulse" />
+              {giftLabel}
+            </div>
+          )}
+          <h2 className="font-display text-3xl md:text-5xl leading-[1.05]">{title}</h2>
           <p className="text-white/70 mt-3">{subtitle}</p>
         </div>
         <div className="grid gap-3 w-full md:w-auto md:min-w-[300px] relative z-10">
@@ -36,9 +39,10 @@ export function LeadBlock({
             href={CONTACTS.maxUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-md bg-white/10 hover:bg-white/15 text-white font-semibold px-6 py-4 text-center backdrop-blur"
+            className="rounded-md bg-white/10 hover:bg-white/15 text-white font-semibold px-6 py-4 flex items-center justify-center gap-2 backdrop-blur"
           >
-            Написать в Max
+            <MessageCircle className="size-5" />
+            MAX
           </a>
           <a href={CONTACTS.phoneHref} className="text-center text-sm text-white/60 hover:text-yellow">
             или {CONTACTS.phone}
