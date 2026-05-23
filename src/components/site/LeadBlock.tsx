@@ -2,8 +2,8 @@ import { CONTACTS } from "@/lib/site";
 import { MessageCircle } from "lucide-react";
 
 export function LeadBlock({
-  title = "Вызвать инженера на замер",
-  subtitle = "Бесплатно. Приедем с инструментом, изучим грунт и перепады. Точный расчёт — на месте.",
+  title = "Рассчитайте стоимость вашего забора",
+  subtitle = "Бесплатно приедем на участок (СПб и Ленинградская область). Изучим грунт, перепады высот и посчитаем, сколько стоит забор с установкой.",
   giftLabel = "Подарок: расчёт + 3D-эскиз забора",
 }: {
   title?: string;
@@ -23,8 +23,8 @@ export function LeadBlock({
               {giftLabel}
             </div>
           )}
-          <h2 className="font-display text-3xl md:text-5xl leading-[1.05]">{title}</h2>
-          <p className="text-white/70 mt-3">{subtitle}</p>
+          <h2 className="font-display text-3xl md:text-5xl leading-[1.05] text-balance">{title}</h2>
+          <p className="text-white/70 mt-3 md:mt-4 text-sm md:text-base text-pretty max-w-lg">{subtitle}</p>
         </div>
         <div className="grid gap-3 w-full md:w-auto md:min-w-[300px] relative z-10">
           <a

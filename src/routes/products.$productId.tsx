@@ -8,6 +8,7 @@ import { CATEGORIES, productById, productsByCategory, type CategorySlug } from "
 import { tgLink } from "@/lib/site";
 import { urlFor } from "@/lib/sanity/client";
 import { ChevronLeft, ChevronRight, Check, Ruler, Hammer, Camera, ShieldCheck } from "lucide-react";
+import { LeadModal } from "@/components/site/LeadModal";
 
 export const Route = createFileRoute("/products/$productId")({
   head: ({ params }) => {
@@ -53,20 +54,8 @@ function ProductPage() {
   const { productId } = Route.useParams();
   const { content, loading } = useCMS();
   
-  // Try to find in CMS products first, then fallback to static
-  const cmsProduct = content.products?.find((p: any) => p.slug?.current === productId || p._id === productId);
-  
-  const product = cmsProduct 
-    ? {
-        ...cmsProduct,
-        id: cmsProduct.slug?.current || cmsProduct._id,
-        pricePerM: cmsProduct.price,
-        short: cmsProduct.description,
-        images: cmsProduct.gallery || [cmsProduct.mainImage],
-        description: cmsProduct.fullContent,
-        features: cmsProduct.features || [],
-      }
-    : productById(productId);
+  // Find product from our unified catalog which handles the merging of CMS and static data
+  const product = productById(productId);
 
   if (!product && !loading) throw notFound();
   if (!product) return <div className="h-screen bg-background" />;
@@ -96,7 +85,7 @@ function ProductPage() {
       <section className="container-x py-8 md:py-10 grid gap-8 lg:grid-cols-[1.1fr_1fr]">
         {/* Gallery */}
         <div>
-          <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-muted shadow-card group">
+          <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-muted shadow-card group">
             {product.images.map((img: any, i: number) => {
               const src = typeof img === 'string' ? img : urlFor(img).width(1200).url();
               return (
@@ -193,23 +182,18 @@ function ProductPage() {
             <p className="text-sm text-white/70 mt-3">
               Под ключ: материалы, монтаж, бетонирование. Финальная цена — после замера.
             </p>
-            <div className="mt-5 grid grid-cols-2 gap-3">
-              <a
-                href={tgLink(`расчёт стоимости — ${product.title}`)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-md btn-yellow text-center py-3"
+            <div className="mt-5 grid grid-cols-1 gap-3">
+              <LeadModal 
+                subject={`Получить консультацию — ${product.title}`}
+                title="Получить консультацию и расчет стоимости"
               >
-                Калькулятор стоимости
-              </a>
-              <a
-                href={tgLink(`получить подробности — ${product.title}`)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-md bg-white/10 hover:bg-white/15 text-white text-center font-semibold py-3"
-              >
-                Узнать подробнее
-              </a>
+                <button
+                  type="button"
+                  className="rounded-md btn-yellow text-center py-3 font-semibold"
+                >
+                  Получить консультацию
+                </button>
+              </LeadModal>
             </div>
           </div>
 
@@ -295,8 +279,8 @@ function ProductPage() {
 
       <section className="container-x py-14 md:py-16">
         <LeadBlock
-          title={`Вызвать инженера — ${product.title}`}
-          subtitle="Бесплатный замер. 3D-эскиз и смета в подарок."
+          title="Зафиксировать стоимость и получить консультацию"
+          subtitle="Бесплатный расчет. 3D-эскиз и точная смета."
         />
       </section>
     </SiteLayout>

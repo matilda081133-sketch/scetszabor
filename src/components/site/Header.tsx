@@ -3,6 +3,23 @@ import { Phone, Menu, X, Send } from "lucide-react";
 import { useState } from "react";
 import { CONTACTS, NAV } from "@/lib/site";
 import { useCMS } from "@/lib/cms";
+import { LeadModal } from "@/components/site/LeadModal";
+
+// Официальная иконка мессенджера MAX (VK)
+function MaxIcon({ size = 20 }: { size?: number }) {
+  return (
+    <img
+      src="https://max.ru/favicon.png"
+      width={size}
+      height={size}
+      alt="MAX"
+      style={{ borderRadius: "22%", display: "block", objectFit: "cover" }}
+      onError={(e) => {
+        (e.currentTarget as HTMLImageElement).src = "https://max.ru/favicon.ico";
+      }}
+    />
+  );
+}
 
 export function Header() {
   const [open, setOpen] = useState(false);
@@ -46,22 +63,49 @@ export function Header() {
 
         {/* Right: contacts */}
         <div className="flex items-center gap-2 md:gap-3">
+          {/* Phone — visible on mobile too */}
           <a
             href={phoneHref}
-            className="hidden md:flex items-center gap-2 text-sm font-semibold hover:text-yellow transition-colors whitespace-nowrap"
+            className="flex items-center gap-1.5 text-sm font-semibold hover:text-yellow transition-colors whitespace-nowrap"
           >
             <Phone className="size-4 text-yellow shrink-0" />
-            <span>{displayPhone}</span>
+            <span className="hidden sm:inline">{displayPhone}</span>
           </a>
+          {/* Telegram link */}
           <a
             href={CONTACTS.telegramUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden sm:inline-flex items-center gap-2 rounded-md btn-yellow btn-shiny px-4 py-2 text-sm whitespace-nowrap"
+            aria-label="Telegram"
+            className="flex items-center justify-center hover:opacity-80 transition-opacity overflow-hidden rounded-[22%]"
           >
-            <Send className="size-3.5" />
-            Получить консультацию
+            <img
+              src="https://telegram.org/img/t_logo.png"
+              width={28}
+              height={28}
+              alt="Telegram"
+              onError={(e) => { (e.currentTarget as HTMLImageElement).src = "https://telegram.org/favicon.ico"; }}
+            />
           </a>
+          {/* MAX link — official icon, always visible */}
+          <a
+            href={CONTACTS.maxUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="MAX"
+            className="flex items-center justify-center hover:opacity-80 transition-opacity"
+          >
+            <MaxIcon size={28} />
+          </a>
+          <LeadModal subject="Заказ обратного звонка">
+            <button
+              type="button"
+              className="hidden sm:inline-flex items-center gap-2 rounded-md btn-yellow btn-shiny px-4 py-2 text-sm whitespace-nowrap"
+            >
+              <Send className="size-3.5" />
+              Получить консультацию
+            </button>
+          </LeadModal>
           <button
             type="button"
             aria-label="Меню"
@@ -104,6 +148,15 @@ export function Header() {
             >
               <Phone className="size-4" />
               {displayPhone}
+            </a>
+            <a
+              href={CONTACTS.maxUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-white/80 hover:text-white font-semibold"
+            >
+              <MaxIcon size={22} />
+              Написать в MAX
             </a>
             <span className="text-xs text-white/55">{CONTACTS.workHours}</span>
           </div>

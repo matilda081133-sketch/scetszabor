@@ -19,9 +19,7 @@ export function CountStat({
   return (
     <div ref={ref} className="text-left">
       <div className="font-display text-3xl md:text-4xl text-yellow tabular-nums">
-        {prefix}
-        {display}
-        {suffix}
+        {prefix}{display}{suffix && <>{suffix}</>}
       </div>
       <div className="text-xs text-white/65 uppercase tracking-wider mt-1">{label}</div>
     </div>

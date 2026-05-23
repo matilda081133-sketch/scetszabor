@@ -2,6 +2,7 @@ import { useMemo, useState, useEffect } from "react";
 import { tgLink } from "@/lib/site";
 import { client } from "@/lib/sanity/client";
 import { Check } from "lucide-react";
+import { LeadModal } from "./LeadModal";
 
 type Type = {
   key: string;
@@ -17,6 +18,9 @@ const DEFAULT_TYPES: Type[] = [
   { key: "evro-gorizont", label: "Евро Штакетник \"горизонт\"", pricePerM: 3290 },
   { key: "gitter", label: "3D Gitter", pricePerM: 1490 },
   { key: "jaluzi", label: "Жалюзи", pricePerM: 4490 },
+  { key: "vorota-otkatnye", label: "Откатные ворота", pricePerM: 85000, perUnit: true },
+  { key: "vorota-raspashnye", label: "Распашные ворота", pricePerM: 55000, perUnit: true },
+  { key: "kalitka", label: "Калитка", pricePerM: 18000, perUnit: true },
 ];
 
 const DEFAULT_HEIGHTS = [
@@ -173,25 +177,25 @@ export function Calculator({ defaultType }: { defaultType?: string } = {}) {
             {total.toLocaleString("ru-RU")} <span className="text-lg text-white/60">₽</span>
           </div>
           <p className="mt-3 text-sm text-white/70">
-            Цена под ключ: материалы, монтаж, бетонирование. Точный расчёт — после замера инженером.
+            Цена под ключ: {isUnit ? "материал строго в соответствии со сметой, монтаж" : "материал, монтаж, бетонирование"}. Точный расчёт — после замера инженером.
           </p>
           <div className="mt-auto pt-5 grid gap-2">
-            <a
-              href={tgLink(`зафиксировать цену — ${type.label}, высота ${height} м${isUnit ? "" : `, ${length} м`}${screwPiles ? ', на винтовых сваях' : ''}`)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-md btn-yellow btn-shiny px-4 py-3 text-sm text-center"
-            >
-              Зафиксировать цену
-            </a>
-            <a
-              href={tgLink(`вызов замерщика — ${type.label}`)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-md bg-white/10 hover:bg-white/15 text-white px-4 py-3 text-sm font-semibold text-center"
-            >
-              Вызвать замерщика
-            </a>
+            <LeadModal subject={`Зафиксировать цену — ${type.label}, высота ${height} м${isUnit ? "" : `, ${length} м`}${screwPiles ? ', на винтовых сваях' : ''}`}>
+              <button
+                type="button"
+                className="w-full rounded-md btn-yellow btn-shiny px-4 py-3 text-sm text-center font-bold"
+              >
+                Зафиксировать цену
+              </button>
+            </LeadModal>
+            <LeadModal subject={`Вызов замерщика — ${type.label}`}>
+              <button
+                type="button"
+                className="w-full rounded-md bg-white/10 hover:bg-white/15 text-white px-4 py-3 text-sm font-semibold text-center"
+              >
+                Вызвать замерщика
+              </button>
+            </LeadModal>
           </div>
         </div>
       </div>

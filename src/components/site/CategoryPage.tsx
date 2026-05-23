@@ -3,6 +3,7 @@ import { ProductCard } from "@/components/site/ProductCard";
 import { Calculator } from "@/components/site/Calculator";
 import { SectionHeader } from "@/routes/index";
 import { Link } from "@tanstack/react-router";
+import { FloatingBullets } from "@/components/site/FloatingBullets";
 import { CATEGORIES, productsByCategory, type CategorySlug, PRODUCTS } from "@/lib/catalog";
 import { CONTACTS, tgLink } from "@/lib/site";
 import {
@@ -19,10 +20,13 @@ import {
   Clock,
   Send,
   MessageCircle,
+  Sparkles,
+  Gem,
 } from "lucide-react";
 import { useState } from "react";
 import { useCMS } from "@/lib/cms";
 import { urlFor } from "@/lib/sanity/client";
+import { LeadModal } from "@/components/site/LeadModal";
 
 type RalColor = { name: string; ral: string; hex: string };
 
@@ -66,8 +70,44 @@ export function CategoryPage({
   const { getProductContent } = useCMS();
   const cmsData = getProductContent(slug);
 
-  const displayTitle = cmsData?.heroTitle || cat.title;
-  const displayLead = cmsData?.fullContent || cat.lead;
+  const MARKETING_HEADLINES: Record<string, { title: React.ReactNode, lead: React.ReactNode }> = {
+    "vorota-otkatnye": {
+      title: <>Установим <span className="text-orange">откатные ворота</span> под ключ <span className="text-orange">до 5 дней</span><br/> с итальянской автоматикой</>,
+      lead: "Прочный каркас без провисаний и зимних заклиниваний. Строгий ГОСТ-металл и опытные монтажники."
+    },
+    "vorota-raspashnye": {
+      title: <>Надежные <span className="text-orange">распашные ворота</span> под ключ <span className="text-orange">до 5 дней</span><br/> с усиленными петлями</>,
+      lead: "Проверенная классика без люфта. Профессиональный монтаж, опционально с автоматикой."
+    },
+    "proflist": {
+      title: <>Глухие заборы из <span className="text-orange">ГОСТ-профнастила</span> под ключ <span className="text-orange">до 5 дней</span><br/> <span className="text-orange">с гарантией 3 года</span></>,
+      lead: <>Полная приватность и защита от ветра без ржавчины. <br className="hidden sm:block"/>Честная толщина металла 0.45 мм.</>
+    },
+    "evroshtaketnik": {
+      title: <>Эстетичный забор из <span className="text-orange">евроштакетника</span> под ключ <span className="text-orange">до 5 дней</span><br/> с идеальной продуваемостью</>,
+      lead: <>Двусторонний окрас, монтаж строго по нивелиру. <br className="hidden sm:block"/>Варианты в один ряд, шахматка или премиум горизонталь.</>
+    },
+    "gitter": {
+      title: <>Антивандальные заборы из <span className="text-orange">3D-сетки Gitter</span> под ключ <span className="text-orange">до 5 дней</span><br/> для дачи и промзон</>,
+      lead: <>15 лет без подкрасов. Идеальное светопропускание и <br className="hidden sm:block"/>бескомпромиссная надежность сварных панелей.</>
+    },
+    "jaluzi": {
+      title: <>Премиальные <span className="text-orange">заборы-жалюзи</span> под ключ <span className="text-orange">до 5 дней</span><br/> со скрытым крепежом</>,
+      lead: "Статусная приватность без «парникового эффекта». Элита загородных ограждений из толстого металла."
+    },
+    "dizainerskie": {
+      title: <>Дизайнерские заборы из <span className="text-orange">кирпича и габионов</span><br/> под ключ <span className="text-orange">до 5 дней</span></>,
+      lead: "Архитектурный проект, заливка ленты и вечная гарантия на фундамент. Эксклюзивные решения для вашего дома."
+    },
+    "kalitki": {
+      title: <>Надежная <span className="text-orange">стальная калитка</span> под ключ <span className="text-orange">до 5 дней</span><br/> в едином стиле с забором</>,
+      lead: <>Безупречная геометрия, качественная фурнитура. <br className="hidden sm:block"/>Замок и ручка-кноб уже в базовой комплектации.</>
+    }
+  };
+
+  const marketingData = MARKETING_HEADLINES[slug];
+  const displayTitle = marketingData ? marketingData.title : <>{cat.title} <span className="text-orange">с реальной гарантией</span></>;
+  const displayLead = marketingData ? marketingData.lead : cat.lead;
   const displayHeroImg = cmsData?.mainImage ? urlFor(cmsData.mainImage).url() : hero;
 
   return (
@@ -79,19 +119,19 @@ export function CategoryPage({
           alt={cat.title}
           width={1280}
           height={960}
-          className="absolute inset-0 size-full object-cover opacity-45"
+          className="absolute inset-0 size-full object-cover opacity-65"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-graphite-deep via-graphite-deep/85 to-graphite-deep/30" />
+        <div className="absolute inset-0 bg-gradient-to-r from-graphite-deep/90 via-graphite-deep/40 to-transparent" />
         <div className="container-x relative py-20 md:py-28">
-          <div className="max-w-3xl text-left">
+          <div className="max-w-5xl text-left">
             <div className="text-xs uppercase tracking-[0.25em] text-orange flex items-center gap-3">
               <span className="hazard-stripe h-1 w-10 rounded-sm" />
               Направление
             </div>
-            <h1 className="font-display text-4xl md:text-6xl mt-3 leading-[0.95]">
-              {displayTitle} <span className="text-orange">с реальной гарантией</span>
+            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl mt-3 leading-[1.05] text-balance">
+              {displayTitle}
             </h1>
-            <p className="text-white/75 text-lg mt-4 max-w-2xl">{displayLead}</p>
+            <p className="text-white/75 text-lg mt-5 max-w-2xl">{displayLead}</p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a
                 href="#calc"
@@ -118,6 +158,7 @@ export function CategoryPage({
               </a>
             </div>
           </div>
+          <FloatingBullets slug={slug} />
         </div>
       </section>
 
@@ -173,14 +214,17 @@ export function CategoryPage({
               </div>
             </div>
             <div className="relative flex flex-wrap gap-3">
-              <a
-                href={tgLink(`вызов инженера — ${cat.title}`)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-md btn-yellow px-6 py-3.5 whitespace-nowrap"
+              <LeadModal 
+                subject={`Вызов инженера — ${cat.title}`}
+                title="Бесплатный выезд инженера и точный расчёт сметы"
               >
-                Вызвать инженера
-              </a>
+                <button
+                  type="button"
+                  className="rounded-md btn-yellow px-6 py-3.5 whitespace-nowrap font-bold text-graphite-deep"
+                >
+                  Вызвать инженера
+                </button>
+              </LeadModal>
               <a
                 href="#calc"
                 className="rounded-md border border-white/25 hover:border-yellow hover:text-yellow px-6 py-3.5 font-semibold transition-colors text-white whitespace-nowrap"
@@ -262,7 +306,7 @@ export function CategoryPage({
 
       {/* Advantages */}
       <section className="container-x py-16">
-        <SectionHeader kicker="Преимущества" title="Почему выбирают СПЕЦЗАБОР.РФ" />
+        <SectionHeader kicker="Преимущества" title="Почему выбирают СПЕЦЗАБОР" />
         <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
           {[
             { i: Ruler, t: "Инженер на замер", d: "Перепад высот, грунт, точная смета до договора." },
@@ -305,8 +349,8 @@ function InfoTabs() {
     },
     terms: {
       title: "Сроки от замера до сдачи",
-      body: "Стандартный участок 30–50 м.п. — 5–10 дней с момента подписания договора. Сложные геометрии и ландшафт — обсуждаем индивидуально.",
-      bullets: ["Замер — 1–2 дня", "Заготовка металла — 2–3 дня", "Монтаж — 2–5 дней", "Сдача с фотоотчётом"],
+      body: "Стандартный участок 30–50 м.п. — до 5 дней с момента подписания договора. Сложные геометрии и ландшафт — обсуждаем индивидуально.",
+      bullets: ["Замер — 1 день", "Заготовка металла — 1-2 дня", "Монтаж — 1-2 дня", "Сдача с фотоотчётом"],
     },
     warranty: {
       title: "Гарантия по договору — 3 года",
@@ -366,7 +410,7 @@ function ContactsBlock({ title }: { title: string }) {
       <div className="mt-10 grid gap-6 lg:grid-cols-[1fr_1fr]">
         {/* Info side */}
         <div className="rounded-2xl bg-card border border-border p-6 md:p-8 text-left">
-          <h3 className="font-display text-2xl">СПЕЦЗАБОР.РФ</h3>
+          <h3 className="font-display text-2xl">СПЕЦЗАБОР</h3>
           <p className="text-muted-foreground mt-2">
             Изготовление и монтаж заборов в Санкт-Петербурге и Ленинградской области.
           </p>
@@ -436,10 +480,23 @@ function MiniLeadForm({ subject }: { subject: string }) {
     e.preventDefault();
     setStatus("loading");
     try {
-      const res = await fetch("/api/lead", {
+      const BOT_TOKEN = "8986328079:AAGR3IMfBNmllYVpemnxoKZGgJ6A2tahyvQ";
+      const CHAT_ID = "1175701496";
+      
+      const text = `🔥 <b>Новая заявка с сайта!</b>\n\n` +
+                   `<b>Тема:</b> ${subject}\n` +
+                   `<b>Имя:</b> ${name}\n` +
+                   `<b>Телефон:</b> ${phone}\n` +
+                   `<b>Комментарий:</b> ${comment || "-"}`;
+
+      const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, phone, comment, subject }),
+        body: JSON.stringify({ 
+          chat_id: CHAT_ID, 
+          text: text,
+          parse_mode: "HTML"
+        }),
       });
       if (res.ok) {
         setStatus("success");

@@ -3,9 +3,9 @@ export const CONTACTS = {
   phone: "+7 (921) 641-33-88",
   phoneRaw: "+79216413388",
   phoneHref: "tel:+79216413388",
-  // Telegram-аккаунт компании (или бот)
-  telegramUrl: "https://t.me/SpecZabor_bot",
-  telegramHandle: "@SpecZabor_bot",
+  // Telegram-аккаунт Ивана
+  telegramUrl: "https://t.me/IvanNaZabore",
+  telegramHandle: "@IvanNaZabore",
   telegramLabel: "Telegram",
   // Max — для шапки/подвала как доп. канал
   maxUrl: "https://max.ru/u/f9LHodD0cOINY4zgG1-cKBe7ysxPUTIcJsyxIBfd7WA6E6HosIKC7oFrsNY",
@@ -13,7 +13,7 @@ export const CONTACTS = {
   workHours: "Ежедневно 9:00 — 21:00",
   region: "СПб и Ленинградская область",
   email: "info@спецзабор.рф",
-  brand: "СПЕЦЗАБОР.РФ",
+  brand: "СПЕЦЗАБОР",
 };
 
 /**

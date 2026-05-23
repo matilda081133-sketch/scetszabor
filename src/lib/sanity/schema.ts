@@ -100,3 +100,29 @@ export const calcSettings = {
     }
   ]
 };
+// Schema for Hero Gallery (collage on main screen)
+export const heroGallery = {
+  name: 'heroGallery',
+  title: 'Коллаж на главном экране',
+  type: 'document',
+  fields: [
+    {
+      name: 'photos',
+      title: 'Фотографии работ (до 5 штук)',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            { name: 'image', title: 'Фото', type: 'image', options: { hotspot: true } },
+            { name: 'alt', title: 'Описание (для SEO)', type: 'string' },
+          ],
+          preview: {
+            select: { title: 'alt', media: 'image' }
+          }
+        }
+      ],
+      validation: (R: any) => R.max(5)
+    }
+  ]
+};

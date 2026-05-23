@@ -1,4 +1,4 @@
-﻿import { Play, Send, Mic, Camera, Smile, Plus, ChevronLeft, MoreVertical, Star } from "lucide-react";
+import { Play, Send, Mic, Camera, Smile, Plus, ChevronLeft, MoreVertical, Star } from "lucide-react";
 import type { ReactNode } from "react";
 
 /**
@@ -83,7 +83,7 @@ const REVIEWS: Review[] = [
     initials: "О",
     avatarColor: "#8b5cf6",
     time: "20:04",
-    variant: "tg-android",
+    variant: "tg-desktop",
     product: "3D Gitter, 120 м",
     message: (
       <>

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { tgLink } from "@/lib/site";
 import { urlFor } from "@/lib/sanity/client";
+import { LeadModal } from "@/components/site/LeadModal";
 
 export function ProductCard({ product }: { product: any }) {
   const [idx, setIdx] = useState(0);
@@ -160,14 +161,14 @@ export function ProductCard({ product }: { product: any }) {
         </div>
 
         <div className="mt-3 grid grid-cols-2 gap-2">
-          <a
-            href={tgLink(`расчёт стоимости — ${product.title}`)}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-md btn-yellow btn-shiny text-center text-sm py-2.5"
-          >
-            Рассчитать
-          </a>
+          <LeadModal subject={`Рассчёт стоимости — ${product.title}`}>
+            <button
+              type="button"
+              className="rounded-md btn-yellow btn-shiny text-center text-sm py-2.5"
+            >
+              Рассчитать
+            </button>
+          </LeadModal>
           <Link
             to="/products/$productId"
             params={{ productId: product.id }}

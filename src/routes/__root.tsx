@@ -29,6 +29,7 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { name: "yandex-verification", content: "f84650af349ca373" },
       { title: "СПЕЦЗАБОР | Заборы под ключ в СПб и ЛО" },
       {
         name: "description",
