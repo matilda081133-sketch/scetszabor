@@ -1,0 +1,6 @@
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:2008:16)
+    at listenInCluster (node:net:2065:12)
+    at Server.listen (node:net:2170:7)
+    at app.listen (C:\Users\Honor\OneDrive\Desktop\проект спецзабор\lovable-app\node_modules\express\lib\application.js:605:24)
+    at file:///C:/Users/Honor/OneDrive/Desktop/%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%20%D1%81%D0%BF%D0%B5%D1%86%D0%B7%D0%B0%D0%B1%D0%BE%D1%80/lovable-app/server-node.mjs:110:20

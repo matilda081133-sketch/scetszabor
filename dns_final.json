@@ -1,0 +1,61 @@
+﻿{
+    "result":  [
+                   {
+                       "id":  "b51fc6aaba3947d51b5f165b4be7218a",
+                       "name":  "www.xn--80acki1bbmb1c.xn--p1ai",
+                       "type":  "CNAME",
+                       "content":  "xn--80atdlbeje7b.xn--p1ai",
+                       "proxiable":  true,
+                       "proxied":  true,
+                       "ttl":  1,
+                       "settings":  {
+                                        "flatten_cname":  false
+                                    },
+                       "meta":  {
+
+                                },
+                       "comment":  null,
+                       "tags":  [
+
+                                ],
+                       "created_on":  "2026-05-03T11:30:07.206922Z",
+                       "modified_on":  "2026-05-03T11:30:07.206922Z"
+                   },
+                   {
+                       "id":  "06d4c2c0878291209dcc70c0df06c247",
+                       "name":  "xn--80acki1bbmb1c.xn--p1ai",
+                       "type":  "AAAA",
+                       "content":  "100::",
+                       "proxiable":  true,
+                       "proxied":  true,
+                       "ttl":  1,
+                       "settings":  {
+
+                                    },
+                       "meta":  {
+                                    "origin_worker_id":  "01efce9c38aeafc23d3bac39080988a5e2ec7b12",
+                                    "read_only":  true
+                                },
+                       "comment":  null,
+                       "tags":  [
+
+                                ],
+                       "created_on":  "2026-05-03T10:51:34.448945Z",
+                       "modified_on":  "2026-05-03T10:51:34.448945Z"
+                   }
+               ],
+    "success":  true,
+    "errors":  [
+
+               ],
+    "messages":  [
+
+                 ],
+    "result_info":  {
+                        "page":  1,
+                        "per_page":  100,
+                        "count":  2,
+                        "total_count":  2,
+                        "total_pages":  1
+                    }
+}

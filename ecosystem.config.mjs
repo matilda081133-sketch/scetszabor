@@ -2,6 +2,7 @@ export default {
   apps: [{
     name: "speczabor",
     script: "server-node.mjs",
+    env_file: ".env",
     env_production: {
       NODE_ENV: "production",
       PORT: 3000

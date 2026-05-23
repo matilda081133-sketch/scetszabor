@@ -43,6 +43,26 @@ export const Route = createFileRoute("/")({
     links: [
       { rel: "preload", href: heroImg, as: "image" },
     ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          "name": "СПЕЦЗАБОР",
+          "image": "https://xn--80acki1bbmb1c.xn--p1ai/favicon.png",
+          "url": "https://xn--80acki1bbmb1c.xn--p1ai",
+          "telephone": "+7 (812) 502-12-32",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Санкт-Петербург",
+            "addressRegion": "Ленинградская область",
+            "addressCountry": "RU"
+          },
+          "description": "Производство и монтаж заборов СПЕЦЗАБОР в СПб и Ленобласти: откатные ворота, профнастил, евроштакетник, 3D сетка. Точный расчет в онлайн калькуляторе, ГОСТовая сварка, инженерный замер. Реальная гарантия."
+        })
+      }
+    ],
   }),
   component: HomePage,
 });
